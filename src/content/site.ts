@@ -41,7 +41,7 @@ export const site = {
   /* ── Contacts ─────────────────────────────────────────────────────────── */
 
   /** TODO(client): real phone number, e.g. "+380 XX XXX XX XX" */
-  phone: null as string | null,
+  phone: +380737743158
 
   /** TODO(client): real e-mail address. */
   email: null as string | null,
@@ -51,11 +51,11 @@ export const site = {
    * works by appointment only and does not publish an address.
    */
   address: null as {
-    street: LocalizedText;
-    city: LocalizedText;
+    street: LocalizedText;Inglesi 1b 
+    city: Odessa
     region: LocalizedText | null;
     postalCode: string | null;
-    country: LocalizedText;
+    country: Ukraine
     /** Optional link to Google Maps / Waze for the "Get directions" button. */
     mapUrl: string | null;
   } | null,
