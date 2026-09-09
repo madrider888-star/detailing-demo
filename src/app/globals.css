@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+/* --------------------------------------------------------------------------
+   Apex Detailing design tokens
+   A single dark palette: carbon surfaces, mist typography, one brass accent.
+   -------------------------------------------------------------------------- */
+@theme {
+  --color-carbon-950: #050607;
+  --color-carbon-900: #0a0c0e;
+  --color-carbon-850: #0e1114;
+  --color-carbon-800: #13171a;
+  --color-carbon-700: #1b2024;
+  --color-carbon-600: #262c32;
+  --color-carbon-500: #39414a;
+
+  --color-mist-500: #5f676f;
+  --color-mist-400: #79828b;
+  --color-mist-300: #9aa2ab;
+  --color-mist-200: #c3c9d0;
+  --color-mist-100: #e8ebee;
+
+  --color-brass-300: #ecd7a9;
+  --color-brass-400: #e0c48f;
+  --color-brass-500: #d9b778;
+  --color-brass-600: #b3924f;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-display), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-elevated: 0 24px 70px -30px rgb(0 0 0 / 0.9);
+  --shadow-card: 0 1px 0 0 rgb(255 255 255 / 0.04) inset, 0 20px 50px -35px rgb(0 0 0 / 0.9);
+
+  --animate-rise: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-sweep: sweep 9s ease-in-out infinite;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 18px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes sweep {
+    0%,
+    100% {
+      opacity: 0.25;
+      transform: translate3d(-6%, 0, 0);
+    }
+    50% {
+      opacity: 0.6;
+      transform: translate3d(6%, 0, 0);
+    }
+  }
+}
+
+@layer base {
+  * {
+    border-color: color-mix(in oklab, var(--color-mist-100) 8%, transparent);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-carbon-950);
+    color: var(--color-mist-200);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-mist-100);
+    letter-spacing: -0.022em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: var(--color-brass-500);
+    color: var(--color-carbon-950);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brass-500);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Firefox keeps a default ring on inputs that fights the token above. */
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline-offset: 1px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* --------------------------------------------------------------- utilities */
+
+/** Page gutter shared by every section so columns line up across routes. */
+@utility shell {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 84rem;
+  padding-inline: 1.25rem;
+
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+
+  @media (width >= 80rem) {
+    padding-inline: 2.5rem;
+  }
+}
+
+/** Small uppercase label that precedes section titles. */
+@utility eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-brass-500);
+}
+
+/** Hairline separator used inside cards and lists. */
+@utility rule {
+  border-top: 1px solid color-mix(in oklab, var(--color-mist-100) 8%, transparent);
+}
+
+/** Frosted surface — used sparingly, on the header and image overlays only. */
+@utility glass {
+  background-color: color-mix(in oklab, var(--color-carbon-950) 72%, transparent);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+/** Fades the bottom of an image into the page background. */
+@utility image-fade {
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+}
