@@ -44,7 +44,7 @@ export const site = {
   phone: '+380737743158',
 
   /** TODO(client): real e-mail address. */
-  email: null as string | null,
+  email: null,
 
   /**
    * TODO(client): studio address. Set the whole object to `null` if the studio
