@@ -50,7 +50,7 @@ export const site = {
    * TODO(client): studio address. Set the whole object to `null` if the studio
    * works by appointment only and does not publish an address.
    */
-  address: null as {
+  address: null,
     street: LocalizedText;Inglesi 1b 
     city: Odessa
     region: LocalizedText | null;
