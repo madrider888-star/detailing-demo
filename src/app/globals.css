@@ -1,65 +1,78 @@
 @import "tailwindcss";
 
-/* --------------------------------------------------------------------------
-   Apex Detailing design tokens
-   A single dark palette: carbon surfaces, mist typography, one brass accent.
-   -------------------------------------------------------------------------- */
+/* ═════════════════════════════════════════════════════════════════════════════
+   THE BOX Detailing — design tokens
+
+   EVERYTHING VISUAL IS DEFINED HERE. Colours, fonts, corner radius and spacing
+   are declared once and used everywhere through Tailwind utilities, so a brand
+   change is an edit to this file rather than a sweep through components.
+
+   ── TO APPLY THE BRAND ────────────────────────────────────────────────────
+   1. --color-accent below is currently white, which renders the site as a
+      deliberate monochrome. Set it to THE BOX's brand colour and every eyebrow,
+      active state, focus ring and highlight picks it up.
+   2. --font-display / --font-body are wired to the fonts loaded in
+      src/app/layout.tsx. Swap the import there to change typography.
+   3. --radius-card / --radius-button control the geometry of the whole UI.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 @theme {
-  --color-carbon-950: #050607;
-  --color-carbon-900: #0a0c0e;
-  --color-carbon-850: #0e1114;
-  --color-carbon-800: #13171a;
-  --color-carbon-700: #1b2024;
-  --color-carbon-600: #262c32;
-  --color-carbon-500: #39414a;
+  /* ── Surfaces: near-black neutrals so vehicle photography reads correctly ── */
+  --color-ink-950: #050505;
+  --color-ink-900: #0a0a0b;
+  --color-ink-850: #0f0f11;
+  --color-ink-800: #141416;
+  --color-ink-700: #1c1d20;
+  --color-ink-600: #26282c;
+  --color-ink-500: #34373c;
 
-  --color-mist-500: #5f676f;
-  --color-mist-400: #79828b;
-  --color-mist-300: #9aa2ab;
-  --color-mist-200: #c3c9d0;
-  --color-mist-100: #e8ebee;
+  /* ── Type ─────────────────────────────────────────────────────────────── */
+  --color-chalk-50: #ffffff;
+  --color-chalk-100: #e9eaec;
+  --color-chalk-200: #c8cacd;
+  --color-chalk-300: #9b9ea4;
+  --color-chalk-400: #74777d;
+  --color-chalk-500: #55585e;
 
-  --color-brass-300: #ecd7a9;
-  --color-brass-400: #e0c48f;
-  --color-brass-500: #d9b778;
-  --color-brass-600: #b3924f;
+  /* ── Brand accent ─────────────────────────────────────────────────────────
+     TODO(client): replace with THE BOX's brand colour (a single hex).
+     White keeps the site an intentional monochrome until then.            */
+  --color-accent: #ffffff;
+  --color-accent-muted: color-mix(in oklab, var(--color-accent) 55%, transparent);
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: var(--font-display), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* ── Hairlines ────────────────────────────────────────────────────────── */
+  --color-line: color-mix(in oklab, var(--color-chalk-50) 10%, transparent);
+  --color-line-strong: color-mix(in oklab, var(--color-chalk-50) 22%, transparent);
 
-  --shadow-elevated: 0 24px 70px -30px rgb(0 0 0 / 0.9);
-  --shadow-card: 0 1px 0 0 rgb(255 255 255 / 0.04) inset, 0 20px 50px -35px rgb(0 0 0 / 0.9);
+  /* ── Geometry: squared, technical, automotive ─────────────────────────── */
+  --radius-card: 2px;
+  --radius-button: 2px;
+  --radius-pill: 9999px;
 
-  --animate-rise: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-  --animate-sweep: sweep 9s ease-in-out infinite;
+  /* ── Typography ───────────────────────────────────────────────────────── */
+  --font-display: var(--font-display-face), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-body-face), ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* ── Motion ───────────────────────────────────────────────────────────── */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-rise: rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 
   @keyframes rise {
     from {
       opacity: 0;
-      transform: translate3d(0, 18px, 0);
+      transform: translate3d(0, 22px, 0);
     }
     to {
       opacity: 1;
       transform: none;
     }
   }
-
-  @keyframes sweep {
-    0%,
-    100% {
-      opacity: 0.25;
-      transform: translate3d(-6%, 0, 0);
-    }
-    50% {
-      opacity: 0.6;
-      transform: translate3d(6%, 0, 0);
-    }
-  }
 }
 
 @layer base {
   * {
-    border-color: color-mix(in oklab, var(--color-mist-100) 8%, transparent);
+    border-color: var(--color-line);
+    min-width: 0;
   }
 
   html {
@@ -68,8 +81,8 @@
   }
 
   body {
-    background-color: var(--color-carbon-950);
-    color: var(--color-mist-200);
+    background-color: var(--color-ink-950);
+    color: var(--color-chalk-200);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -80,34 +93,26 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    color: var(--color-mist-100);
-    letter-spacing: -0.022em;
+    color: var(--color-chalk-50);
+    letter-spacing: -0.03em;
+    line-height: 1.06;
     text-wrap: balance;
   }
 
   ::selection {
-    background: var(--color-brass-500);
-    color: var(--color-carbon-950);
+    background: var(--color-accent);
+    color: var(--color-ink-950);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-brass-500);
+    outline: 2px solid var(--color-accent);
     outline-offset: 3px;
-    border-radius: 2px;
-  }
-
-  /* Firefox keeps a default ring on inputs that fights the token above. */
-  input:focus-visible,
-  select:focus-visible,
-  textarea:focus-visible {
-    outline-offset: 1px;
   }
 
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
-
     *,
     *::before,
     *::after {
@@ -118,13 +123,13 @@
   }
 }
 
-/* --------------------------------------------------------------- utilities */
+/* ── Utilities ─────────────────────────────────────────────────────────── */
 
-/** Page gutter shared by every section so columns line up across routes. */
+/** Page gutter. Every section uses it so columns line up across routes. */
 @utility shell {
   width: 100%;
   margin-inline: auto;
-  max-width: 84rem;
+  max-width: 90rem;
   padding-inline: 1.25rem;
 
   @media (width >= 40rem) {
@@ -132,35 +137,42 @@
   }
 
   @media (width >= 80rem) {
-    padding-inline: 2.5rem;
+    padding-inline: 3rem;
   }
 }
 
-/** Small uppercase label that precedes section titles. */
+/** Small uppercase label above section titles. */
 @utility eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
   font-size: 0.6875rem;
   font-weight: 500;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--color-brass-500);
+  color: var(--color-accent);
 }
 
-/** Hairline separator used inside cards and lists. */
+/** Hairline rule used inside cards and lists. */
 @utility rule {
-  border-top: 1px solid color-mix(in oklab, var(--color-mist-100) 8%, transparent);
+  border-top: 1px solid var(--color-line);
 }
 
-/** Frosted surface — used sparingly, on the header and image overlays only. */
+/** Frosted surface. Used only on the sticky header and image overlay chips. */
 @utility glass {
-  background-color: color-mix(in oklab, var(--color-carbon-950) 72%, transparent);
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  background-color: color-mix(in oklab, var(--color-ink-950) 78%, transparent);
+  backdrop-filter: blur(20px) saturate(130%);
+  -webkit-backdrop-filter: blur(20px) saturate(130%);
 }
 
-/** Fades the bottom of an image into the page background. */
-@utility image-fade {
-  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+/** Wide, tightly-tracked display setting for hero headlines. */
+@utility display-xl {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  /* Ukrainian capitals carry marks above cap height (Й, Ї, Є). Manrope's glyph
+     area overflows any tight line box, so headings need clearance above them
+     rather than a heroically tight leading. */
+  line-height: 1.08;
+  text-transform: uppercase;
 }

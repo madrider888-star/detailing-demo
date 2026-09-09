@@ -6,6 +6,8 @@ interface SectionProps {
   as?: ElementType;
   /** `raised` lifts the band one step out of the page background. */
   tone?: "base" | "raised";
+  /** `flush` drops the shell gutter for full-bleed media. */
+  bleed?: boolean;
   className?: string;
   children: ReactNode;
   "aria-labelledby"?: string;
@@ -15,6 +17,7 @@ export function Section({
   id,
   as: Tag = "section",
   tone = "base",
+  bleed = false,
   className,
   children,
   ...rest
@@ -22,14 +25,10 @@ export function Section({
   return (
     <Tag
       id={id}
-      className={cn(
-        "relative py-20 sm:py-24 lg:py-32",
-        tone === "raised" && "bg-carbon-900",
-        className,
-      )}
+      className={cn("relative py-20 sm:py-28 lg:py-36", tone === "raised" && "bg-ink-900", className)}
       {...rest}
     >
-      <div className="shell">{children}</div>
+      {bleed ? children : <div className="shell">{children}</div>}
     </Tag>
   );
 }

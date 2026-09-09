@@ -1,38 +1,38 @@
+import Image from "next/image";
 import Link from "next/link";
+import { localePath, type Locale } from "@/lib/i18n";
+import { site } from "@/content/site";
 import { cn } from "@/lib/utils";
 
-interface LogoProps {
-  className?: string;
-  /** Hides the wordmark and renders the apex mark alone. */
-  markOnly?: boolean;
-}
+/**
+ * TODO(client): drop the studio's logo into public/images/brand/ and set the
+ * path here (SVG preferred). While this is null the wordmark below is used.
+ *
+ *   const LOGO_SRC = "/images/brand/logo.svg";
+ */
+const LOGO_SRC: string | null = null;
+const LOGO_ASPECT = 4.2; // width ÷ height of the logo file
 
-export function Logo({ className, markOnly = false }: LogoProps) {
+export function Logo({ locale, className }: { locale: Locale; className?: string }) {
   return (
     <Link
-      href="/"
-      aria-label="Apex Detailing — home"
-      className={cn("group inline-flex items-center gap-3", className)}
+      href={localePath("/", locale)}
+      aria-label={site.name}
+      className={cn("group inline-flex items-center", className)}
     >
-      <svg
-        viewBox="0 0 32 32"
-        fill="none"
-        aria-hidden="true"
-        className="h-8 w-8 shrink-0 text-mist-100 transition-colors duration-300 group-hover:text-brass-400"
-      >
-        <path
-          d="M16 3.5 29 28.5H22.6L16 15.2 9.4 28.5H3L16 3.5Z"
-          fill="currentColor"
-          fillOpacity="0.92"
-        />
-        <path d="M16 18.6 20.6 28.5h-9.2L16 18.6Z" fill="currentColor" fillOpacity="0.45" />
-      </svg>
-      {markOnly ? null : (
-        <span className="flex flex-col leading-none">
-          <span className="font-display text-[15px] font-semibold tracking-[0.2em] text-mist-100 uppercase">
-            Apex
+      {LOGO_SRC ? (
+        <span
+          className="relative block h-7 sm:h-8"
+          style={{ aspectRatio: String(LOGO_ASPECT) }}
+        >
+          <Image src={LOGO_SRC} alt={site.name} fill priority className="object-contain" />
+        </span>
+      ) : (
+        <span className="flex items-baseline gap-2 leading-none">
+          <span className="font-display text-[17px] font-bold tracking-[0.24em] text-chalk-50 uppercase transition-colors duration-300 group-hover:text-accent sm:text-lg">
+            The&nbsp;Box
           </span>
-          <span className="mt-1 text-[9px] font-medium tracking-[0.34em] text-mist-500 uppercase">
+          <span className="hidden text-[9px] font-medium tracking-[0.36em] text-chalk-500 uppercase sm:inline">
             Detailing
           </span>
         </span>

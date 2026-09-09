@@ -1,75 +1,144 @@
-import type { NavItem } from "@/types";
+import type { MessagingLink, NavItem, OpeningHours, Photo } from "@/types";
+import type { LocalizedText } from "@/lib/i18n";
+
+/**
+ * ─────────────────────────────────────────────────────────────────────────────
+ *  THE BOX Detailing — business information
+ * ─────────────────────────────────────────────────────────────────────────────
+ *
+ *  THIS IS THE ONLY FILE THAT CONTAINS THE STUDIO'S CONTACT DETAILS.
+ *  Change the phone number here and it updates in the header, the footer, the
+ *  contact page, every call button and the Google structured data at once.
+ *
+ *  Fields set to `null` are not yet confirmed by the client. While a field is
+ *  `null` the site simply hides that element — it never shows a placeholder.
+ *  Replace the `null` with a real value to switch the element on.
+ *
+ *  Each `{ uk: "...", en: "..." }` pair holds the Ukrainian and English version
+ *  of the same text.
+ */
 
 export const site = {
-  name: "Apex Detailing",
-  legalName: "Apex Detailing Studio",
-  tagline: "Paint protection & appearance studio",
-  description:
-    "Apex Detailing is a paint protection and appearance studio in Odessa. Ceramic coatings, paint protection film, paint correction and interior restoration for enthusiast and collector vehicles.",
-  url: "https://apexdetailing.demo",
-  locale: "en_US",
-  phone: "+380 48 700 21 40",
-  phoneHref: "+380487002140",
-  email: "hello@apexdetailing.demo",
-  address: {
-    street: "14 Prymorska Street, Bay 3",
-    city: "Odessa",
-    region: "Odesa Oblast",
-    postalCode: "65014",
-    country: "Ukraine",
+  /** Displayed name. Used in the logo wordmark, page titles and structured data. */
+  name: "THE BOX Detailing",
+  shortName: "THE BOX",
+
+  /** TODO(client): production domain, e.g. "https://theboxdetailing.com" */
+  url: "https://example.com",
+
+  /** TODO(client): confirm the studio's own wording for these two lines. */
+  tagline: {
+    uk: "Детейлінг-студія",
+    en: "Detailing studio",
+  } satisfies LocalizedText,
+
+  /** Used as the fallback meta description on every page. */
+  description: {
+    uk: "THE BOX Detailing — студія детейлінгу та захисту лакофарбового покриття.",
+    en: "THE BOX Detailing — a detailing and paint protection studio.",
+  } satisfies LocalizedText,
+
+  /* ── Contacts ─────────────────────────────────────────────────────────── */
+
+  /** TODO(client): real phone number, e.g. "+380 XX XXX XX XX" */
+  phone: null as string | null,
+
+  /** TODO(client): real e-mail address. */
+  email: null as string | null,
+
+  /**
+   * TODO(client): studio address. Set the whole object to `null` if the studio
+   * works by appointment only and does not publish an address.
+   */
+  address: null as {
+    street: LocalizedText;
+    city: LocalizedText;
+    region: LocalizedText | null;
+    postalCode: string | null;
+    country: LocalizedText;
+    /** Optional link to Google Maps / Waze for the "Get directions" button. */
+    mapUrl: string | null;
+  } | null,
+
+  /** TODO(client): opening hours. Leave as an empty array to hide the block. */
+  hours: [] as OpeningHours[],
+
+  /* ── Social & messaging ───────────────────────────────────────────────── */
+
+  /** Confirmed: the studio's Instagram handle. */
+  instagram: {
+    handle: "@thebox.detailing",
+    url: "https://www.instagram.com/thebox.detailing/",
   },
-  hours: [
-    { days: "Monday – Friday", time: "09:00 – 20:00" },
-    { days: "Saturday", time: "10:00 – 18:00" },
-    { days: "Sunday", time: "By appointment" },
-  ],
-  social: [
-    { label: "Instagram", href: "https://instagram.com" },
-    { label: "YouTube", href: "https://youtube.com" },
-    { label: "Telegram", href: "https://telegram.org" },
-  ],
-  stats: [
-    { value: "11", label: "Years in the trade" },
-    { value: "2 400+", label: "Vehicles finished" },
-    { value: "6", label: "Climate-controlled bays" },
-    { value: "10 yr", label: "Longest coating warranty" },
-  ],
+
+  /**
+   * TODO(client): messaging links used by the header, the contact page and the
+   * booking form hand-off. Add or remove entries freely.
+   *
+   *   { label: "Telegram",  href: "https://t.me/<username>",     icon: "telegram" }
+   *   { label: "WhatsApp",  href: "https://wa.me/<number>",      icon: "whatsapp" }
+   *   { label: "Viber",     href: "viber://chat?number=<number>", icon: "viber" }
+   */
+  messaging: [] as MessagingLink[],
+
+  /**
+   * Where the booking form sends the completed request. The form builds a
+   * prefilled message and hands it to this channel — no server required.
+   * Set to the index of an entry in `messaging`, or leave null to fall back to
+   * e-mail (and, if there is no e-mail either, to the phone number).
+   */
+  bookingChannel: null as number | null,
+
+  /* ── Home page hero ───────────────────────────────────────────────────── */
+
+  hero: {
+    /** TODO(client): confirm the headline wording with the studio. */
+    headline: {
+      uk: "Детейлінг\nбез компромісів",
+      en: "Detailing\nwithout compromise",
+    } satisfies LocalizedText,
+    subline: {
+      uk: "Захист лакофарбового покриття, полірування та догляд за салоном.",
+      en: "Paint protection, correction and interior care.",
+    } satisfies LocalizedText,
+    /**
+     * TODO(client): the main hero photograph.
+     * Put the file in public/images/hero/ and set it here:
+     *   media: { src: "/images/hero/studio.jpg", alt: { uk: "...", en: "..." } }
+     * Until then the hero renders as typography on black.
+     */
+    media: null as Photo | null,
+  },
+
+  /* ── Facts ────────────────────────────────────────────────────────────── */
+
+  /**
+   * TODO(client): only add figures the studio can stand behind. Anything left
+   * out of this array simply does not appear on the site.
+   *
+   *   { value: "8", label: { uk: "років досвіду", en: "years of experience" } }
+   */
+  stats: [] as { value: string; label: LocalizedText }[],
 } as const;
 
+/* ── Navigation ─────────────────────────────────────────────────────────── */
+
+/** Paths have no locale prefix — it is added automatically per language. */
 export const mainNav: NavItem[] = [
-  { label: "Services", href: "/services" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: { uk: "Послуги", en: "Services" }, href: "/services" },
+  { label: { uk: "Портфоліо", en: "Portfolio" }, href: "/portfolio" },
+  { label: { uk: "Студія", en: "Studio" }, href: "/about" },
+  { label: { uk: "Контакти", en: "Contact" }, href: "/contact" },
 ];
 
-export const footerNav: { title: string; items: NavItem[] }[] = [
-  {
-    title: "Studio",
-    items: [
-      { label: "About the studio", href: "/about" },
-      { label: "Gallery", href: "/gallery" },
-      { label: "Pricing", href: "/pricing" },
-      { label: "Book an appointment", href: "/contact" },
-    ],
-  },
-  {
-    title: "Protection",
-    items: [
-      { label: "Ceramic Coating", href: "/services/ceramic-coating" },
-      { label: "Paint Protection Film", href: "/services/paint-protection-film" },
-      { label: "Full Body PPF", href: "/services/full-body-ppf" },
-      { label: "Wheel Protection", href: "/services/wheel-protection" },
-    ],
-  },
-  {
-    title: "Detailing",
-    items: [
-      { label: "Paint Correction", href: "/services/paint-correction" },
-      { label: "Interior Detailing", href: "/services/interior-detailing" },
-      { label: "Full Detailing", href: "/services/full-detailing" },
-      { label: "Window Tinting", href: "/services/window-tinting" },
-    ],
-  },
-];
+/** Returns the channel the booking form should hand off to, or null. */
+export function bookingTarget(): MessagingLink | null {
+  const index = site.bookingChannel;
+  if (index === null) return null;
+  return site.messaging[index] ?? null;
+}
+
+/** True when the studio has published at least one way to reach it. */
+export function hasContactDetails(): boolean {
+  return Boolean(site.phone || site.email || site.messaging.length > 0);
+}

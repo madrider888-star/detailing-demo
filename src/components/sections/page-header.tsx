@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/reveal";
+import { t, type Locale } from "@/lib/i18n";
+import type { Photo } from "@/types";
 import { cn } from "@/lib/utils";
 
 interface Crumb {
@@ -8,47 +10,57 @@ interface Crumb {
   href: string;
 }
 
-interface PageHeaderProps {
-  eyebrow: string;
-  title: string;
-  description: string;
-  image?: string;
-  crumbs?: Crumb[];
-  /** Optional stat/meta row rendered under the description. */
-  meta?: { label: string; value: string }[];
-  children?: React.ReactNode;
-  className?: string;
-}
-
 /** Shared hero band for every route except the home page. */
 export function PageHeader({
+  locale,
   eyebrow,
   title,
   description,
-  image,
+  media,
   crumbs,
   meta,
   children,
   className,
-}: PageHeaderProps) {
+}: {
+  locale: Locale;
+  eyebrow: string;
+  title: string;
+  description?: string;
+  media?: Photo | null;
+  crumbs?: Crumb[];
+  meta?: { label: string; value: string }[];
+  children?: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <section className={cn("relative isolate overflow-hidden pt-32 pb-16 sm:pt-40 sm:pb-20 lg:pt-48 lg:pb-24", className)}>
-      {image ? (
+    <section
+      className={cn(
+        "relative isolate overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-24",
+        className,
+      )}
+    >
+      {media ? (
         <div aria-hidden="true" className="absolute inset-0 -z-10">
-          <Image src={image} alt="" fill priority sizes="100vw" className="object-cover opacity-45" />
-          <div className="absolute inset-0 bg-gradient-to-b from-carbon-950 via-carbon-950/85 to-carbon-950" />
-          <div className="absolute inset-0 bg-gradient-to-r from-carbon-950 via-carbon-950/60 to-transparent" />
+          <Image
+            src={media.src}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-40"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-ink-950 via-ink-950/80 to-ink-950" />
         </div>
       ) : null}
 
       <div className="shell">
         {crumbs ? (
           <nav aria-label="Breadcrumb" className="mb-8">
-            <ol className="flex flex-wrap items-center gap-2 text-[13px] text-mist-500">
+            <ol className="flex flex-wrap items-center gap-2 text-[12px] tracking-[0.1em] text-chalk-500 uppercase">
               {crumbs.map((crumb, index) => (
                 <li key={crumb.href} className="flex items-center gap-2">
                   {index > 0 ? <span aria-hidden="true">/</span> : null}
-                  <Link href={crumb.href} className="transition-colors hover:text-mist-200">
+                  <Link href={crumb.href} className="transition-colors hover:text-accent">
                     {crumb.label}
                   </Link>
                 </li>
@@ -57,27 +69,31 @@ export function PageHeader({
           </nav>
         ) : null}
 
-        <Reveal className="max-w-3xl">
+        <Reveal className="max-w-4xl">
           <p className="eyebrow">
-            <span aria-hidden="true" className="h-px w-8 bg-brass-600/70" />
+            <span aria-hidden="true" className="h-px w-8 bg-accent-muted" />
             {eyebrow}
           </p>
-          <h1 className="mt-6 text-4xl leading-[1.05] font-semibold tracking-[-0.03em] sm:text-5xl lg:text-[3.75rem]">
+          <h1 className="display-xl mt-8 text-[2.5rem] sm:text-[3.5rem] lg:text-[4.5rem]">
             {title}
           </h1>
-          <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-mist-300">{description}</p>
+          {description ? (
+            <p className="mt-7 max-w-2xl text-[17px] leading-relaxed text-chalk-300">
+              {description}
+            </p>
+          ) : null}
           {children}
         </Reveal>
 
-        {meta ? (
+        {meta && meta.length > 0 ? (
           <Reveal delay={140}>
-            <dl className="mt-14 grid grid-cols-2 gap-px border-t border-white/10 lg:grid-cols-4">
+            <dl className="mt-14 grid grid-cols-2 gap-px border-t border-line lg:grid-cols-4">
               {meta.map((item) => (
                 <div key={item.label} className="py-6 pr-6">
-                  <dt className="text-[11px] font-medium tracking-[0.2em] text-mist-500 uppercase">
+                  <dt className="text-[10px] font-medium tracking-[0.22em] text-chalk-500 uppercase">
                     {item.label}
                   </dt>
-                  <dd className="mt-2 font-display text-2xl font-semibold text-mist-100 lg:text-3xl">
+                  <dd lang={locale} className="mt-2 font-display text-xl font-semibold text-chalk-50 lg:text-2xl">
                     {item.value}
                   </dd>
                 </div>

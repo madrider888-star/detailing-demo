@@ -3,24 +3,18 @@
 import { useId, useState } from "react";
 import type { FormEvent, ReactNode } from "react";
 import { Button } from "@/components/ui/button";
+import { Icon } from "@/components/ui/icon";
+import { bookingTarget, site } from "@/content/site";
+import { ui } from "@/content/ui";
 import { services } from "@/content/services";
+import { t, type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-type FieldName =
-  | "name"
-  | "phone"
-  | "email"
-  | "make"
-  | "model"
-  | "year"
-  | "service"
-  | "date"
-  | "message";
-
+type FieldName = "name" | "phone" | "email" | "make" | "model" | "year" | "service" | "date" | "message";
 type Values = Record<FieldName, string>;
 type Errors = Partial<Record<FieldName, string>>;
 
-const initialValues: Values = {
+const emptyValues: Values = {
   name: "",
   phone: "",
   email: "",
@@ -33,9 +27,9 @@ const initialValues: Values = {
 };
 
 const inputClasses =
-  "h-12 w-full rounded-xl border border-white/10 bg-carbon-900 px-4 text-[15px] text-mist-100 " +
-  "placeholder:text-mist-500 transition-colors duration-300 hover:border-white/18 " +
-  "focus:border-brass-500/50 focus:outline-none aria-[invalid=true]:border-red-400/60";
+  "h-12 w-full rounded-button border border-line bg-ink-900 px-4 text-[15px] text-chalk-50 " +
+  "placeholder:text-chalk-500 transition-colors duration-300 hover:border-line-strong " +
+  "focus:border-accent focus:outline-none aria-[invalid=true]:border-red-400/70";
 
 function Field({
   label,
@@ -58,10 +52,10 @@ function Field({
     <div className={cn("flex flex-col gap-2", className)}>
       <label
         htmlFor={htmlFor}
-        className="text-[12px] font-medium tracking-[0.14em] text-mist-400 uppercase"
+        className="text-[11px] font-medium tracking-[0.16em] text-chalk-400 uppercase"
       >
         {label}
-        {required ? <span className="ml-1 text-brass-500">*</span> : null}
+        {required ? <span className="ml-1 text-accent">*</span> : null}
       </label>
       {children}
       {error ? (
@@ -69,42 +63,35 @@ function Field({
           {error}
         </p>
       ) : hint ? (
-        <p id={`${htmlFor}-hint`} className="text-[12.5px] text-mist-500">
-          {hint}
-        </p>
+        <p className="text-[12.5px] text-chalk-500">{hint}</p>
       ) : null}
     </div>
   );
 }
 
-function validate(values: Values): Errors {
-  const errors: Errors = {};
-  const currentYear = new Date().getFullYear();
-
-  if (values.name.trim().length < 2) errors.name = "Please tell us your name.";
-  if (!/^[+\d][\d\s()-]{7,}$/.test(values.phone.trim()))
-    errors.phone = "Enter a phone number we can reach you on.";
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values.email.trim()))
-    errors.email = "Enter a valid email address.";
-  if (values.make.trim().length < 2) errors.make = "Required.";
-  if (values.model.trim().length < 1) errors.model = "Required.";
-
-  const year = Number(values.year);
-  if (!values.year.trim() || Number.isNaN(year) || year < 1950 || year > currentYear + 1)
-    errors.year = `Between 1950 and ${currentYear + 1}.`;
-
-  if (!values.service) errors.service = "Choose a service so we can quote accurately.";
-
-  return errors;
-}
-
-export function BookingForm({ defaultService = "" }: { defaultService?: string }) {
+/**
+ * Booking request form.
+ *
+ * There is no server: the form validates, composes the enquiry as text and
+ * hands it to whichever channel the studio uses (WhatsApp, e-mail), with a
+ * copy-to-clipboard fallback. Wire it to a backend later by replacing
+ * `handoff()` — nothing else needs to change.
+ */
+export function BookingForm({
+  locale,
+  defaultService = "",
+}: {
+  locale: Locale;
+  defaultService?: string;
+}) {
   const formId = useId();
-  const [values, setValues] = useState<Values>({ ...initialValues, service: defaultService });
+  const [values, setValues] = useState<Values>({ ...emptyValues, service: defaultService });
   const [errors, setErrors] = useState<Errors>({});
-  const [status, setStatus] = useState<"idle" | "submitting" | "sent">("idle");
+  const [sent, setSent] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   const fieldId = (name: FieldName) => `${formId}-${name}`;
+  const label = (key: keyof typeof ui.form) => t(ui.form[key] as { uk: string; en: string }, locale);
 
   const setValue = (name: FieldName, value: string) => {
     setValues((current) => ({ ...current, [name]: value }));
@@ -116,102 +103,151 @@ export function BookingForm({ defaultService = "" }: { defaultService?: string }
     });
   };
 
-  const describedBy = (name: FieldName) => (errors[name] ? `${fieldId(name)}-error` : undefined);
+  function validate(): Errors {
+    const found: Errors = {};
+    if (values.name.trim().length < 2) found.name = t(ui.form.errors.name, locale);
+    if (!/^[+\d][\d\s()-]{7,}$/.test(values.phone.trim()))
+      found.phone = t(ui.form.errors.phone, locale);
+    if (values.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values.email.trim()))
+      found.email = t(ui.form.errors.email, locale);
+    if (values.make.trim().length < 2) found.make = t(ui.form.errors.make, locale);
+    if (values.model.trim().length < 1) found.model = t(ui.form.errors.model, locale);
+    if (services.length > 0 && !values.service) found.service = t(ui.form.errors.service, locale);
+    return found;
+  }
 
-  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+  /** Renders the enquiry as plain text for whichever channel receives it. */
+  function compose(): string {
+    const chosen = services.find((service) => service.slug === values.service);
+    const lines = [
+      `${label("heading")} — ${site.name}`,
+      `${label("name")}: ${values.name}`,
+      `${label("phone")}: ${values.phone}`,
+      values.email ? `${label("email")}: ${values.email}` : null,
+      `${label("vehicle")}: ${values.make} ${values.model}${values.year ? ` (${values.year})` : ""}`,
+      chosen ? `${label("service")}: ${t(chosen.title, locale)}` : null,
+      values.date ? `${label("date")}: ${values.date}` : null,
+      values.message ? `${label("message")}: ${values.message}` : null,
+    ];
+    return lines.filter((line) => line !== null).join("\n");
+  }
+
+  /** Opens the studio's channel with the enquiry prefilled. */
+  function handoff(text: string) {
+    const channel = bookingTarget();
+    if (channel?.href.startsWith("https://wa.me/")) {
+      window.open(`${channel.href}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+      return;
+    }
+    if (site.email) {
+      const subject = encodeURIComponent(`${label("heading")} — ${values.make} ${values.model}`);
+      window.location.href = `mailto:${site.email}?subject=${subject}&body=${encodeURIComponent(text)}`;
+      return;
+    }
+    if (channel) window.open(channel.href, "_blank", "noopener");
+  }
+
+  function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const found = validate(values);
+    const found = validate();
     setErrors(found);
 
     if (Object.keys(found).length > 0) {
-      const firstKey = Object.keys(found)[0] as FieldName | undefined;
-      if (firstKey) document.getElementById(fieldId(firstKey))?.focus();
+      const first = Object.keys(found)[0] as FieldName | undefined;
+      if (first) document.getElementById(fieldId(first))?.focus();
       return;
     }
 
-    // Demo build: no backend yet. The request is acknowledged locally so the
-    // full booking journey can be reviewed end to end.
-    setStatus("submitting");
-    await new Promise((resolve) => setTimeout(resolve, 700));
-    setStatus("sent");
+    const text = compose();
+    setSent(text);
+    handoff(text);
   }
 
-  if (status === "sent") {
-    const chosen = services.find((service) => service.slug === values.service);
+  if (sent !== null) {
     return (
-      <div className="rounded-2xl border border-brass-500/25 bg-carbon-850 p-8 sm:p-10" role="status">
-        <span className="grid h-12 w-12 place-items-center rounded-full bg-brass-500/12 text-brass-400">
+      <div className="rounded-card border border-accent/30 bg-ink-850 p-8 sm:p-10" role="status">
+        <span className="grid h-12 w-12 place-items-center rounded-button bg-accent/12 text-accent">
           <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-5 w-5">
             <path
               d="M4 10.5 8 14.5 16 5.5"
               stroke="currentColor"
-              strokeWidth="1.6"
+              strokeWidth="1.8"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
           </svg>
         </span>
-        <h3 className="mt-6 font-display text-2xl font-semibold">Request received</h3>
-        <p className="mt-3 max-w-md text-[15px] leading-relaxed text-mist-400">
-          Thank you, {values.name.split(" ")[0]}. We will confirm availability for
-          {chosen ? ` ${chosen.title.toLowerCase()}` : " your booking"} on your{" "}
-          {values.year} {values.make} {values.model} within one working day.
+        <h3 className="mt-6 font-display text-2xl font-semibold uppercase">
+          {t(ui.form.successTitle, locale)}
+        </h3>
+        <p className="mt-3 max-w-md text-[15px] leading-relaxed text-chalk-400">
+          {t(ui.form.successBody, locale)}
         </p>
-        <p className="mt-6 text-[13px] text-mist-500">
-          This is a demo studio — no message was actually sent.
-        </p>
-        <Button
-          variant="secondary"
-          className="mt-8"
-          onClick={() => {
-            setValues({ ...initialValues, service: defaultService });
-            setStatus("idle");
-          }}
-        >
-          Send another request
-        </Button>
+
+        <pre className="mt-6 max-h-56 overflow-auto rounded-card border border-line bg-ink-900 p-4 text-[13px] leading-relaxed whitespace-pre-wrap text-chalk-300">
+          {sent}
+        </pre>
+
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Button
+            variant="outline"
+            onClick={() => {
+              void navigator.clipboard?.writeText(sent).then(() => setCopied(true));
+            }}
+          >
+            {copied ? "✓" : null}
+            {locale === "uk" ? "Скопіювати текст" : "Copy the text"}
+          </Button>
+          <Button
+            variant="ghost"
+            onClick={() => {
+              setValues({ ...emptyValues, service: defaultService });
+              setCopied(false);
+              setSent(null);
+            }}
+          >
+            {t(ui.form.successAgain, locale)}
+          </Button>
+        </div>
       </div>
     );
   }
 
   return (
     <form noValidate onSubmit={onSubmit} className="grid gap-6 sm:grid-cols-2">
-      <Field label="Full name" htmlFor={fieldId("name")} error={errors.name} required>
+      <Field label={label("name")} htmlFor={fieldId("name")} error={errors.name} required>
         <input
           id={fieldId("name")}
           name="name"
           type="text"
           autoComplete="name"
-          placeholder="Andriy Kovalenko"
+          placeholder={label("namePlaceholder")}
           value={values.name}
           onChange={(event) => setValue("name", event.target.value)}
           aria-invalid={Boolean(errors.name)}
-          aria-describedby={describedBy("name")}
           className={inputClasses}
         />
       </Field>
 
-      <Field label="Phone" htmlFor={fieldId("phone")} error={errors.phone} required>
+      <Field label={label("phone")} htmlFor={fieldId("phone")} error={errors.phone} required>
         <input
           id={fieldId("phone")}
           name="phone"
           type="tel"
           inputMode="tel"
           autoComplete="tel"
-          placeholder="+380 67 000 00 00"
+          placeholder="+380"
           value={values.phone}
           onChange={(event) => setValue("phone", event.target.value)}
           aria-invalid={Boolean(errors.phone)}
-          aria-describedby={describedBy("phone")}
           className={inputClasses}
         />
       </Field>
 
       <Field
-        label="Email"
+        label={label("emailOptional")}
         htmlFor={fieldId("email")}
         error={errors.email}
-        required
         className="sm:col-span-2"
       >
         <input
@@ -223,42 +259,37 @@ export function BookingForm({ defaultService = "" }: { defaultService?: string }
           value={values.email}
           onChange={(event) => setValue("email", event.target.value)}
           aria-invalid={Boolean(errors.email)}
-          aria-describedby={describedBy("email")}
           className={inputClasses}
         />
       </Field>
 
       <fieldset className="grid gap-6 sm:col-span-2 sm:grid-cols-3">
-        <legend className="mb-4 text-[12px] font-medium tracking-[0.14em] text-mist-500 uppercase">
-          Vehicle
+        <legend className="mb-4 text-[11px] font-medium tracking-[0.16em] text-chalk-500 uppercase">
+          {label("vehicle")}
         </legend>
-        <Field label="Make" htmlFor={fieldId("make")} error={errors.make} required>
+        <Field label={label("make")} htmlFor={fieldId("make")} error={errors.make} required>
           <input
             id={fieldId("make")}
             name="make"
             type="text"
-            placeholder="Porsche"
             value={values.make}
             onChange={(event) => setValue("make", event.target.value)}
             aria-invalid={Boolean(errors.make)}
-            aria-describedby={describedBy("make")}
             className={inputClasses}
           />
         </Field>
-        <Field label="Model" htmlFor={fieldId("model")} error={errors.model} required>
+        <Field label={label("model")} htmlFor={fieldId("model")} error={errors.model} required>
           <input
             id={fieldId("model")}
             name="model"
             type="text"
-            placeholder="911 Carrera S"
             value={values.model}
             onChange={(event) => setValue("model", event.target.value)}
             aria-invalid={Boolean(errors.model)}
-            aria-describedby={describedBy("model")}
             className={inputClasses}
           />
         </Field>
-        <Field label="Year" htmlFor={fieldId("year")} error={errors.year} required>
+        <Field label={label("carYear")} htmlFor={fieldId("year")}>
           <input
             id={fieldId("year")}
             name="year"
@@ -266,41 +297,35 @@ export function BookingForm({ defaultService = "" }: { defaultService?: string }
             inputMode="numeric"
             min={1950}
             max={new Date().getFullYear() + 1}
-            placeholder="2021"
             value={values.year}
             onChange={(event) => setValue("year", event.target.value)}
-            aria-invalid={Boolean(errors.year)}
-            aria-describedby={describedBy("year")}
             className={inputClasses}
           />
         </Field>
       </fieldset>
 
-      <Field label="Service" htmlFor={fieldId("service")} error={errors.service} required>
-        <select
-          id={fieldId("service")}
-          name="service"
-          value={values.service}
-          onChange={(event) => setValue("service", event.target.value)}
-          aria-invalid={Boolean(errors.service)}
-          aria-describedby={describedBy("service")}
-          className={cn(inputClasses, "appearance-none bg-carbon-900 pr-10")}
-        >
-          <option value="">Select a service</option>
-          {services.map((service) => (
-            <option key={service.slug} value={service.slug}>
-              {service.title}
-            </option>
-          ))}
-          <option value="not-sure">Not sure yet — advise me</option>
-        </select>
-      </Field>
+      {services.length > 0 ? (
+        <Field label={label("service")} htmlFor={fieldId("service")} error={errors.service} required>
+          <select
+            id={fieldId("service")}
+            name="service"
+            value={values.service}
+            onChange={(event) => setValue("service", event.target.value)}
+            aria-invalid={Boolean(errors.service)}
+            className={cn(inputClasses, "appearance-none pr-10")}
+          >
+            <option value="">{label("servicePlaceholder")}</option>
+            {services.map((service) => (
+              <option key={service.slug} value={service.slug}>
+                {t(service.title, locale)}
+              </option>
+            ))}
+            <option value="unsure">{label("serviceUnsure")}</option>
+          </select>
+        </Field>
+      ) : null}
 
-      <Field
-        label="Preferred date"
-        htmlFor={fieldId("date")}
-        hint="We confirm the exact slot by phone."
-      >
+      <Field label={label("date")} htmlFor={fieldId("date")} hint={label("dateHint")}>
         <input
           id={fieldId("date")}
           name="date"
@@ -313,28 +338,44 @@ export function BookingForm({ defaultService = "" }: { defaultService?: string }
       </Field>
 
       <Field
-        label="Message"
+        label={label("message")}
         htmlFor={fieldId("message")}
-        hint="Paint condition, previous work, anything we should know."
+        hint={label("messageHint")}
         className="sm:col-span-2"
       >
         <textarea
           id={fieldId("message")}
           name="message"
           rows={5}
-          placeholder="The car is two years old, mostly motorway miles, and the front bumper has picked up stone chips."
+          placeholder={label("messagePlaceholder")}
           value={values.message}
           onChange={(event) => setValue("message", event.target.value)}
           className={cn(inputClasses, "h-auto resize-y py-3 leading-relaxed")}
         />
       </Field>
 
-      <div className="flex flex-col gap-4 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
-        <p className="max-w-sm text-[13px] leading-relaxed text-mist-500">
-          Demo form — submissions are handled in the browser and never leave your device.
-        </p>
-        <Button size="lg" type="submit" disabled={status === "submitting"} className="sm:min-w-52">
-          {status === "submitting" ? "Sending…" : "Request booking"}
+      <div className="flex flex-col gap-5 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
+        {site.messaging.length > 0 ? (
+          <div className="flex flex-wrap items-center gap-4">
+            <span className="text-[13px] text-chalk-500">{t(ui.form.sendVia, locale)}</span>
+            {site.messaging.map((channel) => (
+              <a
+                key={channel.href}
+                href={channel.href}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="inline-flex items-center gap-2 text-[14px] text-chalk-200 transition-colors hover:text-accent"
+              >
+                <Icon name={channel.icon} className="h-4 w-4" />
+                {channel.label}
+              </a>
+            ))}
+          </div>
+        ) : (
+          <span />
+        )}
+        <Button size="lg" type="submit" className="sm:min-w-56">
+          {t(ui.form.submit, locale)}
         </Button>
       </div>
     </form>
