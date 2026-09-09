@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { site } from "@/content/site";
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <Analytics />
         <script
           type="application/ld+json"
           // Structured data is generated from local content, not user input.
