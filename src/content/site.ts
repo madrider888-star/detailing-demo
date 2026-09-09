@@ -41,7 +41,7 @@ export const site = {
   /* ── Contacts ─────────────────────────────────────────────────────────── */
 
   /** TODO(client): real phone number, e.g. "+380 XX XXX XX XX" */
-  phone: +380737743158
+  phone: '+380737743158'
 
   /** TODO(client): real e-mail address. */
   email: null as string | null,
