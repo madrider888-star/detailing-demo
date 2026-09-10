@@ -2,6 +2,7 @@ import { Hero } from "@/components/sections/hero";
 import { ServiceCard } from "@/components/cards/service-card";
 import { WorkCard } from "@/components/cards/work-card";
 import { ProcessSteps } from "@/components/sections/process-steps";
+import { ServiceCatalog } from "@/components/sections/service-catalog";
 import { ReviewsSection } from "@/components/sections/reviews-section";
 import { FaqSection } from "@/components/sections/faq-section";
 import { InstagramSection } from "@/components/sections/instagram-section";
@@ -12,6 +13,7 @@ import { Section } from "@/components/ui/section";
 import { SectionTitle } from "@/components/ui/section-title";
 import { differentiators, materials, process } from "@/content/about";
 import { featuredWork } from "@/content/work";
+import { serviceCatalog } from "@/content/service-catalog";
 import { featuredServices } from "@/content/services";
 import { ui } from "@/content/ui";
 import { localePath, t, type Locale } from "@/lib/i18n";
@@ -23,12 +25,17 @@ export function HomeView({ locale }: { locale: Locale }) {
     <>
       <Hero locale={locale} />
 
-      {featuredServices.length > 0 ? (
+      {featuredServices.length > 0 || serviceCatalog.length > 0 ? (
         <Section aria-labelledby="services-title">
           <SectionTitle
             id="services-title"
             eyebrow={t(ui.sections.servicesEyebrow, locale)}
             title={t(ui.sections.servicesTitle, locale)}
+            description={
+              serviceCatalog.length > 0
+                ? t(ui.sections.servicesHomeDescription, locale)
+                : undefined
+            }
             aside={
               <Button href={localePath("/services", locale)} variant="outline">
                 {t(ui.actions.allServices, locale)}
@@ -36,18 +43,33 @@ export function HomeView({ locale }: { locale: Locale }) {
               </Button>
             }
           />
-          <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredServices.map((service, index) => (
-              <Reveal as="li" key={service.slug} delay={index * 60} className="h-full">
-                <ServiceCard
-                  service={service}
-                  locale={locale}
-                  priority={index < 3}
+          {featuredServices.length > 0 ? (
+            <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {featuredServices.map((service, index) => (
+                <Reveal
+                  as="li"
+                  key={service.slug}
+                  delay={index * 60}
                   className="h-full"
-                />
-              </Reveal>
-            ))}
-          </ul>
+                >
+                  <ServiceCard
+                    service={service}
+                    locale={locale}
+                    priority={index < 3}
+                    className="h-full"
+                  />
+                </Reveal>
+              ))}
+            </ul>
+          ) : null}
+          {serviceCatalog.length > 0 ? (
+            <ServiceCatalog
+              groups={serviceCatalog}
+              locale={locale}
+              variant="compact"
+              className="mt-14"
+            />
+          ) : null}
         </Section>
       ) : null}
 
@@ -66,8 +88,18 @@ export function HomeView({ locale }: { locale: Locale }) {
           />
           <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((project, index) => (
-              <Reveal as="li" key={project.slug} delay={index * 60} className="h-full">
-                <WorkCard project={project} locale={locale} priority={index < 3} className="h-full" />
+              <Reveal
+                as="li"
+                key={project.slug}
+                delay={index * 60}
+                className="h-full"
+              >
+                <WorkCard
+                  project={project}
+                  locale={locale}
+                  priority={index < 3}
+                  className="h-full"
+                />
               </Reveal>
             ))}
           </ul>
