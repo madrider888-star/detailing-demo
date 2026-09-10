@@ -1,4 +1,4 @@
-import type { MessagingLink, NavItem, OpeningHours, Photo } from "@/types";
+import type { MessagingLink, NavItem, OpeningHours, Photo, StudioAddress } from "@/types";
 import type { LocalizedText } from "@/lib/i18n";
 
 /**
@@ -40,25 +40,29 @@ export const site = {
 
   /* ── Contacts ─────────────────────────────────────────────────────────── */
 
-  /** TODO(client): real phone number, e.g. "+380 XX XXX XX XX" */
-  phone: '+380737743158',
+  /**
+   * Phone number, written exactly as it should be displayed. Spaces are
+   * removed automatically for the "call" links. Set to null to hide it.
+   */
+  phone: "+380 73 774 31 58" as string | null,
 
-  /** TODO(client): real e-mail address. */
-  email: null,
+  /** TODO(client): real e-mail address, e.g. "hello@example.com". */
+  email: null as string | null,
 
   /**
-   * TODO(client): studio address. Set the whole object to `null` if the studio
-   * works by appointment only and does not publish an address.
+   * Studio address. Each text has a Ukrainian (uk) and English (en) version.
+   * To hide the address entirely, replace the whole object with:  address: null,
+   *
+   * TODO(client): confirm the Ukrainian spelling of the street name.
    */
-  address: null,
-    street: LocalizedText;Inglesi 1b 
-    city: Odessa
-    region: LocalizedText | null;
-    postalCode: string | null;
-    country: Ukraine
-    /** Optional link to Google Maps / Waze for the "Get directions" button. */
-    mapUrl: string | null;
-  } | null,
+  address: {
+    street: { uk: "вул. Інглезі, 1Б", en: "1B Inglesi St" },
+    city: { uk: "Одеса", en: "Odesa" },
+    region: null,
+    postalCode: null,
+    country: { uk: "Україна", en: "Ukraine" },
+    mapUrl: null,
+  } as StudioAddress | null,
 
   /** TODO(client): opening hours. Leave as an empty array to hide the block. */
   hours: [] as OpeningHours[],

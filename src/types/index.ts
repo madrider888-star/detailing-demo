@@ -100,6 +100,17 @@ export interface OpeningHours {
   time: LocalizedText;
 }
 
+/** Studio address. Every text field has a Ukrainian and an English version. */
+export interface StudioAddress {
+  street: LocalizedText;
+  city: LocalizedText;
+  region: LocalizedText | null;
+  postalCode: string | null;
+  country: LocalizedText;
+  /** Optional link to Google Maps / Waze for the "Get directions" button. */
+  mapUrl: string | null;
+}
+
 export interface MessagingLink {
   label: string;
   href: string;
