@@ -1,11 +1,14 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/content/site";
 
-export const alt = `${site.name} — ${site.tagline}`;
+export const alt = site.name;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-/** Social card. Rendered at build time so it works without a network call. */
+/**
+ * Social card. Deliberately typographic — it is replaced with a photographic
+ * card once THE BOX supplies imagery.
+ */
 export default function OpenGraphImage() {
   return new ImageResponse(
     (
@@ -16,40 +19,33 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          padding: 72,
-          backgroundColor: "#050607",
-          backgroundImage:
-            "radial-gradient(900px 520px at 22% 8%, #1b2229 0%, rgba(5,6,7,0) 62%), radial-gradient(760px 460px at 92% 96%, #14181d 0%, rgba(5,6,7,0) 60%)",
-          color: "#e8ebee",
+          padding: 80,
+          backgroundColor: "#050505",
+          color: "#ffffff",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-          <svg width="46" height="46" viewBox="0 0 32 32">
-            <path d="M16 3.5 29 28.5H22.6L16 15.2 9.4 28.5H3L16 3.5Z" fill="#e8ebee" />
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+          <svg width="44" height="44" viewBox="0 0 32 32">
+            <rect x="4" y="4" width="24" height="24" fill="none" stroke="#ffffff" strokeWidth="2.5" />
+            <rect x="12" y="12" width="8" height="8" fill="#ffffff" />
           </svg>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <span style={{ fontSize: 22, letterSpacing: 6, fontWeight: 600 }}>APEX</span>
-            <span style={{ fontSize: 13, letterSpacing: 8, color: "#79828b", marginTop: 4 }}>
-              DETAILING
-            </span>
-          </div>
+          <span style={{ fontSize: 22, letterSpacing: 8, fontWeight: 700 }}>THE BOX</span>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <span style={{ fontSize: 16, letterSpacing: 5, color: "#d9b778" }}>
-            ODESSA · EST. 2014
-          </span>
           <span
             style={{
-              fontSize: 66,
-              lineHeight: 1.06,
-              fontWeight: 700,
-              letterSpacing: -1.6,
-              marginTop: 26,
-              maxWidth: 900,
+              fontSize: 96,
+              lineHeight: 1,
+              fontWeight: 800,
+              letterSpacing: -3,
+              textTransform: "uppercase",
             }}
           >
-            Protection that keeps the paint you paid for.
+            Detailing
+          </span>
+          <span style={{ fontSize: 28, color: "#9b9ea4", marginTop: 28 }}>
+            {site.instagram.handle}
           </span>
         </div>
 
@@ -57,15 +53,13 @@ export default function OpenGraphImage() {
           style={{
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "center",
-            borderTop: "1px solid rgba(232,235,238,0.12)",
-            paddingTop: 28,
-            fontSize: 21,
-            color: "#9aa2ab",
+            borderTop: "1px solid rgba(255,255,255,0.15)",
+            paddingTop: 30,
+            fontSize: 20,
+            color: "#9b9ea4",
           }}
         >
-          <span>Ceramic Coating · PPF · Paint Correction</span>
-          <span style={{ color: "#e8ebee" }}>apexdetailing.demo</span>
+          <span>{site.name}</span>
         </div>
       </div>
     ),

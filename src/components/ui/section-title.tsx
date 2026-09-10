@@ -6,7 +6,7 @@ interface SectionTitleProps {
   title: ReactNode;
   description?: ReactNode;
   align?: "left" | "center";
-  /** Optional element rendered on the opposite side on large screens. */
+  /** Rendered opposite the title on large screens — usually a link or button. */
   aside?: ReactNode;
   id?: string;
   className?: string;
@@ -31,21 +31,21 @@ export function SectionTitle({
         className,
       )}
     >
-      <div className={cn("max-w-2xl", centered && "mx-auto text-center")}>
+      <div className={cn("max-w-3xl", centered && "mx-auto text-center")}>
         {eyebrow ? (
           <p className={cn("eyebrow", centered && "justify-center")}>
-            <span aria-hidden="true" className="h-px w-8 bg-brass-600/70" />
+            <span aria-hidden="true" className="h-px w-8 bg-accent-muted" />
             {eyebrow}
           </p>
         ) : null}
         <h2
           id={id}
-          className="mt-5 text-3xl leading-[1.08] font-semibold sm:text-4xl lg:text-[2.75rem]"
+          className="mt-6 text-[2rem] font-semibold uppercase sm:text-[2.75rem] lg:text-[3.25rem]"
         >
           {title}
         </h2>
         {description ? (
-          <p className="mt-5 text-base leading-relaxed text-mist-400 sm:text-[17px]">
+          <p className="mt-6 text-base leading-relaxed text-chalk-400 sm:text-[17px]">
             {description}
           </p>
         ) : null}

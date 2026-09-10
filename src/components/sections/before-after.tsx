@@ -2,15 +2,18 @@
 
 import Image from "next/image";
 import { useCallback, useId, useRef, useState } from "react";
+import { t, type Locale } from "@/lib/i18n";
+import type { Photo } from "@/types";
 import { cn } from "@/lib/utils";
 
 interface BeforeAfterProps {
-  before: string;
-  after: string;
-  beforeLabel?: string;
-  afterLabel?: string;
+  before: Photo;
+  after: Photo;
+  beforeLabel: string;
+  afterLabel: string;
   /** Accessible description of what the comparison shows. */
   caption: string;
+  locale: Locale;
   className?: string;
   priority?: boolean;
 }
@@ -22,9 +25,10 @@ interface BeforeAfterProps {
 export function BeforeAfter({
   before,
   after,
-  beforeLabel = "Before",
-  afterLabel = "After",
+  beforeLabel,
+  afterLabel,
   caption,
+  locale,
   className,
   priority = false,
 }: BeforeAfterProps) {
@@ -84,7 +88,7 @@ export function BeforeAfter({
       onPointerUp={endDrag}
       onPointerCancel={endDrag}
       className={cn(
-        "group relative aspect-[16/10] w-full cursor-ew-resize overflow-hidden rounded-2xl border border-white/8 select-none",
+        "group relative aspect-[16/10] w-full cursor-ew-resize overflow-hidden rounded-card border border-line select-none",
         className,
       )}
     >
@@ -93,8 +97,8 @@ export function BeforeAfter({
       </span>
 
       <Image
-        src={after}
-        alt={`${caption} — after`}
+        src={after.src}
+        alt={t(after.alt, locale)}
         fill
         priority={priority}
         sizes="(min-width: 1024px) 760px, 100vw"
@@ -107,8 +111,8 @@ export function BeforeAfter({
         style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
       >
         <Image
-          src={before}
-          alt={`${caption} — before`}
+          src={before.src}
+          alt={t(before.alt, locale)}
           fill
           priority={priority}
           sizes="(min-width: 1024px) 760px, 100vw"
@@ -117,10 +121,10 @@ export function BeforeAfter({
         />
       </div>
 
-      <span className="glass pointer-events-none absolute top-4 left-4 rounded-full px-3 py-1.5 text-[11px] font-medium tracking-[0.16em] text-mist-200 uppercase">
+      <span className="glass pointer-events-none absolute top-4 left-4 rounded-button px-3 py-1.5 text-[10px] font-medium tracking-[0.2em] text-chalk-200 uppercase">
         {beforeLabel}
       </span>
-      <span className="glass pointer-events-none absolute top-4 right-4 rounded-full px-3 py-1.5 text-[11px] font-medium tracking-[0.16em] text-brass-400 uppercase">
+      <span className="glass pointer-events-none absolute top-4 right-4 rounded-button px-3 py-1.5 text-[10px] font-medium tracking-[0.2em] text-accent uppercase">
         {afterLabel}
       </span>
 
@@ -131,7 +135,7 @@ export function BeforeAfter({
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={Math.round(position)}
-        aria-valuetext={`${Math.round(position)}% before`}
+        aria-valuetext={`${Math.round(position)}%`}
         onKeyDown={onKeyDown}
         className="absolute inset-y-0 z-10 -ml-5 w-10 cursor-ew-resize"
         style={{ left: `${position}%` }}
@@ -139,7 +143,7 @@ export function BeforeAfter({
         <span aria-hidden="true" className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-white/70" />
         <span
           aria-hidden="true"
-          className="glass absolute top-1/2 left-1/2 grid h-11 w-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/25 text-mist-100 transition-transform duration-300 group-hover:scale-105"
+          className="glass absolute top-1/2 left-1/2 grid h-11 w-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-line-strong text-chalk-50 transition-transform duration-300 group-hover:scale-105"
         >
           <svg viewBox="0 0 20 20" fill="none" className="h-4 w-4">
             <path
