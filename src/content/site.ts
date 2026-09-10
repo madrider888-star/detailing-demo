@@ -23,8 +23,11 @@ export const site = {
   name: "THE BOX Detailing",
   shortName: "THE BOX",
 
-  /** TODO(client): production domain, e.g. "https://theboxdetailing.com" */
-  url: "https://example.com",
+  /**
+   * Public address of the site — used for canonical links, the sitemap and
+   * social cards. Change it here when the studio connects its own domain.
+   */
+  url: "https://detailing-demo-rho.vercel.app",
 
   /** TODO(client): confirm the studio's own wording for these two lines. */
   tagline: {
