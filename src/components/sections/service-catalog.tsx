@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { ui } from "@/content/ui";
-import { countLabel, localePath, t, type Locale } from "@/lib/i18n";
+import { localePath, t, type Locale } from "@/lib/i18n";
 import type { ServiceGroup } from "@/types";
 import { cn } from "@/lib/utils";
 
@@ -104,13 +104,6 @@ export function ServiceCatalog({
               >
                 {group[locale]}
               </h2>
-              <p className="mt-4 text-[13px] tracking-[0.14em] text-chalk-500 uppercase">
-                {countLabel(
-                  group.services.length,
-                  ui.labels.servicesCount,
-                  locale,
-                )}
-              </p>
               <Link
                 href={`${localePath("/portfolio", locale)}#${group.id}`}
                 className="group mt-6 inline-flex items-center gap-2 text-[11px] font-medium tracking-[0.18em] text-chalk-300 uppercase transition-colors hover:text-accent"
@@ -122,19 +115,9 @@ export function ServiceCatalog({
 
             <ol className="divide-y divide-line/60">
               {group.services.map((service) => (
-                <li
-                  key={service.id}
-                  className="flex items-baseline justify-between gap-6 py-4 first:pt-0 last:pb-0"
-                >
+                <li key={service.id} className="py-4 first:pt-0 last:pb-0">
                   <span className="text-[16px] leading-snug text-chalk-100 sm:text-[17px]">
                     {service[locale]}
-                  </span>
-                  <span className="shrink-0 text-[12px] tracking-[0.14em] whitespace-nowrap text-chalk-500 uppercase tabular-nums">
-                    {countLabel(
-                      service.projects,
-                      ui.labels.projectsCount,
-                      locale,
-                    )}
                   </span>
                 </li>
               ))}

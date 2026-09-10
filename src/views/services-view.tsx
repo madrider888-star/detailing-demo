@@ -7,10 +7,15 @@ import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/ui/section";
 import { serviceCatalog } from "@/content/service-catalog";
 import { services } from "@/content/services";
+import { featuredWork, workProjects } from "@/content/work";
 import { ui } from "@/content/ui";
 import { t, type Locale } from "@/lib/i18n";
 
 export function ServicesView({ locale }: { locale: Locale }) {
+  /* Same treatment as "Our work": a project cover dimmed behind the title. */
+  const backdrop =
+    featuredWork.find((project) => project.cover) ?? workProjects[0];
+
   return (
     <>
       <PageHeader
@@ -21,6 +26,14 @@ export function ServicesView({ locale }: { locale: Locale }) {
           serviceCatalog.length > 0
             ? t(ui.sections.servicesDescription, locale)
             : undefined
+        }
+        media={
+          backdrop?.cover
+            ? {
+                src: backdrop.cover.src,
+                alt: { uk: backdrop.vehicle, en: backdrop.vehicle },
+              }
+            : null
         }
       />
 

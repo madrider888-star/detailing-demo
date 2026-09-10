@@ -74,8 +74,8 @@ export const ui = {
     servicesEyebrow: { uk: "Послуги", en: "Services" },
     servicesTitle: { uk: "Що ми робимо", en: "What we do" },
     servicesDescription: {
-      uk: "Перелік зібрано з наших опублікованих робіт: тут лише те, що ми справді робили для клієнтів. Поруч із кожною послугою — кількість проєктів, у яких її виконано.",
-      en: "This list is drawn from our published projects: only work we have actually done for clients. Next to each service is the number of projects it appears in.",
+      uk: "Перелік зібрано з наших опублікованих робіт: тут лише те, що ми справді робимо для клієнтів.",
+      en: "This list is drawn from our published projects: only work we actually do for clients.",
     },
     servicesHomeDescription: {
       uk: "Захист плівкою, зміна кольору, тонування, кераміка, салон, шумоізоляція та стайлінг — усе, що ми робимо, зібрано з наших опублікованих робіт.",
