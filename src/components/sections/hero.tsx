@@ -38,6 +38,18 @@ export function Hero({ locale }: { locale: Locale }) {
       </div>
 
       <div className="shell">
+        {/* Brand mark. Outside <Reveal> on purpose: it must not fade or move. */}
+        <div className="mb-8 flex justify-center sm:mb-10">
+          <Image
+            src="/images/brand/logo-mark.png"
+            alt={site.name}
+            width={634}
+            height={448}
+            priority
+            className="h-auto w-[120px] select-none sm:w-[165px]"
+          />
+        </div>
+
         <Reveal className="max-w-4xl">
           <p className="eyebrow">
             <span aria-hidden="true" className="h-px w-10 bg-accent-muted" />
