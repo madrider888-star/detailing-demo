@@ -1,17 +1,19 @@
 {
-  "generatedAt": "2026-09-10T11:13:38.547Z",
+  "generatedAt": "2026-09-10T14:54:59.215Z",
   "stats": {
     "postsInExport": 222,
     "studioPosts": 215,
     "excluded": 14,
     "mergedAway": 23,
     "projects": 178,
-    "withCover": 0,
-    "photos": 0,
-    "videosDownloaded": 0,
+    "withCover": 177,
+    "photos": 537,
+    "videosDownloaded": 13,
     "untranslatedLines": 0,
-    "mediaFailures": 0
+    "mediaFailures": 1
   },
   "untranslated": [],
-  "mediaFailures": []
+  "mediaFailures": [
+    "lexus-lx-600-dvyjo6jchfv/poster-dvyjo6jchfv.jpg: fetch failed"
+  ]
 }
