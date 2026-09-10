@@ -136,6 +136,7 @@ nothing is duplicated.
 | `src/content/work/glossary.json`         | Every service phrase from the captions in Ukrainian and English |
 | `src/content/work/projects.generated.json` | What the site renders — rewritten by every import, do not edit |
 | `src/content/work/import-report.json`    | Untranslated phrases and media that failed to download          |
+| `src/content/work/services.generated.json` | The service catalogue for /services — rewritten by `npm run work:services`, do not edit |
 | `public/work/<slug>/`                    | Photos (resized to 1600 px), reel posters and downloaded reels  |
 
 A project appears on the site only when it has a cover photo on disk — so until
@@ -150,6 +151,30 @@ import again. Projects that were never on Instagram go in `src/content/projects.
 
 Options: `--skip-media` (rebuild the list only), `--videos=all|selected|none`,
 `--max-video-mb=40`.
+
+### The service catalogue — what the studio does
+
+`/services` and the home page list every service the studio offers. That list is
+not written by hand: it is distilled from the work lines of the imported
+projects, so it contains only work the studio has actually published, and each
+service shows how many projects it appears in.
+
+```bash
+npm run work:services
+```
+
+`scripts/build-service-catalog.mjs` reads `projects.generated.json`, folds the
+many wordings of the same job ("Бронювання внутрішніх прорізів дверей",
+"Обклеювання внутрішніх прорізів дверей", "Дверні прорізи" …) into one canonical
+service each, groups them by the portfolio categories from `selection.json` and
+writes `src/content/work/services.generated.json`. Run it after every Instagram
+import. Lines no rule recognises are printed at the end and stored under
+`"unmatched"` in the output — add a rule in the script for them. The
+`"sources"` list next to each service shows every original wording it covers,
+which is the place to check that nothing was merged wrongly.
+
+Detailed service pages with prices and photos still come from `services.ts`
+(see "How to add a service"); the catalogue is the complete, de-duplicated list.
 
 ## Design system
 

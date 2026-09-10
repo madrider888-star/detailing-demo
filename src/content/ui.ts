@@ -28,6 +28,8 @@ export const ui = {
     viewService: { uk: "Детальніше", en: "Learn more" },
     viewProject: { uk: "Дивитися проєкт", en: "View project" },
     allServices: { uk: "Усі послуги", en: "All services" },
+    viewCategoryWork: { uk: "Дивитися роботи", en: "See the work" },
+    moreServices: { uk: "ще {count}", en: "{count} more" },
     allProjects: { uk: "Усі проєкти", en: "All projects" },
     call: { uk: "Зателефонувати", en: "Call us" },
     write: { uk: "Написати", en: "Message us" },
@@ -57,25 +59,54 @@ export const ui = {
     relatedServices: { uk: "Схожі послуги", en: "Related services" },
     moreProjects: { uk: "Інші проєкти", en: "More projects" },
     filterAll: { uk: "Усі роботи", en: "All work" },
+    /** Plural forms for a project count: [one, few, many] / [one, many]. */
+    projectsCount: {
+      uk: ["проєкт", "проєкти", "проєктів"],
+      en: ["project", "projects"],
+    },
+    servicesCount: {
+      uk: ["послуга", "послуги", "послуг"],
+      en: ["service", "services"],
+    },
   },
 
   sections: {
     servicesEyebrow: { uk: "Послуги", en: "Services" },
     servicesTitle: { uk: "Що ми робимо", en: "What we do" },
+    servicesDescription: {
+      uk: "Перелік зібрано з наших опублікованих робіт: тут лише те, що ми справді робимо для клієнтів.",
+      en: "This list is drawn from our published projects: only work we actually do for clients.",
+    },
+    servicesHomeDescription: {
+      uk: "Захист плівкою, зміна кольору, тонування, кераміка, салон, шумоізоляція та стайлінг — усе, що ми робимо, зібрано з наших опублікованих робіт.",
+      en: "Protection film, colour change, tinting, ceramic, interior, soundproofing and styling — everything we do, drawn from our published projects.",
+    },
     portfolioEyebrow: { uk: "Роботи", en: "Work" },
     portfolioTitle: { uk: "Наші роботи", en: "Our work" },
     beforeAfterEyebrow: { uk: "До і після", en: "Before / After" },
-    beforeAfterTitle: { uk: "Результат, який видно", en: "The difference you can see" },
+    beforeAfterTitle: {
+      uk: "Результат, який видно",
+      en: "The difference you can see",
+    },
     whyEyebrow: { uk: "Чому THE BOX", en: "Why THE BOX" },
     whyTitle: { uk: "Як ми працюємо", en: "How we work" },
     processEyebrow: { uk: "Процес", en: "Process" },
-    processTitle: { uk: "Від запису до видачі", en: "From booking to handover" },
+    processTitle: {
+      uk: "Від запису до видачі",
+      en: "From booking to handover",
+    },
     materialsEyebrow: { uk: "Матеріали", en: "Materials" },
-    materialsTitle: { uk: "Матеріали та обладнання", en: "Materials and equipment" },
+    materialsTitle: {
+      uk: "Матеріали та обладнання",
+      en: "Materials and equipment",
+    },
     reviewsEyebrow: { uk: "Відгуки", en: "Reviews" },
     reviewsTitle: { uk: "Що кажуть клієнти", en: "What clients say" },
     instagramEyebrow: { uk: "Instagram", en: "Instagram" },
-    instagramTitle: { uk: "Щоденна робота студії", en: "The studio, day to day" },
+    instagramTitle: {
+      uk: "Щоденна робота студії",
+      en: "The studio, day to day",
+    },
     faqEyebrow: { uk: "Питання", en: "Questions" },
     faqTitle: { uk: "Часті запитання", en: "Frequently asked" },
     contactEyebrow: { uk: "Контакти", en: "Contact" },
@@ -95,9 +126,15 @@ export const ui = {
     carYear: { uk: "Рік", en: "Year" },
     service: { uk: "Послуга", en: "Service" },
     servicePlaceholder: { uk: "Оберіть послугу", en: "Select a service" },
-    serviceUnsure: { uk: "Ще не визначився — порадьте", en: "Not sure yet — advise me" },
+    serviceUnsure: {
+      uk: "Ще не визначився — порадьте",
+      en: "Not sure yet — advise me",
+    },
     date: { uk: "Бажана дата", en: "Preferred date" },
-    dateHint: { uk: "Точний час узгодимо по телефону.", en: "We confirm the exact slot by phone." },
+    dateHint: {
+      uk: "Точний час узгодимо по телефону.",
+      en: "We confirm the exact slot by phone.",
+    },
     message: { uk: "Повідомлення", en: "Message" },
     messageHint: {
       uk: "Стан авто, попередні роботи — все, що варто знати.",
@@ -118,9 +155,18 @@ export const ui = {
     successAgain: { uk: "Створити нову заявку", en: "Start another request" },
     required: { uk: "Обов'язкове поле", en: "Required" },
     errors: {
-      name: { uk: "Вкажіть, будь ласка, ваше ім'я.", en: "Please enter your name." },
-      phone: { uk: "Вкажіть номер телефону для зв'язку.", en: "Enter a phone number we can reach you on." },
-      email: { uk: "Перевірте адресу електронної пошти.", en: "Enter a valid email address." },
+      name: {
+        uk: "Вкажіть, будь ласка, ваше ім'я.",
+        en: "Please enter your name.",
+      },
+      phone: {
+        uk: "Вкажіть номер телефону для зв'язку.",
+        en: "Enter a phone number we can reach you on.",
+      },
+      email: {
+        uk: "Перевірте адресу електронної пошти.",
+        en: "Enter a valid email address.",
+      },
       make: { uk: "Вкажіть марку.", en: "Required." },
       model: { uk: "Вкажіть модель.", en: "Required." },
       service: { uk: "Оберіть послугу.", en: "Please choose a service." },
@@ -130,11 +176,20 @@ export const ui = {
   work: {
     viewProject: { uk: "Дивитися проєкт", en: "View project" },
     showMore: { uk: "Показати ще", en: "Show more" },
-    shownOf: { uk: "Показано {shown} з {total}", en: "Showing {shown} of {total}" },
+    shownOf: {
+      uk: "Показано {shown} з {total}",
+      en: "Showing {shown} of {total}",
+    },
     worksDone: { uk: "Виконані роботи", en: "Work carried out" },
-    discussSimilar: { uk: "Обговорити схожий проєкт", en: "Discuss a similar project" },
+    discussSimilar: {
+      uk: "Обговорити схожий проєкт",
+      en: "Discuss a similar project",
+    },
     playVideo: { uk: "Дивитися відео", en: "Play video" },
-    watchOnInstagram: { uk: "Дивитися відео в Instagram", en: "Watch the video on Instagram" },
+    watchOnInstagram: {
+      uk: "Дивитися відео в Instagram",
+      en: "Watch the video on Instagram",
+    },
     sourcePost: { uk: "Публікація в Instagram", en: "Instagram post" },
     photos: { uk: "Фото", en: "Photos" },
     video: { uk: "Відео", en: "Video" },
