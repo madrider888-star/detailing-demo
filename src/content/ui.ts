@@ -12,7 +12,7 @@ import type { LocalizedText } from "@/lib/i18n";
 export const ui = {
   nav: {
     services: { uk: "Послуги", en: "Services" },
-    portfolio: { uk: "Портфоліо", en: "Portfolio" },
+    portfolio: { uk: "Наші роботи", en: "Our work" },
     about: { uk: "Студія", en: "Studio" },
     contact: { uk: "Контакти", en: "Contact" },
     menuOpen: { uk: "Відкрити меню", en: "Open menu" },
@@ -62,8 +62,8 @@ export const ui = {
   sections: {
     servicesEyebrow: { uk: "Послуги", en: "Services" },
     servicesTitle: { uk: "Що ми робимо", en: "What we do" },
-    portfolioEyebrow: { uk: "Портфоліо", en: "Portfolio" },
-    portfolioTitle: { uk: "Вибрані проєкти", en: "Selected projects" },
+    portfolioEyebrow: { uk: "Роботи", en: "Work" },
+    portfolioTitle: { uk: "Наші роботи", en: "Our work" },
     beforeAfterEyebrow: { uk: "До і після", en: "Before / After" },
     beforeAfterTitle: { uk: "Результат, який видно", en: "The difference you can see" },
     whyEyebrow: { uk: "Чому THE BOX", en: "Why THE BOX" },
@@ -124,6 +124,26 @@ export const ui = {
       make: { uk: "Вкажіть марку.", en: "Required." },
       model: { uk: "Вкажіть модель.", en: "Required." },
       service: { uk: "Оберіть послугу.", en: "Please choose a service." },
+    },
+  },
+
+  work: {
+    viewProject: { uk: "Дивитися проєкт", en: "View project" },
+    showMore: { uk: "Показати ще", en: "Show more" },
+    shownOf: { uk: "Показано {shown} з {total}", en: "Showing {shown} of {total}" },
+    worksDone: { uk: "Виконані роботи", en: "Work carried out" },
+    discussSimilar: { uk: "Обговорити схожий проєкт", en: "Discuss a similar project" },
+    playVideo: { uk: "Дивитися відео", en: "Play video" },
+    watchOnInstagram: { uk: "Дивитися відео в Instagram", en: "Watch the video on Instagram" },
+    sourcePost: { uk: "Публікація в Instagram", en: "Instagram post" },
+    photos: { uk: "Фото", en: "Photos" },
+    video: { uk: "Відео", en: "Video" },
+    date: { uk: "Дата", en: "Date" },
+    moreWork: { uk: "Інші роботи", en: "More work" },
+    backToWork: { uk: "Усі роботи", en: "All work" },
+    similarPrefill: {
+      uk: "Хочу схожий проєкт.\nАвто: {vehicle}.\nРоботи: {works}.",
+      en: "I'd like a similar project.\nVehicle: {vehicle}.\nWork: {works}.",
     },
   },
 

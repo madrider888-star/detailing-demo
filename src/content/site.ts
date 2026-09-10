@@ -133,7 +133,7 @@ export const site = {
 /** Paths have no locale prefix — it is added automatically per language. */
 export const mainNav: NavItem[] = [
   { label: { uk: "Послуги", en: "Services" }, href: "/services" },
-  { label: { uk: "Портфоліо", en: "Portfolio" }, href: "/portfolio" },
+  { label: { uk: "Наші роботи", en: "Our work" }, href: "/portfolio" },
   { label: { uk: "Студія", en: "Studio" }, href: "/about" },
   { label: { uk: "Контакти", en: "Contact" }, href: "/contact" },
 ];

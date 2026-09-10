@@ -1,0 +1,7123 @@
+{
+  "generatedAt": "2026-09-10T11:13:38.547Z",
+  "owner": "thebox.detailing",
+  "stats": {
+    "postsInExport": 222,
+    "studioPosts": 215,
+    "excluded": 14,
+    "mergedAway": 23,
+    "projects": 178,
+    "withCover": 0,
+    "photos": 0,
+    "videosDownloaded": 0,
+    "untranslatedLines": 0,
+    "mediaFailures": 0
+  },
+  "projects": [
+    {
+      "id": "DdGk2B0jVI5",
+      "slug": "porsche-macan-ddgk2b0jvi5",
+      "vehicle": "Porsche Macan",
+      "date": "2026-09-10T10:02:31.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DdGk2B0jVI5/",
+      "sources": [
+        "DdGk2B0jVI5"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "tint"
+      ],
+      "works": [
+        {
+          "uk": "Повна заміна кольору",
+          "en": "Full colour change"
+        },
+        {
+          "uk": "Обклеювання рейлінгів",
+          "en": "Roof rails wrapped"
+        },
+        {
+          "uk": "Євротонування",
+          "en": "Rear-glass tint"
+        }
+      ],
+      "summary": {
+        "uk": "Повна заміна кольору кузова, обклеювання рейлінгів і євротонування.",
+        "en": "Full colour change, roof-rail wrap and rear-glass tinting."
+      },
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": true,
+      "order": 0,
+      "visible": true
+    },
+    {
+      "id": "DV3YhOjDXOl",
+      "slug": "chevrolet-corvette-dv3yhojdxol",
+      "vehicle": "Chevrolet Corvette",
+      "date": "2026-03-14T12:46:27.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DV3YhOjDXOl/",
+      "sources": [
+        "DV3YhOjDXOl",
+        "DLHgl9Rt35N"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "tint",
+        "polish",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання кузова кольоровим поліуретаном Signal Yellow; підготовка кузова під обклеювання",
+          "en": "Body wrapped in Signal Yellow colour PPF; body prepared for wrapping"
+        },
+        {
+          "uk": "Зняття старого тонування з двох передніх і лобового скла",
+          "en": "Old tint removed from both front windows and the windscreen"
+        },
+        {
+          "uk": "Атермальне тонування двох передніх і лобового скла",
+          "en": "Athermal tint on both front windows and the windscreen"
+        },
+        {
+          "uk": "Фарбування супортів",
+          "en": "Painted brake calipers"
+        }
+      ],
+      "summary": {
+        "uk": "Кузов у кольоровому поліуретані Signal Yellow після повної підготовки, атермальне тонування двох передніх і лобового скла, фарбування супортів.",
+        "en": "Body wrapped in Signal Yellow colour PPF after full prep, athermal tint on the front side glass and windscreen, painted calipers."
+      },
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": true,
+      "order": 1,
+      "visible": true
+    },
+    {
+      "id": "DUn3qxDDWHd",
+      "slug": "audi-e-tron-gt-dun3qxddwhd",
+      "vehicle": "Audi e-tron GT",
+      "date": "2026-02-11T15:39:24.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DUn3qxDDWHd/",
+      "sources": [
+        "DUn3qxDDWHd",
+        "DT_Vb7lDcvY"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "tint",
+        "interior",
+        "soundproofing",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повна шумоізоляція салону",
+          "en": "Full cabin soundproofing"
+        },
+        {
+          "uk": "Повний антискрип салону",
+          "en": "Full cabin anti-squeak treatment"
+        },
+        {
+          "uk": "Ліврею розроблено дизайнерами студії",
+          "en": "Livery designed in-house"
+        },
+        {
+          "uk": "Обклеювання в унікальний дизайн (ліврею)",
+          "en": "Wrapped in a one-off livery"
+        },
+        {
+          "uk": "Обклеювання прозорим сатиновим поліуретаном із повною деталізацією",
+          "en": "Clear satin PPF with every element detailed"
+        },
+        {
+          "uk": "Встановлення доводчиків дверей",
+          "en": "Soft-close doors installed"
+        },
+        {
+          "uk": "Встановлення унікального обвісу",
+          "en": "Bespoke body kit installed"
+        },
+        {
+          "uk": "Повне атермальне тонування",
+          "en": "Full athermal window tint"
+        }
+      ],
+      "summary": {
+        "uk": "Ліврея за власним дизайном студії під прозорим сатиновим поліуретаном, повна шумоізоляція й антискрип салону, доводчики дверей, унікальний обвіс і повне атермальне тонування.",
+        "en": "A livery designed in-house and laminated under clear satin PPF, full cabin soundproofing and anti-squeak, soft-close doors, a bespoke body kit and full athermal tint."
+      },
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": true,
+      "order": 2,
+      "visible": true
+    },
+    {
+      "id": "DVZCLJqjcZZ",
+      "slug": "denza-n8l-dvzcljqjczz",
+      "vehicle": "Denza N8L",
+      "date": "2026-03-02T17:53:59.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DVZCLJqjcZZ/",
+      "sources": [
+        "DVZCLJqjcZZ"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "tint",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова кольоровим поліуретаном із повною деталізацією глянцевих елементів",
+          "en": "Full colour-PPF wrap with every gloss element detailed"
+        },
+        {
+          "uk": "Обклеювання дисків притонованим поліуретаном",
+          "en": "Wheels in tinted PPF"
+        },
+        {
+          "uk": "Бронювання панорамного даху",
+          "en": "Panoramic roof protection film"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Повне атермальне тонування разом із лобовим склом",
+          "en": "Full athermal tint including the windscreen"
+        }
+      ],
+      "summary": {
+        "uk": "Повне обклеювання кузова кольоровим поліуретаном з деталізацією глянцевих елементів, диски у притонованому поліуретані, бронь панорами та лобового, повне атермальне тонування.",
+        "en": "Full colour-PPF wrap with every gloss element detailed, wheels in tinted PPF, panoramic-roof and windscreen protection, full athermal tint."
+      },
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": true,
+      "order": 3,
+      "visible": true
+    },
+    {
+      "id": "DVwRfEnDcdD",
+      "slug": "zeekr-001-dvwrfendcdd",
+      "vehicle": "Zeekr 001",
+      "date": "2026-03-11T18:30:18.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DVwRfEnDcdD/",
+      "sources": [
+        "DVwRfEnDcdD"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повна заміна кольору кольоровим поліуретаном із повною деталізацією",
+          "en": "Full colour change in colour PPF with every element detailed"
+        },
+        {
+          "uk": "Обклеювання панорамного даху прозорим поліуретаном",
+          "en": "Panoramic roof in clear PPF"
+        },
+        {
+          "uk": "Атермальне тонування лобового та двох передніх стекол",
+          "en": "Athermal tint on the windscreen and both front windows"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Обклеювання всіх глянцевих елементів салону та всіх моніторів",
+          "en": "All gloss interior trim and every display protected"
+        }
+      ],
+      "summary": {
+        "uk": "Повна заміна кольору кольоровим поліуретаном, панорама у прозорому поліуретані, бронь лобового, атермальне тонування та захист усіх глянцевих елементів салону й моніторів.",
+        "en": "Full colour change in colour PPF, panoramic roof in clear PPF, windscreen protection, athermal tint, and every gloss interior element and screen protected."
+      },
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": true,
+      "order": 4,
+      "visible": true
+    },
+    {
+      "id": "DQwp404DTN-",
+      "slug": "bmw-x7-dqwp404dtn-",
+      "vehicle": "BMW X7",
+      "date": "2025-11-07T15:26:34.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DQwp404DTN-/",
+      "sources": [
+        "DQwp404DTN-"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "tint",
+        "interior",
+        "antichrome",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Заміна кольору кузова кольоровим матовим поліуретаном із повною деталізацією глянцевих елементів та оптики",
+          "en": "Colour change in matte colour PPF with all gloss trim and lights detailed"
+        },
+        {
+          "uk": "Тонування передніх і лобового скла",
+          "en": "Front windows and windscreen tinted"
+        },
+        {
+          "uk": "Антихром шильдиків",
+          "en": "Anti-chrome badges"
+        },
+        {
+          "uk": "Обклеювання глянцевих елементів салону",
+          "en": "Gloss interior trim protected with film"
+        },
+        {
+          "uk": "Захист моніторів захисним склом",
+          "en": "Tempered screen protectors on the displays"
+        }
+      ],
+      "summary": {
+        "uk": "Заміна кольору кольоровим матовим поліуретаном з повною деталізацією глянцю та оптики, тонування, антихром шильдиків, захист салону й моніторів.",
+        "en": "Colour change in matte colour PPF with all gloss trim and lights detailed, tinting, anti-chrome badges, interior gloss and screens protected."
+      },
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": true,
+      "order": 5,
+      "visible": true
+    },
+    {
+      "id": "DUYwj0mjej2",
+      "slug": "bmw-760li-duywj0mjej2",
+      "vehicle": "BMW 760Li",
+      "date": "2026-02-05T18:48:40.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DUYwj0mjej2/",
+      "sources": [
+        "DUYwj0mjej2"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "tint"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання кузова разом із дахом кольоровим поліуретаном",
+          "en": "Body and roof wrapped in colour PPF"
+        },
+        {
+          "uk": "Атермальне тонування всіх стекол",
+          "en": "Athermal tint on all glass"
+        }
+      ],
+      "summary": {
+        "uk": "Кузов разом із дахом обклеєно кольоровим поліуретаном, усі стекла затоновано атермальною плівкою.",
+        "en": "Body and roof wrapped in colour PPF, all glass tinted with athermal film."
+      },
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": true,
+      "order": 6,
+      "visible": true
+    },
+    {
+      "id": "DRfDaAhiMv9",
+      "slug": "bmw-x7-drfdaahimv9",
+      "vehicle": "BMW X7",
+      "date": "2025-11-25T15:54:37.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DRfDaAhiMv9/",
+      "sources": [
+        "DRfDaAhiMv9",
+        "DRP4-EDDQge"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова разом із дахом прозорим сатином",
+          "en": "Full body and roof in clear satin PPF"
+        },
+        {
+          "uk": "Деталізація всіх глянцевих елементів та оптики",
+          "en": "All gloss trim and lights detailed"
+        },
+        {
+          "uk": "Обклеювання всіх глянцевих елементів салону",
+          "en": "All gloss interior trim protected with film"
+        },
+        {
+          "uk": "Захист монітора",
+          "en": "Screen protector on the display"
+        },
+        {
+          "uk": "Атермальне тонування всіх стекол і панорамного даху",
+          "en": "Athermal tint on all glass and the panoramic roof"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        }
+      ],
+      "summary": {
+        "uk": "Повне обклеювання кузова з дахом у прозорий сатин із деталізацією глянцю та оптики, захист салону й монітора, атермальне тонування всіх стекол і панорами, бронь лобового.",
+        "en": "Full body and roof in clear satin PPF with gloss trim and lights detailed, interior and screen protection, athermal tint on all glass and the panoramic roof, windscreen protection."
+      },
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": true,
+      "order": 7,
+      "visible": true
+    },
+    {
+      "id": "DRkQJW4CAWF",
+      "slug": "porsche-taycan-drkqjw4cawf",
+      "vehicle": "Porsche Taycan",
+      "date": "2025-11-27T16:22:08.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DRkQJW4CAWF/",
+      "sources": [
+        "DRkQJW4CAWF",
+        "DRcfxZVjT_4"
+      ],
+      "categories": [
+        "color-change",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Заміна кольору кузова",
+          "en": "Body colour change"
+        },
+        {
+          "uk": "Встановлення доводчиків дверей",
+          "en": "Soft-close doors installed"
+        }
+      ],
+      "summary": {
+        "uk": "Заміна кольору кузова та встановлення доводчиків дверей.",
+        "en": "Body colour change and soft-close door installation."
+      },
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": true,
+      "order": 8,
+      "visible": true
+    },
+    {
+      "id": "DSkucNkjfmz",
+      "slug": "tesla-model-3-dskucnkjfmz",
+      "vehicle": "Tesla Model 3",
+      "date": "2025-12-22T17:18:15.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DSkucNkjfmz/",
+      "sources": [
+        "DSkucNkjfmz",
+        "DS2p03qDSAs"
+      ],
+      "categories": [
+        "ppf",
+        "color-change"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кольоровим поліуретаном",
+          "en": "Full colour-PPF wrap"
+        }
+      ],
+      "summary": {
+        "uk": "Повне обклеювання в кольоровий поліуретан — «мармуровий» дизайн.",
+        "en": "Full wrap in colour PPF — the “marble” design."
+      },
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": true,
+      "order": 9,
+      "visible": true
+    },
+    {
+      "id": "DUjA_vzDZiz",
+      "slug": "toyota-land-cruiser-duja_vzdziz",
+      "vehicle": "Toyota Land Cruiser",
+      "date": "2026-02-09T18:24:42.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DUjA_vzDZiz/",
+      "sources": [
+        "DUjA_vzDZiz"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "antichrome",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання кузова кольоровим поліуретаном",
+          "en": "Body wrapped in colour PPF"
+        },
+        {
+          "uk": "Антихром: решітка радіатора, дзеркала, дверні ручки, віконні молдинги",
+          "en": "Anti-chrome: grille, mirrors, door handles, window mouldings"
+        },
+        {
+          "uk": "Встановлення додаткового обвісу на передньому та задньому бамперах",
+          "en": "Additional front and rear bumper body kit"
+        }
+      ],
+      "summary": {
+        "uk": "Кузов у кольоровому поліуретані, антихром решітки, дзеркал, ручок і молдингів, додатковий обвіс на передньому й задньому бамперах.",
+        "en": "Body wrapped in colour PPF, anti-chrome grille, mirrors, handles and mouldings, additional front and rear bumper body kit."
+      },
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": true,
+      "order": 10,
+      "visible": true
+    },
+    {
+      "id": "DSVHV6DiAE_",
+      "slug": "audi-sq7-dsvhv6diae_",
+      "vehicle": "Audi SQ7",
+      "date": "2025-12-16T15:48:00.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DSVHV6DiAE_/",
+      "sources": [
+        "DSVHV6DiAE_"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова прозорим сатином із повною деталізацією елементів та оптики",
+          "en": "Full clear satin PPF with trim and lights detailed"
+        },
+        {
+          "uk": "Обклеювання всіх декоративних елементів салону",
+          "en": "All decorative interior trim protected"
+        },
+        {
+          "uk": "Повне атермальне тонування",
+          "en": "Full athermal window tint"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        }
+      ],
+      "summary": {
+        "uk": "Повне обклеювання у прозорий сатин з деталізацією елементів та оптики, захист декоративних елементів салону, повне атермальне тонування, бронь лобового.",
+        "en": "Full clear satin PPF with trim and lights detailed, interior decor protected, full athermal tint, windscreen protection."
+      },
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": true,
+      "order": 11,
+      "visible": true
+    },
+    {
+      "id": "Dcyq9x-Nw6k",
+      "slug": "zeekr-8x-dcyq9x-nw6k",
+      "vehicle": "Zeekr 8X",
+      "date": "2026-09-02T16:31:57.000Z",
+      "sourceUrl": "https://www.instagram.com/p/Dcyq9x-Nw6k/",
+      "sources": [
+        "Dcyq9x-Nw6k"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова поліуретаном із повною деталізацією",
+          "en": "Full-body PPF with every element detailed"
+        },
+        {
+          "uk": "Бронювання панорамного даху",
+          "en": "Panoramic roof protection film"
+        },
+        {
+          "uk": "Повне тонування",
+          "en": "Full window tint"
+        },
+        {
+          "uk": "Бронювання лобового та всіх стекол",
+          "en": "Windscreen and all glass protection film"
+        },
+        {
+          "uk": "Обклеювання салону з повною деталізацією",
+          "en": "Interior trim protected, every element detailed"
+        },
+        {
+          "uk": "Обклеювання зовнішніх порогів структурною чорною плівкою",
+          "en": "Outer sills in textured black film"
+        },
+        {
+          "uk": "Повне обклеювання внутрішніх прорізів",
+          "en": "All door jambs protected with film"
+        },
+        {
+          "uk": "Бронювання моніторів салону",
+          "en": "Interior displays protected"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 12,
+      "visible": true
+    },
+    {
+      "id": "DclMmQztUSZ",
+      "slug": "porsche-911-dclmmqztusz",
+      "vehicle": "Porsche 911",
+      "date": "2026-08-28T10:59:51.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DclMmQztUSZ/",
+      "sources": [
+        "DclMmQztUSZ"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова прозорим поліуретаном",
+          "en": "Full-body clear PPF"
+        },
+        {
+          "uk": "Обклеювання глянцевих елементів салону прозорим поліуретаном",
+          "en": "Gloss interior trim in clear PPF"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Повне атермальне тонування",
+          "en": "Full athermal window tint"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 13,
+      "visible": true
+    },
+    {
+      "id": "Da0acyBNn4d",
+      "slug": "range-rover-da0acybnn4d",
+      "vehicle": "Range Rover",
+      "date": "2026-07-15T15:43:47.000Z",
+      "sourceUrl": "https://www.instagram.com/p/Da0acyBNn4d/",
+      "sources": [
+        "Da0acyBNn4d"
+      ],
+      "categories": [
+        "ppf",
+        "interior",
+        "soundproofing",
+        "antichrome",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання матовим поліуретаном",
+          "en": "Full matte PPF"
+        },
+        {
+          "uk": "Повна шумоізоляція салону та повний антискрип",
+          "en": "Full cabin soundproofing and anti-squeak"
+        },
+        {
+          "uk": "Повний антихром",
+          "en": "Full anti-chrome package"
+        },
+        {
+          "uk": "Фарбування дисків",
+          "en": "Wheels painted"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 14,
+      "visible": true
+    },
+    {
+      "id": "DadOmEHt9vK",
+      "slug": "audi-rs-q8-dadomeht9vk",
+      "vehicle": "Audi RS Q8",
+      "date": "2026-07-06T15:37:19.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DadOmEHt9vK/",
+      "sources": [
+        "DadOmEHt9vK"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 15,
+      "visible": true
+    },
+    {
+      "id": "DZsVGqVNDec",
+      "slug": "audi-q8-dzsvgqvndec",
+      "vehicle": "Audi Q8",
+      "date": "2026-06-17T15:55:48.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DZsVGqVNDec/",
+      "sources": [
+        "DZsVGqVNDec"
+      ],
+      "categories": [
+        "ppf",
+        "polish",
+        "interior",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Демонтаж старої плівки",
+          "en": "Old film removed"
+        },
+        {
+          "uk": "Обклеювання кузова матовим поліуретаном",
+          "en": "Body wrapped in matte PPF"
+        },
+        {
+          "uk": "Обклеювання глянцевих елементів кузова прозорим поліуретаном",
+          "en": "Gloss exterior trim in clear PPF"
+        },
+        {
+          "uk": "Бронювання глянцевих елементів салону та моніторів сатиновою плівкою",
+          "en": "Gloss interior trim and displays in satin film"
+        },
+        {
+          "uk": "Обклеювання сріблястих елементів салону карбоновою плівкою",
+          "en": "Silver interior trim in carbon-effect film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 16,
+      "visible": true
+    },
+    {
+      "id": "DZIZyJNNDRO",
+      "slug": "porsche-panamera-gts-dzizyjnndro",
+      "vehicle": "Porsche Panamera GTS",
+      "date": "2026-06-03T17:01:38.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DZIZyJNNDRO/",
+      "sources": [
+        "DZIZyJNNDRO"
+      ],
+      "categories": [
+        "ppf",
+        "tint"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова прозорим поліуретаном із деталізацією",
+          "en": "Full-body clear PPF with every element detailed"
+        },
+        {
+          "uk": "Обклеювання даху чорним поліуретаном",
+          "en": "Roof wrapped in black PPF"
+        },
+        {
+          "uk": "Повне тонування",
+          "en": "Full window tint"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 17,
+      "visible": true
+    },
+    {
+      "id": "DY4yGCltK8x",
+      "slug": "range-rover-dy4ygcltk8x",
+      "vehicle": "Range Rover",
+      "date": "2026-05-28T15:24:23.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DY4yGCltK8x/",
+      "sources": [
+        "DY4yGCltK8x"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова сатиновим поліуретаном",
+          "en": "Full-body satin PPF"
+        },
+        {
+          "uk": "Бронювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Повне тонування",
+          "en": "Full window tint"
+        },
+        {
+          "uk": "Захист моніторів салону",
+          "en": "Screen protectors on the interior displays"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 18,
+      "visible": true
+    },
+    {
+      "id": "DYxEKRJtvX5",
+      "slug": "sea-doo-300-dyxekrjtvx5",
+      "vehicle": "Sea-Doo 300",
+      "date": "2026-05-25T15:29:52.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DYxEKRJtvX5/",
+      "sources": [
+        "DYxEKRJtvX5"
+      ],
+      "categories": [
+        "ppf",
+        "polish",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Ремонт пошкодження лакофарбового покриття",
+          "en": "Paint damage repaired"
+        },
+        {
+          "uk": "Очищення корпусу від сольових відкладень",
+          "en": "Hull cleaned of salt deposits"
+        },
+        {
+          "uk": "Повне обклеювання ЛФП прозорим поліуретаном",
+          "en": "All painted surfaces in clear PPF"
+        },
+        {
+          "uk": "Розробка та обклеювання декоративних наклейок на корпус",
+          "en": "Decorative hull graphics designed and applied"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 19,
+      "visible": true
+    },
+    {
+      "id": "DYNSO8Mt-hQ",
+      "slug": "bmw-m8-dynso8mt-hq",
+      "vehicle": "BMW M8",
+      "date": "2026-05-11T17:59:09.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DYNSO8Mt-hQ/",
+      "sources": [
+        "DYNSO8Mt-hQ"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "polish",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Демонтаж старої плівки",
+          "en": "Old film removed"
+        },
+        {
+          "uk": "Обклеювання кузова кольоровим поліуретаном із повною деталізацією",
+          "en": "Colour PPF wrap with every element detailed"
+        },
+        {
+          "uk": "Обклеювання даху карбоновою плівкою",
+          "en": "Roof wrapped in carbon-effect film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 20,
+      "visible": true
+    },
+    {
+      "id": "DYCw4p3NRjJ",
+      "slug": "mercedes-benz-s-class-w223-dycw4p3nrjj",
+      "vehicle": "Mercedes-Benz S-Class (W223)",
+      "date": "2026-05-07T15:54:52.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DYCw4p3NRjJ/",
+      "sources": [
+        "DYCw4p3NRjJ"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова прозорим поліуретаном із повною деталізацією кузовних елементів",
+          "en": "Full-body clear PPF with every body element detailed"
+        },
+        {
+          "uk": "Бронювання панорамного даху",
+          "en": "Panoramic roof protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 21,
+      "visible": true
+    },
+    {
+      "id": "DX9g0njt03A",
+      "slug": "bmw-e36-dx9g0njt03a",
+      "vehicle": "BMW E36",
+      "date": "2026-05-05T14:58:47.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DX9g0njt03A/",
+      "sources": [
+        "DX9g0njt03A"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "polish"
+      ],
+      "works": [
+        {
+          "uk": "Демонтаж кольорової плівки та наклейок з кузова",
+          "en": "Old colour wrap and decals removed"
+        },
+        {
+          "uk": "Малярні підготовчі роботи",
+          "en": "Paint prep work"
+        },
+        {
+          "uk": "Обклеювання кузова кольоровим поліуретаном",
+          "en": "Body wrapped in colour PPF"
+        },
+        {
+          "uk": "Виготовлення наклейок-логотипів із чорного хрому",
+          "en": "Black-chrome logo decals made"
+        },
+        {
+          "uk": "Кастомні дизайнерські рішення, що підкреслюють спортивний стиль",
+          "en": "Custom design touches to underline the motorsport look"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 22,
+      "visible": true
+    },
+    {
+      "id": "DXjTN_pjWLg",
+      "slug": "audi-s5-dxjtn_pjwlg",
+      "vehicle": "Audi S5",
+      "date": "2026-04-25T10:38:34.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DXjTN_pjWLg/",
+      "sources": [
+        "DXjTN_pjWLg"
+      ],
+      "categories": [
+        "ppf",
+        "color-change"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова кольоровим поліуретаном у стилі Two Face",
+          "en": "Full colour-PPF wrap in a Two Face design"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 23,
+      "visible": true
+    },
+    {
+      "id": "DXezBLcDem1",
+      "slug": "bmw-7-series-dxezblcdem1",
+      "vehicle": "BMW 7 Series",
+      "date": "2026-04-23T16:43:14.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DXezBLcDem1/",
+      "sources": [
+        "DXezBLcDem1"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Перетворення зовнішнього вигляду в стиль M760",
+          "en": "Exterior restyled in M760 look"
+        },
+        {
+          "uk": "Встановлення додаткового аеродинамічного обвісу Renegade Paradigma",
+          "en": "Renegade Paradigma aero body kit installed"
+        },
+        {
+          "uk": "Обклеювання бамперів індивідуальною сатиновою плівкою з деталізацією нових глянцевих елементів",
+          "en": "Bumpers in bespoke satin film with the new gloss elements detailed"
+        },
+        {
+          "uk": "Обклеювання додаткового обвісу карбоновим поліуретаном",
+          "en": "Body kit wrapped in carbon-effect PPF"
+        },
+        {
+          "uk": "Встановлення карбонових корпусів дзеркал",
+          "en": "Carbon mirror caps installed"
+        },
+        {
+          "uk": "Повне атермальне тонування",
+          "en": "Full athermal window tint"
+        },
+        {
+          "uk": "Встановлення електронно-регульованої вихлопної системи Maxhaust з трьома активними динаміками",
+          "en": "Maxhaust electronically controlled exhaust system with three active speakers"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 24,
+      "visible": true
+    },
+    {
+      "id": "DXZgeU4jaT1",
+      "slug": "bmw-x7-dxzgeu4jat1",
+      "vehicle": "BMW X7",
+      "date": "2026-04-21T15:23:48.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DXZgeU4jaT1/",
+      "sources": [
+        "DXZgeU4jaT1"
+      ],
+      "categories": [
+        "ppf",
+        "polish",
+        "interior",
+        "soundproofing"
+      ],
+      "works": [
+        {
+          "uk": "Повна корекція антигравійної плівки",
+          "en": "Existing PPF fully corrected"
+        },
+        {
+          "uk": "Повний антискрип салону",
+          "en": "Full cabin anti-squeak treatment"
+        },
+        {
+          "uk": "Захист усіх глянцевих елементів салону та моніторів",
+          "en": "All gloss interior trim and displays protected"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 25,
+      "visible": true
+    },
+    {
+      "id": "DXPalnMja1B",
+      "slug": "bmw-x6-dxpalnmja1b",
+      "vehicle": "BMW X6",
+      "date": "2026-04-17T17:19:17.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DXPalnMja1B/",
+      "sources": [
+        "DXPalnMja1B"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання фронтальної частини прозорим поліуретаном",
+          "en": "Front end in clear PPF"
+        },
+        {
+          "uk": "Тонування передньої півсфери",
+          "en": "Front-half window tint"
+        },
+        {
+          "uk": "Захист моніторів салону",
+          "en": "Screen protectors on the interior displays"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 26,
+      "visible": true
+    },
+    {
+      "id": "DXKXD_jDUT0",
+      "slug": "mercedes-benz-sl-500-dxkxd_jdut0",
+      "vehicle": "Mercedes-Benz SL 500",
+      "date": "2026-04-15T18:12:46.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DXKXD_jDUT0/",
+      "sources": [
+        "DXKXD_jDUT0"
+      ],
+      "categories": [
+        "ppf",
+        "ceramic",
+        "polish",
+        "interior",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Демонтаж старої плівки",
+          "en": "Old film removed"
+        },
+        {
+          "uk": "Видалення вм'ятин",
+          "en": "Dent removal"
+        },
+        {
+          "uk": "Фарбування переднього бампера",
+          "en": "Front bumper painted"
+        },
+        {
+          "uk": "Бронювання зон під ручками, торців дверей, фар, іклів і губи переднього бампера",
+          "en": "Film on the door-handle cups, door edges, headlights, front-bumper canards and lip"
+        },
+        {
+          "uk": "Фарбування супортів",
+          "en": "Painted brake calipers"
+        },
+        {
+          "uk": "Обклеювання віконних молдингів",
+          "en": "Window mouldings wrapped"
+        },
+        {
+          "uk": "Обклеювання глянцю над лобовим склом",
+          "en": "Gloss strip above the windscreen wrapped"
+        },
+        {
+          "uk": "Полірування кузова",
+          "en": "Body polishing"
+        },
+        {
+          "uk": "Нанесення керамічного покриття на кузов",
+          "en": "Ceramic coating on the body"
+        },
+        {
+          "uk": "Хімчистка салону",
+          "en": "Interior deep clean"
+        },
+        {
+          "uk": "Підфарбовування двох сидінь",
+          "en": "Two seats re-dyed"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 27,
+      "visible": true
+    },
+    {
+      "id": "DXFIP1VjQRU",
+      "slug": "bmw-x6-m-dxfip1vjqru",
+      "vehicle": "BMW X6 M",
+      "date": "2026-04-13T17:54:22.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DXFIP1VjQRU/",
+      "sources": [
+        "DXFIP1VjQRU"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "ceramic",
+        "polish",
+        "interior",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Полірування кузова та задньої оптики",
+          "en": "Body and rear-light polishing"
+        },
+        {
+          "uk": "Нанесення керамічного покриття на кузов",
+          "en": "Ceramic coating on the body"
+        },
+        {
+          "uk": "Антидощ на передні стекла",
+          "en": "Rain-repellent treatment on the front glass"
+        },
+        {
+          "uk": "Обклеювання обвісу та дзеркал карбоновою плівкою",
+          "en": "Body kit and mirrors in carbon-effect film"
+        },
+        {
+          "uk": "Корекція плівки по всьому кузову",
+          "en": "Existing film corrected across the body"
+        },
+        {
+          "uk": "Бронювання задньої оптики",
+          "en": "Rear-light protection film"
+        },
+        {
+          "uk": "Очищення чотирьох сидінь, чотирьох дверних карт і підлокітника",
+          "en": "Four seats, four door cards and the armrest cleaned"
+        },
+        {
+          "uk": "Вологе прибирання салону",
+          "en": "Interior wet clean"
+        },
+        {
+          "uk": "Кераміка для салону на два сидіння, центральний підлокітник і підлокітники дверних карт",
+          "en": "Interior ceramic on two seats, the centre armrest and the door-card armrests"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 28,
+      "visible": true
+    },
+    {
+      "id": "DW9A0XYjQ3S",
+      "slug": "range-rover-dw9a0xyjq3s",
+      "vehicle": "Range Rover",
+      "date": "2026-04-10T13:54:51.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DW9A0XYjQ3S/",
+      "sources": [
+        "DW9A0XYjQ3S"
+      ],
+      "categories": [
+        "ppf",
+        "tint"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання кузова прозорим (верх) і сатиновим (низ) поліуретаном із повною деталізацією",
+          "en": "Clear PPF on the upper body and satin on the lower, every element detailed"
+        },
+        {
+          "uk": "Повне атермальне тонування разом із лобовим склом",
+          "en": "Full athermal tint including the windscreen"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 29,
+      "visible": true
+    },
+    {
+      "id": "DW1sJpxDfCF",
+      "slug": "bmw-5-series-g60-dw1sjpxdfcf",
+      "vehicle": "BMW 5 Series (G60)",
+      "date": "2026-04-07T17:34:34.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DW1sJpxDfCF/",
+      "sources": [
+        "DW1sJpxDfCF"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "ceramic",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова прозорим поліуретаном",
+          "en": "Full-body clear PPF"
+        },
+        {
+          "uk": "Атермальне тонування передньої півсфери",
+          "en": "Athermal tint on the front-half glass"
+        },
+        {
+          "uk": "Обклеювання всіх глянцевих елементів салону",
+          "en": "All gloss interior trim protected with film"
+        },
+        {
+          "uk": "Захист монітора склом",
+          "en": "Tempered screen protector on the display"
+        },
+        {
+          "uk": "Обробка кузова кварцовим покриттям",
+          "en": "Quartz coating on the body"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 30,
+      "visible": true
+    },
+    {
+      "id": "DWrNO3RDT5K",
+      "slug": "range-rover-sport-sv-dwrno3rdt5k",
+      "vehicle": "Range Rover Sport SV",
+      "date": "2026-04-03T15:49:55.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DWrNO3RDT5K/",
+      "sources": [
+        "DWrNO3RDT5K"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання кузова прозорим поліуретаном із повною деталізацією",
+          "en": "Clear PPF with every element detailed"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 31,
+      "visible": true
+    },
+    {
+      "id": "DWl2NUVjRex",
+      "slug": "audi-rs-3-dwl2nuvjrex",
+      "vehicle": "Audi RS 3",
+      "date": "2026-04-01T13:51:22.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DWl2NUVjRex/",
+      "sources": [
+        "DWl2NUVjRex"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "tint",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Затемнення фар",
+          "en": "Tinted headlights"
+        },
+        {
+          "uk": "Обклеювання зон під ручками",
+          "en": "Door-handle cups protected"
+        },
+        {
+          "uk": "Обклеювання карбонового корпусу повітряного фільтра",
+          "en": "Carbon airbox wrapped"
+        },
+        {
+          "uk": "Дизайн переднього бампера двома чорними вставками з кольорового поліуретану",
+          "en": "Front bumper accented with two black colour-PPF inserts"
+        },
+        {
+          "uk": "Зняття старого тонування з бокових стекол",
+          "en": "Old tint removed from the side windows"
+        },
+        {
+          "uk": "Атермальне тонування: лобове 50%, два передніх 35%, два задніх 5%",
+          "en": "Athermal tint: windscreen 50%, front windows 35%, rear windows 5%"
+        },
+        {
+          "uk": "Обклеювання глянцевих молдингів чорною захисною плівкою",
+          "en": "Gloss mouldings in black PPF"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 32,
+      "visible": true
+    },
+    {
+      "id": "DWZQ5FSDZgL",
+      "slug": "mercedes-benz-s-class-w223-dwzq5fsdzgl",
+      "vehicle": "Mercedes-Benz S-Class (W223)",
+      "date": "2026-03-27T16:43:37.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DWZQ5FSDZgL/",
+      "sources": [
+        "DWZQ5FSDZgL"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "polish",
+        "interior",
+        "antichrome",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання фронтальної частини та стійок лобового скла",
+          "en": "Full front end and A-pillars in PPF"
+        },
+        {
+          "uk": "Обклеювання даху чорним поліуретаном",
+          "en": "Roof wrapped in black PPF"
+        },
+        {
+          "uk": "Повний демонтаж старого тонування",
+          "en": "Old tint fully removed"
+        },
+        {
+          "uk": "Повне тонування всіх стекол",
+          "en": "All windows tinted"
+        },
+        {
+          "uk": "Повний антихром",
+          "en": "Full anti-chrome package"
+        },
+        {
+          "uk": "Бронювання центральної консолі та захист монітора",
+          "en": "Centre console and display protected"
+        },
+        {
+          "uk": "Встановлення сітки захисту радіатора",
+          "en": "Radiator protection mesh installed"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 33,
+      "visible": true
+    },
+    {
+      "id": "DWWzBH8DUlD",
+      "slug": "bmw-i7-dwwzbh8duld",
+      "vehicle": "BMW i7",
+      "date": "2026-03-26T17:39:35.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DWWzBH8DUlD/",
+      "sources": [
+        "DWWzBH8DUlD"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "ceramic",
+        "polish",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання кузова у два кольори",
+          "en": "Two-tone body wrap"
+        },
+        {
+          "uk": "Очищення та захист шкіряних елементів салону",
+          "en": "Leather cleaned and protected"
+        },
+        {
+          "uk": "Двоетапне полірування кузова",
+          "en": "Two-stage paint correction"
+        },
+        {
+          "uk": "Нанесення керамічного покриття на кузов",
+          "en": "Ceramic coating on the body"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 34,
+      "visible": true
+    },
+    {
+      "id": "DWHZpmKjZA-",
+      "slug": "lexus-es-dwhzpmkjza-",
+      "vehicle": "Lexus ES",
+      "date": "2026-03-20T18:06:57.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DWHZpmKjZA-/",
+      "sources": [
+        "DWHZpmKjZA-"
+      ],
+      "categories": [
+        "tint",
+        "interior",
+        "antichrome",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повний антихром: віконні молдинги, решітка радіатора, декоративні накладки кришки багажника та переднього бампера",
+          "en": "Full anti-chrome: window mouldings, grille, boot-lid and front-bumper trims"
+        },
+        {
+          "uk": "Затемнення шильдиків",
+          "en": "Badges blacked out"
+        },
+        {
+          "uk": "Повне тонування разом із лобовим склом",
+          "en": "Full tint including the windscreen"
+        },
+        {
+          "uk": "Встановлення LED-підсвітки салону",
+          "en": "LED interior ambient lighting installed"
+        },
+        {
+          "uk": "Встановлення доводчиків дверей",
+          "en": "Soft-close doors installed"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 35,
+      "visible": true
+    },
+    {
+      "id": "DVyjo6JCHfv",
+      "slug": "lexus-lx-600-dvyjo6jchfv",
+      "vehicle": "Lexus LX 600",
+      "date": "2026-03-12T15:48:21.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DVyjo6JCHfv/",
+      "sources": [
+        "DVyjo6JCHfv"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "antichrome",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Заміна кольору кузова кольоровим поліуретаном із повною деталізацією",
+          "en": "Colour change in colour PPF with every element detailed"
+        },
+        {
+          "uk": "Повний антихром молдингів і решітки",
+          "en": "Anti-chrome mouldings and grille"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 36,
+      "visible": true
+    },
+    {
+      "id": "DVqNnLMDa2m",
+      "slug": "bmw-m4-dvqnnlmda2m",
+      "vehicle": "BMW M4",
+      "date": "2026-03-09T10:02:41.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DVqNnLMDa2m/",
+      "sources": [
+        "DVqNnLMDa2m"
+      ],
+      "categories": [
+        "ppf",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Стайлінг капота чорним поліуретаном у стилі M4 CS",
+          "en": "Bonnet styled in black PPF, M4 CS look"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 37,
+      "visible": true
+    },
+    {
+      "id": "DVgNcrZCEth",
+      "slug": "mercedes-benz-s-class-w223-dvgncrzceth",
+      "vehicle": "Mercedes-Benz S-Class (W223)",
+      "date": "2026-03-05T12:47:28.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DVgNcrZCEth/",
+      "sources": [
+        "DVgNcrZCEth"
+      ],
+      "categories": [
+        "ppf",
+        "ceramic",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Встановлення обвісу S63 AMG",
+          "en": "S 63 AMG body kit installed"
+        },
+        {
+          "uk": "Встановлення електронно-регульованої вихлопної системи Maxhaust з трьома активними динаміками",
+          "en": "Maxhaust electronically controlled exhaust system with three active speakers"
+        },
+        {
+          "uk": "Встановлення та підключення опції «Зоряне небо»",
+          "en": "Starlight headliner installed and wired"
+        },
+        {
+          "uk": "Встановлення керма у стилі AMG з юнітами",
+          "en": "AMG-style steering wheel with control units"
+        },
+        {
+          "uk": "Обклеювання фронтальної частини прозорим поліуретаном",
+          "en": "Front end in clear PPF"
+        },
+        {
+          "uk": "Нанесення кераміки на все скло",
+          "en": "Ceramic coating on all glass"
+        },
+        {
+          "uk": "Нанесення кераміки для кузова та плівки",
+          "en": "Ceramic coating for body and film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 38,
+      "visible": true
+    },
+    {
+      "id": "DVT7Z16jcU5",
+      "slug": "mercedes-benz-gls-dvt7z16jcu5",
+      "vehicle": "Mercedes-Benz GLS",
+      "date": "2026-02-28T18:24:14.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DVT7Z16jcU5/",
+      "sources": [
+        "DVT7Z16jcU5"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "antichrome"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання кузова кольоровим поліуретаном",
+          "en": "Body wrapped in colour PPF"
+        },
+        {
+          "uk": "Антихром декоративних накладок",
+          "en": "Anti-chrome decorative trims"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 39,
+      "visible": true
+    },
+    {
+      "id": "DVRWUyOjcIk",
+      "slug": "zeekr-001-dvrwuyojcik",
+      "vehicle": "Zeekr 001",
+      "date": "2026-02-27T18:16:08.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DVRWUyOjcIk/",
+      "sources": [
+        "DVRWUyOjcIk"
+      ],
+      "categories": [
+        "ppf",
+        "tint"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання прозорим поліуретаном",
+          "en": "Full clear PPF"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Повне атермальне тонування",
+          "en": "Full athermal window tint"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 40,
+      "visible": true
+    },
+    {
+      "id": "DVG-2ENjSaq",
+      "slug": "bmw-x5-dvg-2enjsaq",
+      "vehicle": "BMW X5",
+      "date": "2026-02-23T17:38:34.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DVG-2ENjSaq/",
+      "sources": [
+        "DVG-2ENjSaq",
+        "DUtWJ0DDYk3"
+      ],
+      "categories": [
+        "tint",
+        "antichrome",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Атермальне тонування двох передніх і лобового скла",
+          "en": "Athermal tint on both front windows and the windscreen"
+        },
+        {
+          "uk": "Антихром рейлінгів",
+          "en": "Anti-chrome roof rails"
+        },
+        {
+          "uk": "Встановлення аудіосистеми Bowers & Wilkins",
+          "en": "Bowers & Wilkins audio system installed"
+        },
+        {
+          "uk": "Встановлення керма в M-стилі",
+          "en": "M-style steering wheel installed"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 41,
+      "visible": true
+    },
+    {
+      "id": "DU_XFKUDU3k",
+      "slug": "volkswagen-touareg-du_xfkudu3k",
+      "vehicle": "Volkswagen Touareg",
+      "date": "2026-02-20T18:39:46.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DU_XFKUDU3k/",
+      "sources": [
+        "DU_XFKUDU3k"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання прозорим сатином",
+          "en": "Full clear satin PPF"
+        },
+        {
+          "uk": "Обклеювання всіх глянцевих елементів салону",
+          "en": "All gloss interior trim protected with film"
+        },
+        {
+          "uk": "Атермальне тонування двох передніх і лобового скла",
+          "en": "Athermal tint on both front windows and the windscreen"
+        },
+        {
+          "uk": "Захист моніторів захисним склом",
+          "en": "Tempered screen protectors on the displays"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 42,
+      "visible": true
+    },
+    {
+      "id": "DU8r3lRDZex",
+      "slug": "bmw-xm-du8r3lrdzex",
+      "vehicle": "BMW XM",
+      "date": "2026-02-19T17:40:20.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DU8r3lRDZex/",
+      "sources": [
+        "DU8r3lRDZex"
+      ],
+      "categories": [
+        "ppf",
+        "interior",
+        "soundproofing"
+      ],
+      "works": [
+        {
+          "uk": "Шумоізоляція арок",
+          "en": "Wheel arches soundproofed"
+        },
+        {
+          "uk": "Захист монітора",
+          "en": "Screen protector on the display"
+        },
+        {
+          "uk": "Обклеювання глянцевих стійок прозорим поліуретаном",
+          "en": "Gloss pillars in clear PPF"
+        },
+        {
+          "uk": "Захист глянцевих елементів салону",
+          "en": "Gloss interior trim protected"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 43,
+      "visible": true
+    },
+    {
+      "id": "DU3YEcfjXKn",
+      "slug": "audi-s5-du3yecfjxkn",
+      "vehicle": "Audi S5",
+      "date": "2026-02-17T16:12:48.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DU3YEcfjXKn/",
+      "sources": [
+        "DU3YEcfjXKn"
+      ],
+      "categories": [
+        "color-change",
+        "antichrome"
+      ],
+      "works": [
+        {
+          "uk": "Заміна кольору кузова",
+          "en": "Body colour change"
+        },
+        {
+          "uk": "Антихром віконних молдингів",
+          "en": "Anti-chrome window mouldings"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 44,
+      "visible": true
+    },
+    {
+      "id": "DUV1CTNjVNF",
+      "slug": "bmw-i8-duv1ctnjvnf",
+      "vehicle": "BMW i8",
+      "date": "2026-02-04T15:32:34.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DUV1CTNjVNF/",
+      "sources": [
+        "DUV1CTNjVNF"
+      ],
+      "categories": [
+        "color-change",
+        "polish",
+        "interior",
+        "soundproofing",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Демонтаж матової вінілової плівки",
+          "en": "Matte vinyl wrap removed"
+        },
+        {
+          "uk": "Повне розбирання кузова під малярні роботи",
+          "en": "Body fully stripped for paintwork"
+        },
+        {
+          "uk": "Фарбування всіх кузовних елементів у рідний колір",
+          "en": "All body panels repainted in the original colour"
+        },
+        {
+          "uk": "Повна шумоізоляція салону",
+          "en": "Full cabin soundproofing"
+        },
+        {
+          "uk": "Повний антискрип салону та накладок кузова",
+          "en": "Full anti-squeak treatment of the cabin and exterior trims"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 45,
+      "visible": true
+    },
+    {
+      "id": "DUF-0lejZwg",
+      "slug": "bmw-s-1000-rr-duf-0lejzwg",
+      "vehicle": "BMW S 1000 RR",
+      "date": "2026-01-29T11:47:43.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DUF-0lejZwg/",
+      "sources": [
+        "DUF-0lejZwg"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Заміна заводських пластикових деталей на індивідуально розроблені карбонові",
+          "en": "Factory plastics replaced with custom carbon parts"
+        },
+        {
+          "uk": "Обклеювання в індивідуальний дизайн і ламінація прозорим поліуретаном",
+          "en": "Custom design wrap laminated with clear PPF"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 46,
+      "visible": true
+    },
+    {
+      "id": "DT0nsKoDYcj",
+      "slug": "zeekr-001-dt0nskodycj",
+      "vehicle": "Zeekr 001",
+      "date": "2026-01-22T17:58:30.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DT0nsKoDYcj/",
+      "sources": [
+        "DT0nsKoDYcj"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання фронтальної частини, накладок дверей, порогів і заднього бампера прозорим поліуретаном",
+          "en": "Front end, door trims, sills and rear bumper in clear PPF"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 47,
+      "visible": true
+    },
+    {
+      "id": "DTaU0wFDU0y",
+      "slug": "porsche-macan-dtau0wfdu0y",
+      "vehicle": "Porsche Macan",
+      "date": "2026-01-12T12:57:08.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DTaU0wFDU0y/",
+      "sources": [
+        "DTaU0wFDU0y"
+      ],
+      "categories": [
+        "ppf",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання скляних елементів салону",
+          "en": "Glass interior panels protected"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 48,
+      "visible": true
+    },
+    {
+      "id": "DSpxFfdDTFG",
+      "slug": "mercedes-amg-g-63-dspxffddtfg",
+      "vehicle": "Mercedes-AMG G 63",
+      "date": "2025-12-24T16:23:28.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DSpxFfdDTFG/",
+      "sources": [
+        "DSpxFfdDTFG"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова з деталізацією",
+          "en": "Full-body PPF with every element detailed"
+        },
+        {
+          "uk": "Обклеювання всіх глянцевих елементів салону",
+          "en": "All gloss interior trim protected with film"
+        },
+        {
+          "uk": "Повне атермальне тонування всіх вікон",
+          "en": "Athermal tint on all windows"
+        },
+        {
+          "uk": "Встановлення повного комплекту доводчиків дверей",
+          "en": "Soft-close installed on all doors"
+        },
+        {
+          "uk": "Встановлення індивідуальних висувних електропорогів",
+          "en": "Custom power-deployable side steps installed"
+        },
+        {
+          "uk": "Встановлення захисної сітки в бампер",
+          "en": "Protective mesh in the bumper"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 49,
+      "visible": true
+    },
+    {
+      "id": "DSaXKVojfXf",
+      "slug": "ford-expedition-dsaxkvojfxf",
+      "vehicle": "Ford Expedition",
+      "date": "2025-12-18T16:45:28.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DSaXKVojfXf/",
+      "sources": [
+        "DSaXKVojfXf"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "soundproofing",
+        "antichrome"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання кузова у два кольори з повною деталізацією (заміна кольору нижньої частини та прозора бронь рідного кольору верхньої)",
+          "en": "Two-tone wrap with every element detailed (colour change below, clear PPF over the factory colour above)"
+        },
+        {
+          "uk": "Антихром усіх молдингів і накладок",
+          "en": "Anti-chrome on all mouldings and trims"
+        },
+        {
+          "uk": "Шумоізоляція багажника",
+          "en": "Boot soundproofed"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 50,
+      "visible": true
+    },
+    {
+      "id": "DSNqqYaDZoL",
+      "slug": "ford-f-150-dsnqqyadzol",
+      "vehicle": "Ford F-150",
+      "date": "2025-12-13T18:26:04.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DSNqqYaDZoL/",
+      "sources": [
+        "DSNqqYaDZoL"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "polish"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова чорним матовим поліуретаном",
+          "en": "Full-body matte black PPF"
+        },
+        {
+          "uk": "Підготовка кузова (малярні роботи)",
+          "en": "Body prep (paintwork)"
+        },
+        {
+          "uk": "Розробка дизайну дверних прорізів",
+          "en": "Door-jamb design developed"
+        },
+        {
+          "uk": "Обклеювання дверних прорізів",
+          "en": "Door jambs wrapped"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 51,
+      "visible": true
+    },
+    {
+      "id": "DSF0uyPjZRV",
+      "slug": "bmw-x7-dsf0uypjzrv",
+      "vehicle": "BMW X7",
+      "date": "2025-12-10T17:16:46.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DSF0uyPjZRV/",
+      "sources": [
+        "DSF0uyPjZRV",
+        "DSAqHq3DSOp"
+      ],
+      "categories": [
+        "ppf",
+        "antichrome",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова прозорим поліуретаном",
+          "en": "Full-body clear PPF"
+        },
+        {
+          "uk": "Антихром шильдиків",
+          "en": "Anti-chrome badges"
+        },
+        {
+          "uk": "Фарбування насадок вихлопу",
+          "en": "Painted exhaust tips"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 52,
+      "visible": true
+    },
+    {
+      "id": "DRxRUhXjfao",
+      "slug": "zeekr-001-drxruhxjfao",
+      "vehicle": "Zeekr 001",
+      "date": "2025-12-02T17:42:32.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DRxRUhXjfao/",
+      "sources": [
+        "DRxRUhXjfao"
+      ],
+      "categories": [
+        "ppf",
+        "soundproofing"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова з деталізацією",
+          "en": "Full-body PPF with every element detailed"
+        },
+        {
+          "uk": "Бронювання панорамного даху",
+          "en": "Panoramic roof protection film"
+        },
+        {
+          "uk": "Шумоізоляція колісних арок",
+          "en": "Wheel arches soundproofed"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 53,
+      "visible": true
+    },
+    {
+      "id": "DQrhLLziAFJ",
+      "slug": "mercedes-benz-gle-dqrhllziafj",
+      "vehicle": "Mercedes-Benz GLE",
+      "date": "2025-11-05T15:37:14.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DQrhLLziAFJ/",
+      "sources": [
+        "DQrhLLziAFJ"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "tint",
+        "polish",
+        "antichrome"
+      ],
+      "works": [
+        {
+          "uk": "Повна заміна кольору кузова кольоровим поліуретаном із повною деталізацією глянцевих елементів та оптики",
+          "en": "Full colour change in colour PPF with all gloss trim and lights detailed"
+        },
+        {
+          "uk": "Антихром усіх хромованих деталей кузова та порогів",
+          "en": "Anti-chrome on all exterior chrome and sills"
+        },
+        {
+          "uk": "Атермальне тонування передніх і лобового скла",
+          "en": "Athermal tint on the front windows and windscreen"
+        },
+        {
+          "uk": "Полірування та підготовка кузова перед обклеюванням, видалення вм'ятин, малярні роботи",
+          "en": "Polishing and body prep before wrapping, dent removal, paintwork"
+        },
+        {
+          "uk": "Полірування лобового скла",
+          "en": "Windscreen polishing"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 54,
+      "visible": true
+    },
+    {
+      "id": "DQjG-bNjV2C",
+      "slug": "ferrari-812-superfast-dqjg-bnjv2c",
+      "vehicle": "Ferrari 812 Superfast",
+      "date": "2025-11-02T09:14:15.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DQjG-bNjV2C/",
+      "sources": [
+        "DQjG-bNjV2C"
+      ],
+      "categories": [
+        "tint"
+      ],
+      "works": [
+        {
+          "uk": "Атермальне тонування передніх бокових стекол",
+          "en": "Athermal tint on the front side windows"
+        },
+        {
+          "uk": "Атермальне тонування лобового скла",
+          "en": "Athermal windscreen tint"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 55,
+      "visible": true
+    },
+    {
+      "id": "DO6F0koCLZx",
+      "slug": "bmw-ix-do6f0koclzx",
+      "vehicle": "BMW iX",
+      "date": "2025-09-22T14:23:03.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DO6F0koCLZx/",
+      "sources": [
+        "DO6F0koCLZx"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова",
+          "en": "Full-body protection film"
+        },
+        {
+          "uk": "Обклеювання всіх глянцевих деталей кузова",
+          "en": "All gloss exterior trim protected"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 56,
+      "visible": true
+    },
+    {
+      "id": "DOyZYxGCOUt",
+      "slug": "porsche-macan-turbo-doyzyxgcout",
+      "vehicle": "Porsche Macan Turbo",
+      "date": "2025-09-19T14:44:30.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DOyZYxGCOUt/",
+      "sources": [
+        "DOyZYxGCOUt"
+      ],
+      "categories": [
+        "ppf",
+        "tint"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова прозорим поліуретаном",
+          "en": "Full-body clear PPF"
+        },
+        {
+          "uk": "Обклеювання всіх глянцевих деталей кузова",
+          "en": "All gloss exterior trim protected"
+        },
+        {
+          "uk": "Атермальне тонування всіх стекол",
+          "en": "Athermal tint on all glass"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 57,
+      "visible": true
+    },
+    {
+      "id": "DOa7RmPCHDR",
+      "slug": "zeekr-001-doa7rmpchdr",
+      "vehicle": "Zeekr 001",
+      "date": "2025-09-10T11:56:52.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DOa7RmPCHDR/",
+      "sources": [
+        "DOa7RmPCHDR"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання передньої частини кузова",
+          "en": "Front-end protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 58,
+      "visible": true
+    },
+    {
+      "id": "DOWLDr5CM3H",
+      "slug": "audi-s7-dowldr5cm3h",
+      "vehicle": "Audi S7",
+      "date": "2025-09-08T15:36:25.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DOWLDr5CM3H/",
+      "sources": [
+        "DOWLDr5CM3H"
+      ],
+      "categories": [
+        "ppf",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання передньої частини",
+          "en": "Front-end protection film"
+        },
+        {
+          "uk": "Обклеювання зон ризику від піскоструму",
+          "en": "Sandblast-prone areas protected"
+        },
+        {
+          "uk": "Обклеювання салону",
+          "en": "Interior trim protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 59,
+      "visible": true
+    },
+    {
+      "id": "DONrhk_DXpm",
+      "slug": "range-rover-autobiography-donrhk_dxpm",
+      "vehicle": "Range Rover Autobiography",
+      "date": "2025-09-05T08:24:40.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DONrhk_DXpm/",
+      "sources": [
+        "DONrhk_DXpm"
+      ],
+      "categories": [
+        "ppf",
+        "tint"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова",
+          "en": "Full-body protection film"
+        },
+        {
+          "uk": "Атермальне тонування всіх стекол",
+          "en": "Athermal tint on all glass"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 60,
+      "visible": true
+    },
+    {
+      "id": "DOL1xNZiIIf",
+      "slug": "dodge-challenger-dol1xnziiif",
+      "vehicle": "Dodge Challenger",
+      "date": "2025-09-04T15:16:57.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DOL1xNZiIIf/",
+      "sources": [
+        "DOL1xNZiIIf"
+      ],
+      "categories": [
+        "tint"
+      ],
+      "works": [
+        {
+          "uk": "Тонування",
+          "en": "Window tinting"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 61,
+      "visible": true
+    },
+    {
+      "id": "DOJLedeiECv",
+      "slug": "bmw-x5-dojledeiecv",
+      "vehicle": "BMW X5",
+      "date": "2025-09-03T14:27:39.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DOJLedeiECv/",
+      "sources": [
+        "DOJLedeiECv"
+      ],
+      "categories": [
+        "tint"
+      ],
+      "works": [
+        {
+          "uk": "Тонування лобового та двох передніх стекол",
+          "en": "Windscreen and both front windows tinted"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 62,
+      "visible": true
+    },
+    {
+      "id": "DOGunHOiKXA",
+      "slug": "toyota-supra-1998-dogunhoikxa",
+      "vehicle": "Toyota Supra (1998)",
+      "date": "2025-09-02T15:37:21.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DOGunHOiKXA/",
+      "sources": [
+        "DOGunHOiKXA"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 63,
+      "visible": true
+    },
+    {
+      "id": "DN8OzzwCPjK",
+      "slug": "mercedes-benz-eqs-dn8ozzwcpjk",
+      "vehicle": "Mercedes-Benz EQS",
+      "date": "2025-08-29T13:46:39.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DN8OzzwCPjK/",
+      "sources": [
+        "DN8OzzwCPjK"
+      ],
+      "categories": [
+        "ppf",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання прозорим поліуретаном",
+          "en": "Full clear PPF"
+        },
+        {
+          "uk": "Бронювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Обклеювання глянцевих елементів салону",
+          "en": "Gloss interior trim protected with film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 64,
+      "visible": true
+    },
+    {
+      "id": "DNyAWJY0M2H",
+      "slug": "lexus-lx-500-dnyawjy0m2h",
+      "vehicle": "Lexus LX 500",
+      "date": "2025-08-25T14:29:59.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DNyAWJY0M2H/",
+      "sources": [
+        "DNyAWJY0M2H"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання антигравійною плівкою",
+          "en": "Full-body PPF"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 65,
+      "visible": true
+    },
+    {
+      "id": "DK9Pw9INgR3",
+      "slug": "bmw-x5-dk9pw9ingr3",
+      "vehicle": "BMW X5",
+      "date": "2025-06-16T09:40:04.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DK9Pw9INgR3/",
+      "sources": [
+        "DK9Pw9INgR3"
+      ],
+      "categories": [
+        "ppf",
+        "color-change"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання разом із дахом кольоровим поліуретаном Frozen Black",
+          "en": "Full body and roof in Frozen Black colour PPF"
+        },
+        {
+          "uk": "Обклеювання оптики та всіх глянцевих елементів",
+          "en": "Lights and all gloss trim protected"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 66,
+      "visible": true
+    },
+    {
+      "id": "DKeJRh_tJYe",
+      "slug": "porsche-macan-dkejrh_tjye",
+      "vehicle": "Porsche Macan",
+      "date": "2025-06-04T07:46:53.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DKeJRh_tJYe/",
+      "sources": [
+        "DKeJRh_tJYe"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання прозорим поліуретаном",
+          "en": "Full clear PPF"
+        },
+        {
+          "uk": "Бронювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Обклеювання салону та встановлення захисного скла на монітори",
+          "en": "Interior trim protected and screen protectors fitted"
+        },
+        {
+          "uk": "Повне атермальне тонування разом із лобовим склом",
+          "en": "Full athermal tint including the windscreen"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 67,
+      "visible": true
+    },
+    {
+      "id": "DKd9z3vtX68",
+      "slug": "byd-han-dkd9z3vtx68",
+      "vehicle": "BYD Han",
+      "date": "2025-06-04T06:06:43.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DKd9z3vtX68/",
+      "sources": [
+        "DKd9z3vtX68"
+      ],
+      "categories": [
+        "ppf",
+        "color-change"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання кузова кольоровим поліуретаном",
+          "en": "Body wrapped in colour PPF"
+        },
+        {
+          "uk": "Обклеювання всіх глянцевих елементів прозорою захисною плівкою",
+          "en": "All gloss trim in clear PPF"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 68,
+      "visible": true
+    },
+    {
+      "id": "DJ1tXiPizGI",
+      "slug": "audi-e-tron-dj1txipizgi",
+      "vehicle": "Audi e-tron",
+      "date": "2025-05-19T14:53:25.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DJ1tXiPizGI/",
+      "sources": [
+        "DJ1tXiPizGI"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "tint",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова кольоровим поліуретаном",
+          "en": "Full colour-PPF wrap"
+        },
+        {
+          "uk": "Затемнення передньої та задньої оптики",
+          "en": "Tinted front and rear lights"
+        },
+        {
+          "uk": "Фарбування супортів",
+          "en": "Painted brake calipers"
+        },
+        {
+          "uk": "Додавання акцентних помаранчевих елементів",
+          "en": "Orange accent details added"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 69,
+      "visible": true
+    },
+    {
+      "id": "DI1WLQONbA2",
+      "slug": "porsche-911-di1wlqonba2",
+      "vehicle": "Porsche 911",
+      "date": "2025-04-24T15:05:24.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DI1WLQONbA2/",
+      "sources": [
+        "DI1WLQONbA2"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Бронювання передньої частини повністю",
+          "en": "Full front-end protection film"
+        },
+        {
+          "uk": "Повне тонування без лобового скла",
+          "en": "Full tint excluding the windscreen"
+        },
+        {
+          "uk": "Атермальне тонування лобового скла",
+          "en": "Athermal windscreen tint"
+        },
+        {
+          "uk": "Часткове обклеювання салону та монітора",
+          "en": "Partial interior and display protection"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 70,
+      "visible": true
+    },
+    {
+      "id": "DFdOMJ7IJca",
+      "slug": "bmw-x5-dfdomj7ijca",
+      "vehicle": "BMW X5",
+      "date": "2025-01-30T16:33:38.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DFdOMJ7IJca/",
+      "sources": [
+        "DFdOMJ7IJca"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "polish"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання передньої частини повністю",
+          "en": "Full front-end protection film"
+        },
+        {
+          "uk": "Обклеювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Атермальне тонування двох передніх і лобового скла",
+          "en": "Athermal tint on both front windows and the windscreen"
+        },
+        {
+          "uk": "Полірування та керамічне покриття кузова",
+          "en": "Polishing and ceramic coating on the body"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 71,
+      "visible": true
+    },
+    {
+      "id": "DFVUxtLIBM2",
+      "slug": "range-rover-dfvuxtlibm2",
+      "vehicle": "Range Rover",
+      "date": "2025-01-27T14:58:19.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DFVUxtLIBM2/",
+      "sources": [
+        "DFVUxtLIBM2"
+      ],
+      "categories": [
+        "soundproofing"
+      ],
+      "works": [
+        {
+          "uk": "Шумоізоляція чотирьох дверей, зовнішніх арок і багажника",
+          "en": "Four doors, outer arches and boot soundproofed"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 72,
+      "visible": true
+    },
+    {
+      "id": "DFNvicYIJOy",
+      "slug": "bmw-7-series-dfnvicyijoy",
+      "vehicle": "BMW 7 Series",
+      "date": "2025-01-24T16:17:11.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DFNvicYIJOy/",
+      "sources": [
+        "DFNvicYIJOy"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання передньої частини прозорим матовим поліуретаном",
+          "en": "Front end in clear matte PPF"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 73,
+      "visible": true
+    },
+    {
+      "id": "DFK6-rYo-vo",
+      "slug": "denza-z9-dfk6-ryo-vo",
+      "vehicle": "Denza Z9",
+      "date": "2025-01-23T14:00:21.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DFK6-rYo-vo/",
+      "sources": [
+        "DFK6-rYo-vo"
+      ],
+      "categories": [
+        "ppf",
+        "interior",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання прозорим поліуретаном",
+          "en": "Full clear PPF"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Часткове обклеювання глянцевих деталей салону",
+          "en": "Partial gloss interior trim protection"
+        },
+        {
+          "uk": "Встановлення захисної сітки в бампер",
+          "en": "Protective mesh in the bumper"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 74,
+      "visible": true
+    },
+    {
+      "id": "DFGANpjoXaK",
+      "slug": "bmw-x6-dfganpjoxak",
+      "vehicle": "BMW X6",
+      "date": "2025-01-21T16:08:58.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DFGANpjoXaK/",
+      "sources": [
+        "DFGANpjoXaK"
+      ],
+      "categories": [
+        "ppf",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання передньої частини повністю",
+          "en": "Full front-end protection film"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Обклеювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Обклеювання глянцевих елементів салону",
+          "en": "Gloss interior trim protected with film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 75,
+      "visible": true
+    },
+    {
+      "id": "DE-SOZNISnK",
+      "slug": "toyota-land-cruiser-prado-de-soznisnk",
+      "vehicle": "Toyota Land Cruiser Prado",
+      "date": "2025-01-18T16:12:26.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DE-SOZNISnK/",
+      "sources": [
+        "DE-SOZNISnK"
+      ],
+      "categories": [
+        "soundproofing"
+      ],
+      "works": [
+        {
+          "uk": "Повна шумо- та віброізоляція разом із дахом і торпедо",
+          "en": "Full sound and vibration insulation including the roof and dashboard"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 76,
+      "visible": true
+    },
+    {
+      "id": "DE7ao73om_1",
+      "slug": "porsche-panamera-de7ao73om_1",
+      "vehicle": "Porsche Panamera",
+      "date": "2025-01-17T13:29:08.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DE7ao73om_1/",
+      "sources": [
+        "DE7ao73om_1"
+      ],
+      "categories": [
+        "ppf",
+        "polish"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання разом із дахом прозорим поліуретаном",
+          "en": "Full clear PPF including the roof"
+        },
+        {
+          "uk": "Обклеювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Полірування перед обклеюванням",
+          "en": "Polishing before wrapping"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 77,
+      "visible": true
+    },
+    {
+      "id": "DEDKMbuo_4w",
+      "slug": "toyota-land-cruiser-prado-dedkmbuo_4w",
+      "vehicle": "Toyota Land Cruiser Prado",
+      "date": "2024-12-26T17:07:04.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DEDKMbuo_4w/",
+      "sources": [
+        "DEDKMbuo_4w"
+      ],
+      "categories": [
+        "ppf",
+        "ceramic",
+        "polish",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання передньої частини авто повністю прозорим поліуретаном",
+          "en": "Full front end in clear PPF"
+        },
+        {
+          "uk": "Обклеювання стійок і смуги над лобовим",
+          "en": "A-pillars and the strip above the windscreen protected"
+        },
+        {
+          "uk": "Обклеювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітори",
+          "en": "Tempered screen protectors on the displays"
+        },
+        {
+          "uk": "Полірування",
+          "en": "Polishing"
+        },
+        {
+          "uk": "Керамічне покриття всього авто",
+          "en": "Ceramic coating on the whole vehicle"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 78,
+      "visible": true
+    },
+    {
+      "id": "DEAVhXOoNfN",
+      "slug": "mercedes-benz-g-class-deavhxoonfn",
+      "vehicle": "Mercedes-Benz G-Class",
+      "date": "2024-12-25T14:49:39.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DEAVhXOoNfN/",
+      "sources": [
+        "DEAVhXOoNfN"
+      ],
+      "categories": [
+        "ppf",
+        "interior",
+        "soundproofing"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання разом із дахом прозорим поліуретаном",
+          "en": "Full clear PPF including the roof"
+        },
+        {
+          "uk": "Обклеювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Обклеювання салону",
+          "en": "Interior trim protection film"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітор",
+          "en": "Tempered screen protector on the display"
+        },
+        {
+          "uk": "Обклеювання зовнішніх порогів чорною структурною плівкою",
+          "en": "Outer sills in textured black film"
+        },
+        {
+          "uk": "Шумоізоляція багажника, дверей і стелі",
+          "en": "Boot, doors and headliner soundproofed"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 79,
+      "visible": true
+    },
+    {
+      "id": "DD61qCFIDKR",
+      "slug": "range-rover-dd61qcfidkr",
+      "vehicle": "Range Rover",
+      "date": "2024-12-23T11:33:41.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DD61qCFIDKR/",
+      "sources": [
+        "DD61qCFIDKR"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "ceramic",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання разом із дахом прозорим поліуретаном",
+          "en": "Full clear PPF including the roof"
+        },
+        {
+          "uk": "Бронювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Обклеювання всіх глянцевих і хромованих деталей салону прозорим поліуретаном",
+          "en": "All gloss and chrome interior trim in clear PPF"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітори",
+          "en": "Tempered screen protectors on the displays"
+        },
+        {
+          "uk": "Повне атермальне тонування разом із лобовим склом",
+          "en": "Full athermal tint including the windscreen"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Керамічне покриття кузова та скла",
+          "en": "Ceramic coating on the body and glass"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 80,
+      "visible": true
+    },
+    {
+      "id": "DDzqxHnI8ot",
+      "slug": "ferrari-scaglietti-ddzqxhni8ot",
+      "vehicle": "Ferrari Scaglietti",
+      "date": "2024-12-20T16:45:07.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DDzqxHnI8ot/",
+      "sources": [
+        "DDzqxHnI8ot"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "tint",
+        "polish",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання вініловою плівкою 3M",
+          "en": "Full 3M vinyl wrap"
+        },
+        {
+          "uk": "Розробка та обклеювання власного дизайну",
+          "en": "Custom design developed and applied"
+        },
+        {
+          "uk": "Заміна та тонування лобового скла",
+          "en": "Windscreen replaced and tinted"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Шумоізоляція двох дверей",
+          "en": "Two doors soundproofed"
+        },
+        {
+          "uk": "Перетонування бокових стекол",
+          "en": "Side windows re-tinted"
+        },
+        {
+          "uk": "Полірування та бронювання фар",
+          "en": "Headlights polished and protected"
+        },
+        {
+          "uk": "Фарбування решітки та шильдиків у чорний мат",
+          "en": "Grille and badges painted matte black"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 81,
+      "visible": true
+    },
+    {
+      "id": "DDPZ8Txom4e",
+      "slug": "volkswagen-touareg-ddpz8txom4e",
+      "vehicle": "Volkswagen Touareg",
+      "date": "2024-12-06T14:44:10.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DDPZ8Txom4e/",
+      "sources": [
+        "DDPZ8Txom4e"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова глянцевим поліуретаном",
+          "en": "Full-body gloss PPF"
+        },
+        {
+          "uk": "Обклеювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Обклеювання салону",
+          "en": "Interior trim protection film"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітори",
+          "en": "Tempered screen protectors on the displays"
+        },
+        {
+          "uk": "Атермальне тонування автомобіля",
+          "en": "Athermal window tint"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 82,
+      "visible": true
+    },
+    {
+      "id": "DDM5cF6oCjK",
+      "slug": "volkswagen-golf-ddm5cf6ocjk",
+      "vehicle": "Volkswagen Golf",
+      "date": "2024-12-05T15:22:29.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DDM5cF6oCjK/",
+      "sources": [
+        "DDM5cF6oCjK"
+      ],
+      "categories": [
+        "soundproofing"
+      ],
+      "works": [
+        {
+          "uk": "Повна шумоізоляція разом із дахом преміальними матеріалами у 3–4 шари",
+          "en": "Full soundproofing including the roof, premium materials in 3–4 layers"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 83,
+      "visible": true
+    },
+    {
+      "id": "DC9dfu5IB9e",
+      "slug": "audi-a6-dc9dfu5ib9e",
+      "vehicle": "Audi A6",
+      "date": "2024-11-29T15:28:54.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DC9dfu5IB9e/",
+      "sources": [
+        "DC9dfu5IB9e"
+      ],
+      "categories": [
+        "ppf",
+        "ceramic",
+        "polish",
+        "interior",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання передньої частини автомобіля",
+          "en": "Front-end protection film"
+        },
+        {
+          "uk": "Обклеювання глянцевих елементів салону",
+          "en": "Gloss interior trim protected with film"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітори",
+          "en": "Tempered screen protectors on the displays"
+        },
+        {
+          "uk": "Полірування кузова",
+          "en": "Body polishing"
+        },
+        {
+          "uk": "Кераміка на кузов і скло",
+          "en": "Ceramic coating on the body and glass"
+        },
+        {
+          "uk": "Кераміка на диски",
+          "en": "Ceramic coating on the wheels"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 84,
+      "visible": true
+    },
+    {
+      "id": "DC6t5LWIjFh",
+      "slug": "zeekr-001-dc6t5lwijfh",
+      "vehicle": "Zeekr 001",
+      "date": "2024-11-28T13:55:19.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DC6t5LWIjFh/",
+      "sources": [
+        "DC6t5LWIjFh"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "ceramic",
+        "interior",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання передньої частини повністю прозорим поліуретаном",
+          "en": "Full front end in clear PPF"
+        },
+        {
+          "uk": "Обклеювання стійок лобового скла та смуги",
+          "en": "A-pillars and the windscreen strip protected"
+        },
+        {
+          "uk": "Зовнішні пороги та низ дверей",
+          "en": "Outer sills and lower doors protected"
+        },
+        {
+          "uk": "Дверні прорізи",
+          "en": "Door jambs protected"
+        },
+        {
+          "uk": "Полиця заднього бампера",
+          "en": "Rear-bumper loading edge protected"
+        },
+        {
+          "uk": "Захисне скло на монітори",
+          "en": "Tempered screen protectors on the displays"
+        },
+        {
+          "uk": "Атермальне тонування лобового скла",
+          "en": "Athermal windscreen tint"
+        },
+        {
+          "uk": "Кераміка на кузов",
+          "en": "Ceramic coating on the body"
+        },
+        {
+          "uk": "Кераміка на диски",
+          "en": "Ceramic coating on the wheels"
+        },
+        {
+          "uk": "Антидощ на скло",
+          "en": "Rain-repellent glass treatment"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 85,
+      "visible": true
+    },
+    {
+      "id": "DC3_DWuIV4l",
+      "slug": "bmw-x7-dc3_dwuiv4l",
+      "vehicle": "BMW X7",
+      "date": "2024-11-27T12:26:40.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DC3_DWuIV4l/",
+      "sources": [
+        "DC3_DWuIV4l"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання передньої частини повністю",
+          "en": "Full front-end protection film"
+        },
+        {
+          "uk": "Бронювання низу автомобіля (зовнішні пороги, арки, відбійники)",
+          "en": "Lower body protected (outer sills, arches, guards)"
+        },
+        {
+          "uk": "Обклеювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Обклеювання глянцевих стійок біля вікон",
+          "en": "Gloss window pillars protected"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 86,
+      "visible": true
+    },
+    {
+      "id": "DC1stzDog3b",
+      "slug": "mercedes-benz-eqe-dc1stzdog3b",
+      "vehicle": "Mercedes-Benz EQE",
+      "date": "2024-11-26T15:09:24.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DC1stzDog3b/",
+      "sources": [
+        "DC1stzDog3b"
+      ],
+      "categories": [
+        "ppf",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання прозорим поліуретаном",
+          "en": "Full clear PPF"
+        },
+        {
+          "uk": "Обклеювання даху чорною захисною плівкою",
+          "en": "Roof wrapped in black PPF"
+        },
+        {
+          "uk": "Обклеювання салону",
+          "en": "Interior trim protection film"
+        },
+        {
+          "uk": "Захисне скло на монітори",
+          "en": "Tempered screen protectors"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 87,
+      "visible": true
+    },
+    {
+      "id": "DCyu8gVoOm7",
+      "slug": "skoda-enyaq-dcyu8gvoom7",
+      "vehicle": "Škoda Enyaq",
+      "date": "2024-11-25T11:29:43.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DCyu8gVoOm7/",
+      "sources": [
+        "DCyu8gVoOm7"
+      ],
+      "categories": [
+        "soundproofing"
+      ],
+      "works": [
+        {
+          "uk": "Повна шумоізоляція без даху й торпедо преміальними матеріалами у 3–4 шари",
+          "en": "Full soundproofing excluding the roof and dashboard, premium materials in 3–4 layers"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 88,
+      "visible": true
+    },
+    {
+      "id": "DCra6-Lohro",
+      "slug": "lexus-lx-dcra6-lohro",
+      "vehicle": "Lexus LX",
+      "date": "2024-11-22T15:21:10.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DCra6-Lohro/",
+      "sources": [
+        "DCra6-Lohro"
+      ],
+      "categories": [
+        "ppf",
+        "soundproofing",
+        "antichrome",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання разом із дахом матовим поліуретаном",
+          "en": "Full body and roof in matte PPF"
+        },
+        {
+          "uk": "Повна шумоізоляція разом із дахом",
+          "en": "Full soundproofing including the roof"
+        },
+        {
+          "uk": "Антихром віконних молдингів",
+          "en": "Anti-chrome window mouldings"
+        },
+        {
+          "uk": "Фарбування решітки та рейлінгів у чорний глянець",
+          "en": "Grille and roof rails painted gloss black"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 89,
+      "visible": true
+    },
+    {
+      "id": "DCoy3ICo4RK",
+      "slug": "range-rover-dcoy3ico4rk",
+      "vehicle": "Range Rover",
+      "date": "2024-11-21T14:51:32.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DCoy3ICo4RK/",
+      "sources": [
+        "DCoy3ICo4RK"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова прозорим поліуретаном",
+          "en": "Full-body clear PPF"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 90,
+      "visible": true
+    },
+    {
+      "id": "DCl_yFEoMv1",
+      "slug": "porsche-cayenne-dcl_yfeomv1",
+      "vehicle": "Porsche Cayenne",
+      "date": "2024-11-20T12:48:39.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DCl_yFEoMv1/",
+      "sources": [
+        "DCl_yFEoMv1"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "polish",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повна заміна кольору кольоровою захисною плівкою",
+          "en": "Full colour change in colour PPF"
+        },
+        {
+          "uk": "Бронювання даху чорним поліуретаном",
+          "en": "Roof in black PPF"
+        },
+        {
+          "uk": "Підготовка кузова під обклеювання",
+          "en": "Body prepared for wrapping"
+        },
+        {
+          "uk": "Заміна лобового скла",
+          "en": "Windscreen replaced"
+        },
+        {
+          "uk": "Фарбування супортів",
+          "en": "Painted brake calipers"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 91,
+      "visible": true
+    },
+    {
+      "id": "DCjfZUmIX6b",
+      "slug": "zeekr-001-dcjfzumix6b",
+      "vehicle": "Zeekr 001",
+      "date": "2024-11-19T13:25:14.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DCjfZUmIX6b/",
+      "sources": [
+        "DCjfZUmIX6b"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior",
+        "soundproofing"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання кузова прозорим сатином",
+          "en": "Body in clear satin PPF"
+        },
+        {
+          "uk": "Атермальне тонування двох передніх і лобового скла",
+          "en": "Athermal tint on both front windows and the windscreen"
+        },
+        {
+          "uk": "Обклеювання салону",
+          "en": "Interior trim protection film"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітори",
+          "en": "Tempered screen protectors on the displays"
+        },
+        {
+          "uk": "Шумоізоляція зовнішніх колісних арок",
+          "en": "Outer wheel arches soundproofed"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 92,
+      "visible": true
+    },
+    {
+      "id": "DCgjwCaooWi",
+      "slug": "nissan-ariya-dcgjwcaoowi",
+      "vehicle": "Nissan Ariya",
+      "date": "2024-11-18T10:07:01.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DCgjwCaooWi/",
+      "sources": [
+        "DCgjwCaooWi"
+      ],
+      "categories": [
+        "ppf",
+        "tint"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова прозорою захисною плівкою",
+          "en": "Full-body clear PPF"
+        },
+        {
+          "uk": "Повне атермальне тонування разом із лобовим склом",
+          "en": "Full athermal tint including the windscreen"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 93,
+      "visible": true
+    },
+    {
+      "id": "DCWaIhYIWUp",
+      "slug": "porsche-cayenne-dcwaihyiwup",
+      "vehicle": "Porsche Cayenne",
+      "date": "2024-11-14T11:29:08.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DCWaIhYIWUp/",
+      "sources": [
+        "DCWaIhYIWUp"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання передньої частини, пакет VIP",
+          "en": "Front-end protection film, VIP package"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 94,
+      "visible": true
+    },
+    {
+      "id": "DCPLbU3oiGs",
+      "slug": "audi-a6-dcplbu3oigs",
+      "vehicle": "Audi A6",
+      "date": "2024-11-11T16:07:07.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DCPLbU3oiGs/",
+      "sources": [
+        "DCPLbU3oiGs"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior",
+        "antichrome"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання передньої частини (пакет VIP)",
+          "en": "Front-end protection film (VIP package)"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Антихром віконних молдингів",
+          "en": "Anti-chrome window mouldings"
+        },
+        {
+          "uk": "Атермальне тонування двох передніх і лобового скла",
+          "en": "Athermal tint on both front windows and the windscreen"
+        },
+        {
+          "uk": "Бронювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Обклеювання салону",
+          "en": "Interior trim protection film"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітори",
+          "en": "Tempered screen protectors on the displays"
+        },
+        {
+          "uk": "Фарбування супортів",
+          "en": "Painted brake calipers"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 95,
+      "visible": true
+    },
+    {
+      "id": "DCOnc1Qoxfq",
+      "slug": "yamaha-dconc1qoxfq",
+      "vehicle": "Yamaha",
+      "date": "2024-11-11T10:51:34.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DCOnc1Qoxfq/",
+      "sources": [
+        "DCOnc1Qoxfq"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання з частковим розбиранням усіх глянцевих і матових деталей",
+          "en": "Full wrap with partial disassembly of all gloss and matte parts"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 96,
+      "visible": true
+    },
+    {
+      "id": "DCHg9FToGX2",
+      "slug": "bmw-x6-dchg9ftogx2",
+      "vehicle": "BMW X6",
+      "date": "2024-11-08T16:47:19.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DCHg9FToGX2/",
+      "sources": [
+        "DCHg9FToGX2"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова прозорим поліуретаном",
+          "en": "Full-body clear PPF"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Обклеювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Обклеювання салону",
+          "en": "Interior trim protection film"
+        },
+        {
+          "uk": "Повне атермальне тонування разом із лобовим склом і панорамою",
+          "en": "Full athermal tint including the windscreen and panoramic roof"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 97,
+      "visible": true
+    },
+    {
+      "id": "DCEXx09oqiE",
+      "slug": "mercedes-benz-gle-dcexx09oqie",
+      "vehicle": "Mercedes-Benz GLE",
+      "date": "2024-11-07T11:22:13.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DCEXx09oqiE/",
+      "sources": [
+        "DCEXx09oqiE"
+      ],
+      "categories": [
+        "ppf",
+        "tint"
+      ],
+      "works": [
+        {
+          "uk": "Бронювання передньої частини повністю",
+          "en": "Full front-end protection film"
+        },
+        {
+          "uk": "Бронювання стійок лобового скла та смуги над лобовим",
+          "en": "A-pillars and the strip above the windscreen protected"
+        },
+        {
+          "uk": "Обклеювання внутрішніх прорізів до петлі",
+          "en": "Door jambs protected up to the hinge"
+        },
+        {
+          "uk": "Бронювання зовнішніх порогів",
+          "en": "Outer sills protected"
+        },
+        {
+          "uk": "Атермальне тонування двох передніх і лобового скла",
+          "en": "Athermal tint on both front windows and the windscreen"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 98,
+      "visible": true
+    },
+    {
+      "id": "DCCF8llIxc7",
+      "slug": "lexus-rx-dccf8llixc7",
+      "vehicle": "Lexus RX",
+      "date": "2024-11-06T14:07:56.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DCCF8llIxc7/",
+      "sources": [
+        "DCCF8llIxc7"
+      ],
+      "categories": [
+        "soundproofing"
+      ],
+      "works": [
+        {
+          "uk": "Повна шумоізоляція без даху й торпедо преміальними матеріалами у 3–4 шари",
+          "en": "Full soundproofing excluding the roof and dashboard, premium materials in 3–4 layers"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 99,
+      "visible": true
+    },
+    {
+      "id": "DB_SAL7I6JG",
+      "slug": "range-rover-db_sal7i6jg",
+      "vehicle": "Range Rover",
+      "date": "2024-11-05T11:56:27.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DB_SAL7I6JG/",
+      "sources": [
+        "DB_SAL7I6JG"
+      ],
+      "categories": [
+        "ppf",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання разом із дахом прозорим поліуретаном",
+          "en": "Full clear PPF including the roof"
+        },
+        {
+          "uk": "Фарбування сріблястих деталей у чорний глянець",
+          "en": "Silver trim painted gloss black"
+        },
+        {
+          "uk": "Фарбування дисків",
+          "en": "Wheels painted"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 100,
+      "visible": true
+    },
+    {
+      "id": "DB3v8McIX85",
+      "slug": "zeekr-001-db3v8mcix85",
+      "vehicle": "Zeekr 001",
+      "date": "2024-11-02T13:43:14.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DB3v8McIX85/",
+      "sources": [
+        "DB3v8McIX85"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова прозорим поліуретаном",
+          "en": "Full-body clear PPF"
+        },
+        {
+          "uk": "Обклеювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 101,
+      "visible": true
+    },
+    {
+      "id": "DB1EPgrIlTD",
+      "slug": "bmw-3-series-db1epgriltd",
+      "vehicle": "BMW 3 Series",
+      "date": "2024-11-01T12:43:32.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DB1EPgrIlTD/",
+      "sources": [
+        "DB1EPgrIlTD"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова прозорим поліуретаном",
+          "en": "Full-body clear PPF"
+        },
+        {
+          "uk": "Повне атермальне тонування разом із лобовим склом",
+          "en": "Full athermal tint including the windscreen"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Обклеювання глянцевих елементів салону",
+          "en": "Gloss interior trim protected with film"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітори",
+          "en": "Tempered screen protectors on the displays"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 102,
+      "visible": true
+    },
+    {
+      "id": "DBv5_iEorq5",
+      "slug": "lixiang-l9-dbv5_ieorq5",
+      "vehicle": "Lixiang L9",
+      "date": "2024-10-30T12:37:09.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DBv5_iEorq5/",
+      "sources": [
+        "DBv5_iEorq5"
+      ],
+      "categories": [
+        "ppf",
+        "interior",
+        "soundproofing",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова прозорим поліуретаном",
+          "en": "Full-body clear PPF"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Обклеювання глянцевих елементів салону",
+          "en": "Gloss interior trim protected with film"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітори",
+          "en": "Tempered screen protectors on the displays"
+        },
+        {
+          "uk": "Шумоізоляція зовнішніх арок",
+          "en": "Outer arches soundproofed"
+        },
+        {
+          "uk": "Встановлення захисної сітки в бампер",
+          "en": "Protective mesh in the bumper"
+        },
+        {
+          "uk": "Антивандальна плівка на бокові стекла",
+          "en": "Security film on the side windows"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 103,
+      "visible": true
+    },
+    {
+      "id": "DBtGIXAoUF1",
+      "slug": "toyota-land-cruiser-prado-dbtgixaouf1",
+      "vehicle": "Toyota Land Cruiser Prado",
+      "date": "2024-10-29T10:26:17.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DBtGIXAoUF1/",
+      "sources": [
+        "DBtGIXAoUF1"
+      ],
+      "categories": [
+        "ppf",
+        "soundproofing"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання прозорим поліуретаном",
+          "en": "Full clear PPF"
+        },
+        {
+          "uk": "Обклеювання даху чорним поліуретаном",
+          "en": "Roof wrapped in black PPF"
+        },
+        {
+          "uk": "Повна шумо- та віброізоляція разом із дахом і торпедо",
+          "en": "Full sound and vibration insulation including the roof and dashboard"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 104,
+      "visible": true
+    },
+    {
+      "id": "DBqyWMJoYO_",
+      "slug": "bentley-dbqywmjoyo_",
+      "vehicle": "Bentley",
+      "date": "2024-10-28T12:54:08.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DBqyWMJoYO_/",
+      "sources": [
+        "DBqyWMJoYO_"
+      ],
+      "categories": [
+        "ppf",
+        "polish"
+      ],
+      "works": [
+        {
+          "uk": "Підготовка кузова під обклеювання",
+          "en": "Body prepared for wrapping"
+        },
+        {
+          "uk": "Обклеювання передньої частини автомобіля",
+          "en": "Front-end protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 105,
+      "visible": true
+    },
+    {
+      "id": "DBjH4AcIq6r",
+      "slug": "volvo-ex30-dbjh4aciq6r",
+      "vehicle": "Volvo EX30",
+      "date": "2024-10-25T13:29:22.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DBjH4AcIq6r/",
+      "sources": [
+        "DBjH4AcIq6r"
+      ],
+      "categories": [
+        "ppf",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова разом із дахом",
+          "en": "Full body and roof protection film"
+        },
+        {
+          "uk": "Обклеювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітор",
+          "en": "Tempered screen protector on the display"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 106,
+      "visible": true
+    },
+    {
+      "id": "DBgfy47ohzv",
+      "slug": "bmw-x7-dbgfy47ohzv",
+      "vehicle": "BMW X7",
+      "date": "2024-10-24T12:59:37.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DBgfy47ohzv/",
+      "sources": [
+        "DBgfy47ohzv"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання разом із дахом прозорим поліуретаном",
+          "en": "Full clear PPF including the roof"
+        },
+        {
+          "uk": "Бронювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Обклеювання всіх глянцевих деталей салону",
+          "en": "All gloss interior trim protected with film"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітори",
+          "en": "Tempered screen protectors on the displays"
+        },
+        {
+          "uk": "Атермальне тонування двох передніх і лобового скла",
+          "en": "Athermal tint on both front windows and the windscreen"
+        },
+        {
+          "uk": "Заміна шильдиків",
+          "en": "Badges replaced"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 107,
+      "visible": true
+    },
+    {
+      "id": "DBd4KG4tVfH",
+      "slug": "zeekr-001-dbd4kg4tvfh",
+      "vehicle": "Zeekr 001",
+      "date": "2024-10-23T12:35:22.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DBd4KG4tVfH/",
+      "sources": [
+        "DBd4KG4tVfH"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "soundproofing",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання передньої частини авто поліуретановою плівкою",
+          "en": "Front end in PPF"
+        },
+        {
+          "uk": "Шумоізоляція дверей і зовнішніх арок",
+          "en": "Doors and outer arches soundproofed"
+        },
+        {
+          "uk": "Повне атермальне тонування разом із лобовим склом",
+          "en": "Full athermal tint including the windscreen"
+        },
+        {
+          "uk": "Фарбування дисків у чорний глянець",
+          "en": "Wheels painted gloss black"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 108,
+      "visible": true
+    },
+    {
+      "id": "DBa6P9bIYIc",
+      "slug": "audi-q3-dba6p9biyic",
+      "vehicle": "Audi Q3",
+      "date": "2024-10-22T08:55:20.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DBa6P9bIYIc/",
+      "sources": [
+        "DBa6P9bIYIc"
+      ],
+      "categories": [
+        "ppf",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання передньої частини авто поліуретановою плівкою",
+          "en": "Front end in PPF"
+        },
+        {
+          "uk": "Захист глянцевих елементів салону",
+          "en": "Gloss interior trim protected"
+        },
+        {
+          "uk": "Захисне скло на монітори",
+          "en": "Tempered screen protectors on the displays"
+        },
+        {
+          "uk": "Обклеювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 109,
+      "visible": true
+    },
+    {
+      "id": "DBZEYmjIPLX",
+      "slug": "mercedes-benz-g-class-dbzeymjiplx",
+      "vehicle": "Mercedes-Benz G-Class",
+      "date": "2024-10-21T15:45:25.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DBZEYmjIPLX/",
+      "sources": [
+        "DBZEYmjIPLX"
+      ],
+      "categories": [
+        "ppf",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання передньої частини авто поліуретановою плівкою",
+          "en": "Front end in PPF"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Обклеювання салону",
+          "en": "Interior trim protection film"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітор",
+          "en": "Tempered screen protector on the display"
+        },
+        {
+          "uk": "Обклеювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 110,
+      "visible": true
+    },
+    {
+      "id": "DBYVDskoZea",
+      "slug": "bmw-x7-dbyvdskozea",
+      "vehicle": "BMW X7",
+      "date": "2024-10-21T08:53:16.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DBYVDskoZea/",
+      "sources": [
+        "DBYVDskoZea"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання разом із дахом матовим поліуретаном",
+          "en": "Full body and roof in matte PPF"
+        },
+        {
+          "uk": "Бронювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Обклеювання всіх глянцевих деталей салону",
+          "en": "All gloss interior trim protected with film"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітори",
+          "en": "Tempered screen protectors on the displays"
+        },
+        {
+          "uk": "Атермальне тонування двох передніх і лобового скла",
+          "en": "Athermal tint on both front windows and the windscreen"
+        },
+        {
+          "uk": "Заміна шильдиків і фарбування дзеркал",
+          "en": "Badges replaced and mirrors painted"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 111,
+      "visible": true
+    },
+    {
+      "id": "DBQ4BtZoRHK",
+      "slug": "bmw-x3-dbq4btzorhk",
+      "vehicle": "BMW X3",
+      "date": "2024-10-18T11:24:18.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DBQ4BtZoRHK/",
+      "sources": [
+        "DBQ4BtZoRHK"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Бронювання передньої частини повністю",
+          "en": "Full front-end protection film"
+        },
+        {
+          "uk": "Бронювання внутрішніх прорізів і зовнішніх порогів",
+          "en": "Door jambs and outer sills protected"
+        },
+        {
+          "uk": "Бронювання накладок дверей",
+          "en": "Door trims protected"
+        },
+        {
+          "uk": "Обклеювання всіх глянцевих деталей салону",
+          "en": "All gloss interior trim protected with film"
+        },
+        {
+          "uk": "Атермальне тонування двох передніх і лобового скла",
+          "en": "Athermal tint on both front windows and the windscreen"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 112,
+      "visible": true
+    },
+    {
+      "id": "DBLpqg7IG8o",
+      "slug": "porsche-panamera-dblpqg7ig8o",
+      "vehicle": "Porsche Panamera",
+      "date": "2024-10-16T10:41:48.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DBLpqg7IG8o/",
+      "sources": [
+        "DBLpqg7IG8o"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова кольоровою глянцевою захисною плівкою",
+          "en": "Full-body gloss colour PPF"
+        },
+        {
+          "uk": "Обклеювання всіх елементів кузова прозорою захисною плівкою",
+          "en": "All exterior elements in clear PPF"
+        },
+        {
+          "uk": "Бронювання глянцевих елементів салону",
+          "en": "Gloss interior trim protected"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітор",
+          "en": "Tempered screen protector on the display"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 113,
+      "visible": true
+    },
+    {
+      "id": "DBI68puIDGp",
+      "slug": "audi-s7-dbi68puidgp",
+      "vehicle": "Audi S7",
+      "date": "2024-10-15T09:15:06.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DBI68puIDGp/",
+      "sources": [
+        "DBI68puIDGp"
+      ],
+      "categories": [
+        "ppf",
+        "ceramic",
+        "polish",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова сатиновим прозорим поліуретаном",
+          "en": "Full-body clear satin PPF"
+        },
+        {
+          "uk": "Хімчистка та полірування",
+          "en": "Deep clean and polishing"
+        },
+        {
+          "uk": "Кераміка на кузов і скло",
+          "en": "Ceramic coating on the body and glass"
+        },
+        {
+          "uk": "Обклеювання жовтих смуг уздовж кузова",
+          "en": "Yellow stripes applied along the body"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 114,
+      "visible": true
+    },
+    {
+      "id": "DBGiJlool9q",
+      "slug": "lixiang-l7-dbgijlool9q",
+      "vehicle": "Lixiang L7",
+      "date": "2024-10-14T11:08:31.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DBGiJlool9q/",
+      "sources": [
+        "DBGiJlool9q"
+      ],
+      "categories": [
+        "ppf",
+        "interior",
+        "soundproofing",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання прозорим поліуретаном",
+          "en": "Full clear PPF"
+        },
+        {
+          "uk": "Бронювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Обклеювання глянцевих деталей салону",
+          "en": "Gloss interior trim protected"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітори",
+          "en": "Tempered screen protectors on the displays"
+        },
+        {
+          "uk": "Встановлення захисної сітки в передній бампер",
+          "en": "Protective mesh in the front bumper"
+        },
+        {
+          "uk": "Шумоізоляція зовнішніх арок",
+          "en": "Outer arches soundproofed"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 115,
+      "visible": true
+    },
+    {
+      "id": "DBB6_dDI6lg",
+      "slug": "range-rover-dbb6_ddi6lg",
+      "vehicle": "Range Rover",
+      "date": "2024-10-12T16:00:00.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DBB6_dDI6lg/",
+      "sources": [
+        "DBB6_dDI6lg"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "ceramic",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання разом із дахом прозорим поліуретаном",
+          "en": "Full clear PPF including the roof"
+        },
+        {
+          "uk": "Бронювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Обклеювання всіх глянцевих і хромованих деталей салону прозорим поліуретаном",
+          "en": "All gloss and chrome interior trim in clear PPF"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітори",
+          "en": "Tempered screen protectors on the displays"
+        },
+        {
+          "uk": "Повне атермальне тонування разом із лобовим склом",
+          "en": "Full athermal tint including the windscreen"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Керамічне покриття кузова та скла",
+          "en": "Ceramic coating on the body and glass"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 116,
+      "visible": true
+    },
+    {
+      "id": "DBBjxwGoylf",
+      "slug": "bmw-x6-dbbjxwgoylf",
+      "vehicle": "BMW X6",
+      "date": "2024-10-12T12:37:57.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DBBjxwGoylf/",
+      "sources": [
+        "DBBjxwGoylf"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "ceramic",
+        "interior",
+        "soundproofing",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання разом із дахом прозорим поліуретаном",
+          "en": "Full clear PPF including the roof"
+        },
+        {
+          "uk": "Повне атермальне тонування разом із лобовим склом",
+          "en": "Full athermal tint including the windscreen"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Обклеювання всіх глянцевих і карбонових елементів салону",
+          "en": "All gloss and carbon interior trim protected"
+        },
+        {
+          "uk": "Захисне скло на монітор",
+          "en": "Tempered screen protector on the display"
+        },
+        {
+          "uk": "Бронювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Шумоізоляція чотирьох дверей",
+          "en": "Four doors soundproofed"
+        },
+        {
+          "uk": "Керамічне покриття кузова та скла",
+          "en": "Ceramic coating on the body and glass"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 117,
+      "visible": true
+    },
+    {
+      "id": "DA-Xc2vIZtr",
+      "slug": "hyundai-tucson-da-xc2viztr",
+      "vehicle": "Hyundai Tucson",
+      "date": "2024-10-11T06:52:31.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DA-Xc2vIZtr/",
+      "sources": [
+        "DA-Xc2vIZtr"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Бронювання передньої частини повністю з максимальною деталізацією решітки",
+          "en": "Full front-end PPF with the grille fully detailed"
+        },
+        {
+          "uk": "Бронювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Обклеювання глянцевих бокових стійок",
+          "en": "Gloss side pillars protected"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітори",
+          "en": "Tempered screen protectors on the displays"
+        },
+        {
+          "uk": "Обклеювання глянцевих елементів салону",
+          "en": "Gloss interior trim protected with film"
+        },
+        {
+          "uk": "Повне атермальне тонування разом із лобовим склом",
+          "en": "Full athermal tint including the windscreen"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 118,
+      "visible": true
+    },
+    {
+      "id": "DA8vsVmo3wo",
+      "slug": "audi-a3-da8vsvmo3wo",
+      "vehicle": "Audi A3",
+      "date": "2024-10-10T15:50:57.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DA8vsVmo3wo/",
+      "sources": [
+        "DA8vsVmo3wo"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "tint",
+        "polish",
+        "interior",
+        "soundproofing",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кольоровим поліуретаном",
+          "en": "Full colour-PPF wrap"
+        },
+        {
+          "uk": "Підготовка кузова перед обклеюванням",
+          "en": "Body prepared before wrapping"
+        },
+        {
+          "uk": "Встановлення двох бамперів, порогів, дифузора та вихлопу",
+          "en": "Both bumpers, sills, diffuser and exhaust fitted"
+        },
+        {
+          "uk": "Аквадрук салону під дерево",
+          "en": "Hydro-dipped wood-effect interior trim"
+        },
+        {
+          "uk": "Повне атермальне тонування разом із лобовим склом",
+          "en": "Full athermal tint including the windscreen"
+        },
+        {
+          "uk": "Затемнення передньої та задньої оптики",
+          "en": "Tinted front and rear lights"
+        },
+        {
+          "uk": "Шумоізоляція чотирьох дверей",
+          "en": "Four doors soundproofed"
+        },
+        {
+          "uk": "Встановлення дисків Japan Racing JR46",
+          "en": "Japan Racing JR46 wheels fitted"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 119,
+      "visible": true
+    },
+    {
+      "id": "DA52PRPom2F",
+      "slug": "zeekr-001-da52prpom2f",
+      "vehicle": "Zeekr 001",
+      "date": "2024-10-09T12:46:18.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DA52PRPom2F/",
+      "sources": [
+        "DA52PRPom2F"
+      ],
+      "categories": [
+        "ppf",
+        "tint"
+      ],
+      "works": [
+        {
+          "uk": "Бронювання передньої частини автомобіля повністю",
+          "en": "Full front-end protection film"
+        },
+        {
+          "uk": "Бронювання стійок і смуги над лобовим",
+          "en": "A-pillars and the windscreen strip protected"
+        },
+        {
+          "uk": "Бронювання внутрішніх прорізів і зовнішніх порогів",
+          "en": "Door jambs and outer sills protected"
+        },
+        {
+          "uk": "Бронювання полиці заднього бампера та глянцевих бокових стійок",
+          "en": "Rear-bumper edge and gloss side pillars protected"
+        },
+        {
+          "uk": "Атермальне тонування лобового та двох передніх стекол",
+          "en": "Athermal tint on the windscreen and both front windows"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 120,
+      "visible": true
+    },
+    {
+      "id": "DA3g5tBoPdz",
+      "slug": "audi-a6-da3g5tbopdz",
+      "vehicle": "Audi A6",
+      "date": "2024-10-08T15:00:00.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DA3g5tBoPdz/",
+      "sources": [
+        "DA3g5tBoPdz"
+      ],
+      "categories": [
+        "soundproofing"
+      ],
+      "works": [
+        {
+          "uk": "Повна шумоізоляція без даху",
+          "en": "Full soundproofing excluding the roof"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 121,
+      "visible": true
+    },
+    {
+      "id": "DA1OOqyIuA3",
+      "slug": "bmw-i7-da1ooqyiua3",
+      "vehicle": "BMW i7",
+      "date": "2024-10-07T17:38:47.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DA1OOqyIuA3/",
+      "sources": [
+        "DA1OOqyIuA3"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Бронювання передньої частини автомобіля",
+          "en": "Front-end protection film"
+        },
+        {
+          "uk": "Бронювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 122,
+      "visible": true
+    },
+    {
+      "id": "DA0hxKiokra",
+      "slug": "tesla-model-x-da0hxkiokra",
+      "vehicle": "Tesla Model X",
+      "date": "2024-10-07T11:14:57.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DA0hxKiokra/",
+      "sources": [
+        "DA0hxKiokra"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "polish",
+        "interior",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Малярні роботи по кузову",
+          "en": "Body paintwork"
+        },
+        {
+          "uk": "Повне обклеювання прозорим сатиновим поліуретаном",
+          "en": "Full clear satin PPF"
+        },
+        {
+          "uk": "Фарбування шильдиків у червоний глянець",
+          "en": "Badges painted gloss red"
+        },
+        {
+          "uk": "Затемнення передньої та задньої оптики",
+          "en": "Tinted front and rear lights"
+        },
+        {
+          "uk": "Хімчистка салону",
+          "en": "Interior deep clean"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 123,
+      "visible": true
+    },
+    {
+      "id": "DAtZwryoDpD",
+      "slug": "mercedes-benz-cla-datzwryodpd",
+      "vehicle": "Mercedes-Benz CLA",
+      "date": "2024-10-04T16:47:07.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DAtZwryoDpD/",
+      "sources": [
+        "DAtZwryoDpD"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова чорним сатиновим вінілом",
+          "en": "Full-body satin black vinyl wrap"
+        },
+        {
+          "uk": "Заміна решітки переднього бампера",
+          "en": "Front bumper grille replaced"
+        },
+        {
+          "uk": "Обклеювання даху чорним глянцевим поліуретаном",
+          "en": "Roof wrapped in gloss black PPF"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 124,
+      "visible": true
+    },
+    {
+      "id": "DAqqsS9IPMd",
+      "slug": "mercedes-benz-gle-daqqss9ipmd",
+      "vehicle": "Mercedes-Benz GLE",
+      "date": "2024-10-03T15:23:07.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DAqqsS9IPMd/",
+      "sources": [
+        "DAqqsS9IPMd"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "polish"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова разом із дахом кольоровим поліуретаном (Color PPF)",
+          "en": "Full body and roof in colour PPF"
+        },
+        {
+          "uk": "Колір Black Plum 081",
+          "en": "Colour: Black Plum 081"
+        },
+        {
+          "uk": "Підготовка кузова перед обклеюванням",
+          "en": "Body prepared before wrapping"
+        },
+        {
+          "uk": "Обклеювання передньої та задньої оптики прозорим поліуретаном",
+          "en": "Front and rear lights in clear PPF"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 125,
+      "visible": true
+    },
+    {
+      "id": "DAp8R_WIxmu",
+      "slug": "bmw-x6-dap8r_wixmu",
+      "vehicle": "BMW X6",
+      "date": "2024-10-03T08:30:00.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DAp8R_WIxmu/",
+      "sources": [
+        "DAp8R_WIxmu"
+      ],
+      "categories": [
+        "soundproofing"
+      ],
+      "works": [
+        {
+          "uk": "Шумоізоляція чотирьох дверей преміальними матеріалами у 5 шарів",
+          "en": "Four doors soundproofed with premium materials in five layers"
+        },
+        {
+          "uk": "Віброізоляція",
+          "en": "Vibration damping"
+        },
+        {
+          "uk": "Шумоізоляція (двошаровий матеріал)",
+          "en": "Soundproofing (two-layer material)"
+        },
+        {
+          "uk": "Віброізоляція дверної карти",
+          "en": "Vibration damping on the door card"
+        },
+        {
+          "uk": "Звукопоглинач",
+          "en": "Sound absorber"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 126,
+      "visible": true
+    },
+    {
+      "id": "DAoRpR0IsIA",
+      "slug": "lexus-nx-daorpr0isia",
+      "vehicle": "Lexus NX",
+      "date": "2024-10-02T16:59:01.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DAoRpR0IsIA/",
+      "sources": [
+        "DAoRpR0IsIA"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior",
+        "soundproofing"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання разом із дахом поліуретановою плівкою",
+          "en": "Full body and roof in PPF"
+        },
+        {
+          "uk": "Повне атермальне тонування разом із лобовим склом",
+          "en": "Full athermal tint including the windscreen"
+        },
+        {
+          "uk": "Захисне скло на монітор",
+          "en": "Tempered screen protector on the display"
+        },
+        {
+          "uk": "Бронювання деталей салону",
+          "en": "Interior trim protected"
+        },
+        {
+          "uk": "Повна шумо- та віброізоляція автомобіля з торпедо, без даху",
+          "en": "Full sound and vibration insulation including the dashboard, excluding the roof"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 127,
+      "visible": true
+    },
+    {
+      "id": "DAlClCrINhq",
+      "slug": "range-rover-dalclcrinhq",
+      "vehicle": "Range Rover",
+      "date": "2024-10-01T10:49:08.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DAlClCrINhq/",
+      "sources": [
+        "DAlClCrINhq"
+      ],
+      "categories": [
+        "ppf",
+        "interior",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова прозорим сатином (глянцеві елементи — прозорим глянцем)",
+          "en": "Full-body clear satin PPF (gloss elements in clear gloss)"
+        },
+        {
+          "uk": "Обклеювання всього салону (чорний глянець, усі хромовані елементи)",
+          "en": "Whole interior protected (gloss black and all chrome elements)"
+        },
+        {
+          "uk": "Бронювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітори",
+          "en": "Tempered screen protectors on the displays"
+        },
+        {
+          "uk": "Фарбування дисків у чорний глянець",
+          "en": "Wheels painted gloss black"
+        },
+        {
+          "uk": "Фарбування всіх сірих елементів кузова у чорний глянець",
+          "en": "All grey exterior trim painted gloss black"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 128,
+      "visible": true
+    },
+    {
+      "id": "DAiSDOooc-C",
+      "slug": "bmw-x6-daisdoooc-c",
+      "vehicle": "BMW X6",
+      "date": "2024-09-30T09:07:14.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DAiSDOooc-C/",
+      "sources": [
+        "DAiSDOooc-C"
+      ],
+      "categories": [
+        "ppf",
+        "tint"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання прозорою захисною плівкою",
+          "en": "Full clear PPF"
+        },
+        {
+          "uk": "Тонування лобового скла",
+          "en": "Windscreen tint"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Керамічне покриття на плівку",
+          "en": "Ceramic coating over the film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 129,
+      "visible": true
+    },
+    {
+      "id": "DAd31IKIZtK",
+      "slug": "bmw-4-series-dad31ikiztk",
+      "vehicle": "BMW 4 Series",
+      "date": "2024-09-28T16:00:00.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DAd31IKIZtK/",
+      "sources": [
+        "DAd31IKIZtK",
+        "DAdA4OFIwD4"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "tint",
+        "ceramic",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання вініловою плівкою Oracal",
+          "en": "Full Oracal vinyl wrap"
+        },
+        {
+          "uk": "Бронювання передньої оптики",
+          "en": "Headlight protection film"
+        },
+        {
+          "uk": "Тонування двох передніх стекол",
+          "en": "Both front windows tinted"
+        },
+        {
+          "uk": "Повне відновлення дисків",
+          "en": "Wheels fully refurbished"
+        },
+        {
+          "uk": "Нанесення кераміки на плівку",
+          "en": "Ceramic coating over the film"
+        },
+        {
+          "uk": "Антидощ на скло",
+          "en": "Rain-repellent glass treatment"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 130,
+      "visible": true
+    },
+    {
+      "id": "DAbFTqEI28u",
+      "slug": "audi-sq8-dabftqei28u",
+      "vehicle": "Audi SQ8",
+      "date": "2024-09-27T14:00:00.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DAbFTqEI28u/",
+      "sources": [
+        "DAbFTqEI28u"
+      ],
+      "categories": [
+        "ppf",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання прозорим поліуретаном",
+          "en": "Full clear PPF"
+        },
+        {
+          "uk": "Обклеювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Бронювання всіх глянцевих елементів салону",
+          "en": "All gloss interior trim protected"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітори",
+          "en": "Tempered screen protectors on the displays"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 131,
+      "visible": true
+    },
+    {
+      "id": "DAYZoQ1oW6E",
+      "slug": "mercedes-benz-vito-dayzoq1ow6e",
+      "vehicle": "Mercedes-Benz Vito",
+      "date": "2024-09-26T13:00:00.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DAYZoQ1oW6E/",
+      "sources": [
+        "DAYZoQ1oW6E"
+      ],
+      "categories": [
+        "ppf",
+        "polish"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова разом із дахом прозорим поліуретаном",
+          "en": "Full body and roof in clear PPF"
+        },
+        {
+          "uk": "Часткове полірування та підготовка перед обклеюванням",
+          "en": "Partial polishing and prep before wrapping"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 132,
+      "visible": true
+    },
+    {
+      "id": "DAVnILCIYxx",
+      "slug": "audi-e-tron-davnilciyxx",
+      "vehicle": "Audi e-tron",
+      "date": "2024-09-25T11:00:00.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DAVnILCIYxx/",
+      "sources": [
+        "DAVnILCIYxx"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Бронювання передньої частини авто повністю",
+          "en": "Full front-end protection film"
+        },
+        {
+          "uk": "Бронювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Бронювання стоп-сигналів із легким затемненням",
+          "en": "Tail lights protected with a light tint"
+        },
+        {
+          "uk": "Обклеювання всього структурного пластику в салоні",
+          "en": "All textured interior plastics wrapped"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 133,
+      "visible": true
+    },
+    {
+      "id": "DAS_iz_IR6e",
+      "slug": "mercedes-benz-c-class-2024-das_iz_ir6e",
+      "vehicle": "Mercedes-Benz C-Class (2024)",
+      "date": "2024-09-24T10:37:27.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DAS_iz_IR6e/",
+      "sources": [
+        "DAS_iz_IR6e"
+      ],
+      "categories": [
+        "ppf",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Бронювання передньої частини, пакет VIP",
+          "en": "Front-end protection film, VIP package"
+        },
+        {
+          "uk": "Бронювання стійок лобового скла та смуги над лобовим",
+          "en": "A-pillars and the strip above the windscreen protected"
+        },
+        {
+          "uk": "Бронювання внутрішніх і зовнішніх порогів",
+          "en": "Inner and outer sills protected"
+        },
+        {
+          "uk": "Встановлення двох захисних стекол на монітори",
+          "en": "Tempered screen protectors on two displays"
+        },
+        {
+          "uk": "Бронювання чорного глянцю та дерева в салоні",
+          "en": "Gloss-black and wood interior trim protected"
+        },
+        {
+          "uk": "Бронювання глянцевих бокових стійок",
+          "en": "Gloss side pillars protected"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 134,
+      "visible": true
+    },
+    {
+      "id": "DAJHu55oKh4",
+      "slug": "lexus-nx-dajhu55okh4",
+      "vehicle": "Lexus NX",
+      "date": "2024-09-20T14:43:09.000Z",
+      "sourceUrl": "https://www.instagram.com/p/DAJHu55oKh4/",
+      "sources": [
+        "DAJHu55oKh4"
+      ],
+      "categories": [
+        "ppf",
+        "polish"
+      ],
+      "works": [
+        {
+          "uk": "Полірування авто під плівку",
+          "en": "Polishing before wrapping"
+        },
+        {
+          "uk": "Бронювання передньої частини, пакет Premium",
+          "en": "Front-end protection film, Premium package"
+        },
+        {
+          "uk": "Бронювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 135,
+      "visible": true
+    },
+    {
+      "id": "C_L-AWBIbae",
+      "slug": "audi-rs-q8-c_l-awbibae",
+      "vehicle": "Audi RS Q8",
+      "date": "2024-08-27T20:36:45.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C_L-AWBIbae/",
+      "sources": [
+        "C_L-AWBIbae"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання передньої частини повністю, пакет VIP",
+          "en": "Full front-end protection film, VIP package"
+        },
+        {
+          "uk": "Стійки лобового скла та смуга над лобовим",
+          "en": "A-pillars and the strip above the windscreen"
+        },
+        {
+          "uk": "Обклеювання внутрішніх прорізів до петлі",
+          "en": "Door jambs protected up to the hinge"
+        },
+        {
+          "uk": "Обклеювання накладок дверей, задніх арок і відбійників заднього бампера",
+          "en": "Door trims, rear arches and rear-bumper guards protected"
+        },
+        {
+          "uk": "Полиця заднього бампера",
+          "en": "Rear-bumper loading edge protected"
+        },
+        {
+          "uk": "Обклеювання салону (чорний глянець + дерево)",
+          "en": "Interior trim protected (gloss black and wood)"
+        },
+        {
+          "uk": "Встановлення захисного скла на 3 монітори",
+          "en": "Tempered screen protectors on three displays"
+        },
+        {
+          "uk": "Атермальне тонування двох передніх і лобового скла",
+          "en": "Athermal tint on both front windows and the windscreen"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 136,
+      "visible": true
+    },
+    {
+      "id": "C9vIa3JI4LH",
+      "slug": "lexus-lx-c9via3ji4lh",
+      "vehicle": "Lexus LX",
+      "date": "2024-07-22T19:18:23.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C9vIa3JI4LH/",
+      "sources": [
+        "C9vIa3JI4LH"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior",
+        "soundproofing"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова прозорим поліуретаном",
+          "en": "Full-body clear PPF"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Повне атермальне тонування 15/80%",
+          "en": "Full athermal tint, 15/80%"
+        },
+        {
+          "uk": "Захисне скло на монітори",
+          "en": "Tempered screen protectors on the displays"
+        },
+        {
+          "uk": "Обклеювання глянцевих елементів салону",
+          "en": "Gloss interior trim protected with film"
+        },
+        {
+          "uk": "Шумоізоляція чотирьох дверей",
+          "en": "Four doors soundproofed"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 137,
+      "visible": true
+    },
+    {
+      "id": "C9r1SASI16P",
+      "slug": "bmw-x5-c9r1sasi16p",
+      "vehicle": "BMW X5",
+      "date": "2024-07-21T12:33:26.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C9r1SASI16P/",
+      "sources": [
+        "C9r1SASI16P",
+        "C9r1tOPoX63"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова прозорим поліуретаном",
+          "en": "Full-body clear PPF"
+        },
+        {
+          "uk": "Бронювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Обклеювання глянцевих елементів салону",
+          "en": "Gloss interior trim protected with film"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітор",
+          "en": "Tempered screen protector on the display"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Атермальне тонування лобового скла",
+          "en": "Athermal windscreen tint"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 138,
+      "visible": true
+    },
+    {
+      "id": "C6wy1nwIyqs",
+      "slug": "audi-q8-c6wy1nwiyqs",
+      "vehicle": "Audi Q8",
+      "date": "2024-05-09T21:14:06.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C6wy1nwIyqs/",
+      "sources": [
+        "C6wy1nwIyqs",
+        "C6w0PJLohPl"
+      ],
+      "categories": [
+        "ppf",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання передньої частини повністю, пакет VIP",
+          "en": "Full front-end protection film, VIP package"
+        },
+        {
+          "uk": "Стійки лобового скла та смуга над лобовим",
+          "en": "A-pillars and the strip above the windscreen"
+        },
+        {
+          "uk": "Обклеювання внутрішніх прорізів до петлі",
+          "en": "Door jambs protected up to the hinge"
+        },
+        {
+          "uk": "Обклеювання накладок дверей, задніх арок і відбійників заднього бампера",
+          "en": "Door trims, rear arches and rear-bumper guards protected"
+        },
+        {
+          "uk": "Полиця заднього бампера",
+          "en": "Rear-bumper loading edge protected"
+        },
+        {
+          "uk": "Обклеювання салону (чорний глянець + дерево)",
+          "en": "Interior trim protected (gloss black and wood)"
+        },
+        {
+          "uk": "Встановлення захисного скла на 3 монітори",
+          "en": "Tempered screen protectors on three displays"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 139,
+      "visible": true
+    },
+    {
+      "id": "C6ZTaeVoTCN",
+      "slug": "bmw-x6-c6ztaevotcn",
+      "vehicle": "BMW X6",
+      "date": "2024-04-30T18:16:59.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C6ZTaeVoTCN/",
+      "sources": [
+        "C6ZTaeVoTCN",
+        "C6ahiHvIktR"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання кузова прозорим поліуретаном",
+          "en": "Full-body clear PPF"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Обклеювання всіх глянцевих елементів салону",
+          "en": "All gloss interior trim protected with film"
+        },
+        {
+          "uk": "Захисне скло на монітор",
+          "en": "Tempered screen protector on the display"
+        },
+        {
+          "uk": "Атермальне тонування",
+          "en": "Athermal window tint"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 140,
+      "visible": true
+    },
+    {
+      "id": "C6PJGRtNqTr",
+      "slug": "bmw-x4-c6pjgrtnqtr",
+      "vehicle": "BMW X4",
+      "date": "2024-04-26T19:34:26.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C6PJGRtNqTr/",
+      "sources": [
+        "C6PJGRtNqTr"
+      ],
+      "categories": [
+        "color-change"
+      ],
+      "works": [
+        {
+          "uk": "Повна заміна кольору вініловою плівкою Oracal Graphite Metallic Matt",
+          "en": "Full colour change in Oracal Graphite Metallic Matt vinyl"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 141,
+      "visible": true
+    },
+    {
+      "id": "C5jVwpiIhOu",
+      "slug": "bmw-x3-c5jvwpiihou",
+      "vehicle": "BMW X3",
+      "date": "2024-04-09T19:18:30.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C5jVwpiIhOu/",
+      "sources": [
+        "C5jVwpiIhOu"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Бронювання передньої частини, пакет VIP",
+          "en": "Front-end protection film, VIP package"
+        },
+        {
+          "uk": "Бронювання прорізів до петлі та матових накладок",
+          "en": "Door jambs up to the hinge and matte trims protected"
+        },
+        {
+          "uk": "Захисне скло на монітор",
+          "en": "Tempered screen protector on the display"
+        },
+        {
+          "uk": "Повне атермальне тонування разом із лобовим склом",
+          "en": "Full athermal tint including the windscreen"
+        },
+        {
+          "uk": "Фарбування решітки у чорний глянець",
+          "en": "Grille painted gloss black"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 142,
+      "visible": true
+    },
+    {
+      "id": "C5bJN2ZocxO",
+      "slug": "skoda-kodiaq-c5bjn2zocxo",
+      "vehicle": "Škoda Kodiaq",
+      "date": "2024-04-06T14:54:58.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C5bJN2ZocxO/",
+      "sources": [
+        "C5bJN2ZocxO"
+      ],
+      "categories": [
+        "soundproofing"
+      ],
+      "works": [
+        {
+          "uk": "Повна шумоізоляція авто преміальним матеріалом",
+          "en": "Full vehicle soundproofing with premium material"
+        },
+        {
+          "uk": "Двері — 4 шари",
+          "en": "Doors — 4 layers"
+        },
+        {
+          "uk": "Підлога та багажник — 3 шари",
+          "en": "Floor and boot — 3 layers"
+        },
+        {
+          "uk": "Стеля — 2 шари",
+          "en": "Headliner — 2 layers"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 143,
+      "visible": true
+    },
+    {
+      "id": "C5V-WBUIytX",
+      "slug": "volkswagen-passat-c5v-wbuiytx",
+      "vehicle": "Volkswagen Passat",
+      "date": "2024-04-04T14:47:11.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C5V-WBUIytX/",
+      "sources": [
+        "C5V-WBUIytX"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "ceramic",
+        "polish",
+        "antichrome",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання сатиновим поліуретаном",
+          "en": "Full satin PPF"
+        },
+        {
+          "uk": "Повний антихром",
+          "en": "Full anti-chrome package"
+        },
+        {
+          "uk": "Підготовка кузова під обклеювання та ремонт сколів",
+          "en": "Body prep and chip repair before wrapping"
+        },
+        {
+          "uk": "Повне тонування разом із лобовим склом",
+          "en": "Full tint including the windscreen"
+        },
+        {
+          "uk": "Встановлення сітки в передній бампер",
+          "en": "Protective mesh in the front bumper"
+        },
+        {
+          "uk": "Обклеювання внутрішніх прорізів дверей",
+          "en": "Door-jamb protection film"
+        },
+        {
+          "uk": "Кераміка на кузов і скло",
+          "en": "Ceramic coating on the body and glass"
+        },
+        {
+          "uk": "Затемнення передньої та задньої оптики",
+          "en": "Tinted front and rear lights"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 144,
+      "visible": true
+    },
+    {
+      "id": "C38bbr8IwYQ",
+      "slug": "bmw-7-series-c38bbr8iwyq",
+      "vehicle": "BMW 7 Series",
+      "date": "2024-02-29T20:06:17.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C38bbr8IwYQ/",
+      "sources": [
+        "C38bbr8IwYQ",
+        "C35tfF2oKGg"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Бронювання фронтальної частини",
+          "en": "Front-end protection film"
+        },
+        {
+          "uk": "Бронювання порогів",
+          "en": "Sills protected with film"
+        },
+        {
+          "uk": "Часткове бронювання задньої частини",
+          "en": "Partial rear-end protection film"
+        },
+        {
+          "uk": "Атермальне тонування двох передніх і лобового скла",
+          "en": "Athermal tint on both front windows and the windscreen"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Захист інтер'єру та встановлення захисного скла на монітори",
+          "en": "Interior trim protected and screen protectors fitted"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 145,
+      "visible": true
+    },
+    {
+      "id": "C35s4z0oSLK",
+      "slug": "volkswagen-touareg-c35s4z0oslk",
+      "vehicle": "Volkswagen Touareg",
+      "date": "2024-02-28T18:41:05.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C35s4z0oSLK/",
+      "sources": [
+        "C35s4z0oSLK",
+        "C3vYuEjIlbM"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "polish"
+      ],
+      "works": [
+        {
+          "uk": "Підготовка кузова під обклеювання",
+          "en": "Body prepared for wrapping"
+        },
+        {
+          "uk": "Обклеювання кузова вініловою плівкою Teckwrap",
+          "en": "Body wrapped in Teckwrap vinyl"
+        },
+        {
+          "uk": "Обклеювання фронтальної частини",
+          "en": "Front-end protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 146,
+      "visible": true
+    },
+    {
+      "id": "C3s72IiopY9",
+      "slug": "audi-q8-c3s72iiopy9",
+      "vehicle": "Audi Q8",
+      "date": "2024-02-23T19:41:40.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C3s72IiopY9/",
+      "sources": [
+        "C3s72IiopY9"
+      ],
+      "categories": [
+        "ppf",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання задньої та передньої оптики",
+          "en": "Front and rear lights protected"
+        },
+        {
+          "uk": "Обклеювання салону",
+          "en": "Interior trim protection film"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітори",
+          "en": "Tempered screen protectors on the displays"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 147,
+      "visible": true
+    },
+    {
+      "id": "C3nDvC8IQf4",
+      "slug": "bmw-x7-c3ndvc8iqf4",
+      "vehicle": "BMW X7",
+      "date": "2024-02-21T12:56:29.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C3nDvC8IQf4/",
+      "sources": [
+        "C3nDvC8IQf4"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання фронтальної частини",
+          "en": "Front-end protection film"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 148,
+      "visible": true
+    },
+    {
+      "id": "C3YEQbFIogs",
+      "slug": "zeekr-001-c3yeqbfiogs",
+      "vehicle": "Zeekr 001",
+      "date": "2024-02-15T17:15:02.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C3YEQbFIogs/",
+      "sources": [
+        "C3YEQbFIogs"
+      ],
+      "categories": [
+        "ppf",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Бронювання авто",
+          "en": "Vehicle protection film"
+        },
+        {
+          "uk": "Помаранчевий колір — прозорий сатин",
+          "en": "Orange panels — clear satin PPF"
+        },
+        {
+          "uk": "Чорний — глянцевий поліуретан",
+          "en": "Black panels — gloss PPF"
+        },
+        {
+          "uk": "Бронювання панорами, порогів і лобового скла",
+          "en": "Panoramic roof, sills and windscreen protected"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітори",
+          "en": "Tempered screen protectors on the displays"
+        },
+        {
+          "uk": "Керамічне покриття",
+          "en": "Ceramic coating"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 149,
+      "visible": true
+    },
+    {
+      "id": "C29-1ajIQDV",
+      "slug": "bmw-x6-c29-1ajiqdv",
+      "vehicle": "BMW X6",
+      "date": "2024-02-05T14:04:49.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C29-1ajIQDV/",
+      "sources": [
+        "C29-1ajIQDV"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Бронювання фронтальної частини повністю",
+          "en": "Full front-end protection film"
+        },
+        {
+          "uk": "Бронювання стійок лобового скла та смуги над лобовим",
+          "en": "A-pillars and the strip above the windscreen protected"
+        },
+        {
+          "uk": "Окантовка решітки в мат",
+          "en": "Grille surround in matte film"
+        },
+        {
+          "uk": "Максимальні пороги до петлі",
+          "en": "Maximum sill coverage up to the hinge"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Тонування двох передніх вікон і лобового скла 15/35%",
+          "en": "Front windows and windscreen tinted, 15/35%"
+        },
+        {
+          "uk": "Бронювання зовнішніх порогів, низу дверей і задніх арок",
+          "en": "Outer sills, lower doors and rear arches protected"
+        },
+        {
+          "uk": "Відбійники на задній бампер",
+          "en": "Rear-bumper guards"
+        },
+        {
+          "uk": "Глянцеві дверні стійки",
+          "en": "Gloss door pillars protected"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 150,
+      "visible": true
+    },
+    {
+      "id": "C2xQxL8oAkJ",
+      "slug": "range-rover-vogue-c2xqxl8oakj",
+      "vehicle": "Range Rover Vogue",
+      "date": "2024-01-31T15:30:04.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C2xQxL8oAkJ/",
+      "sources": [
+        "C2xQxL8oAkJ"
+      ],
+      "categories": [
+        "color-change",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Заміна кольору сірих накладок (решітка, елементи переднього та заднього бамперів, двері, кришка багажника) на коричневий (Avery Dark Basalt)",
+          "en": "Grey trims (grille, front and rear bumper elements, doors, boot lid) recoloured brown (Avery Dark Basalt)"
+        },
+        {
+          "uk": "Фарбування дисків у чорний глянець",
+          "en": "Wheels painted gloss black"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 151,
+      "visible": true
+    },
+    {
+      "id": "C2h3nhGItYI",
+      "slug": "audi-s6-c2h3nhgityi",
+      "vehicle": "Audi S6",
+      "date": "2024-01-25T16:01:41.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C2h3nhGItYI/",
+      "sources": [
+        "C2h3nhGItYI",
+        "C2cmhMRI8xF"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання разом із дахом",
+          "en": "Full wrap including the roof"
+        },
+        {
+          "uk": "Обклеювання порогів",
+          "en": "Sills protected with film"
+        },
+        {
+          "uk": "Затемнення передньої та задньої оптики",
+          "en": "Tinted front and rear lights"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітор",
+          "en": "Tempered screen protector on the display"
+        },
+        {
+          "uk": "Обклеювання чорного глянцю салону в мат",
+          "en": "Gloss-black interior trim wrapped matte"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 152,
+      "visible": true
+    },
+    {
+      "id": "C2NXUPaohi1",
+      "slug": "audi-q8-e-tron-c2nxupaohi1",
+      "vehicle": "Audi Q8 e-tron",
+      "date": "2024-01-17T16:55:02.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C2NXUPaohi1/",
+      "sources": [
+        "C2NXUPaohi1"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Бронювання фронтальної частини",
+          "en": "Front-end protection film"
+        },
+        {
+          "uk": "Бронювання даху чорною захисною плівкою",
+          "en": "Roof in black PPF"
+        },
+        {
+          "uk": "Бронювання спойлера чорним поліуретаном",
+          "en": "Spoiler in black PPF"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 153,
+      "visible": true
+    },
+    {
+      "id": "C1-Agvpo88Z",
+      "slug": "mercedes-amg-4matic-c1-agvpo88z",
+      "vehicle": "Mercedes-AMG 4MATIC",
+      "date": "2024-01-11T17:46:45.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C1-Agvpo88Z/",
+      "sources": [
+        "C1-Agvpo88Z",
+        "C12WZXwIIRd"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання сатиновою захисною плівкою",
+          "en": "Full satin PPF"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 154,
+      "visible": true
+    },
+    {
+      "id": "C1xKgi9o7kM",
+      "slug": "tesla-model-s-c1xkgi9o7km",
+      "vehicle": "Tesla Model S",
+      "date": "2024-01-06T18:04:26.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C1xKgi9o7kM/",
+      "sources": [
+        "C1xKgi9o7kM"
+      ],
+      "categories": [
+        "tint"
+      ],
+      "works": [
+        {
+          "uk": "Повне перетонування атермальною плівкою",
+          "en": "Full re-tint with athermal film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 155,
+      "visible": true
+    },
+    {
+      "id": "C1uT6W9I3q5",
+      "slug": "mercedes-benz-g-class-2023-c1ut6w9i3q5",
+      "vehicle": "Mercedes-Benz G-Class (2023)",
+      "date": "2024-01-05T15:28:25.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C1uT6W9I3q5/",
+      "sources": [
+        "C1uT6W9I3q5"
+      ],
+      "categories": [
+        "interior",
+        "soundproofing"
+      ],
+      "works": [
+        {
+          "uk": "Повна шумоізоляція салону у 2–4 шари",
+          "en": "Full cabin soundproofing in 2–4 layers"
+        },
+        {
+          "uk": "(підлога, багажник, двері, задні арки, кришка багажника, стеля)",
+          "en": "(floor, boot, doors, rear arches, boot lid, headliner)"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 156,
+      "visible": true
+    },
+    {
+      "id": "C1aDtFAo-Ik",
+      "slug": "bmw-x6-c1adtfao-ik",
+      "vehicle": "BMW X6",
+      "date": "2023-12-28T18:41:59.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C1aDtFAo-Ik/",
+      "sources": [
+        "C1aDtFAo-Ik",
+        "C1ZsgKRoNFZ"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "polish",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Вінілове обклеювання",
+          "en": "Vinyl wrap"
+        },
+        {
+          "uk": "Часткове бронювання",
+          "en": "Partial protection film"
+        },
+        {
+          "uk": "Підготовка кузова, полірування, хімчистка",
+          "en": "Body prep, polishing and interior deep clean"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 157,
+      "visible": true
+    },
+    {
+      "id": "C1H3d_zoGRU",
+      "slug": "mercedes-benz-s-class-c1h3d_zogru",
+      "vehicle": "Mercedes-Benz S-Class",
+      "date": "2023-12-21T17:08:44.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C1H3d_zoGRU/",
+      "sources": [
+        "C1H3d_zoGRU"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Бронювання, пакет VIP",
+          "en": "Protection film, VIP package"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітори",
+          "en": "Tempered screen protectors on the displays"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Тонування авто",
+          "en": "Window tinting"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 158,
+      "visible": true
+    },
+    {
+      "id": "C1Hs8aXIGPY",
+      "slug": "bmw-x7-c1hs8axigpy",
+      "vehicle": "BMW X7",
+      "date": "2023-12-21T15:37:15.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C1Hs8aXIGPY/",
+      "sources": [
+        "C1Hs8aXIGPY"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання авто",
+          "en": "Full-vehicle protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 159,
+      "visible": true
+    },
+    {
+      "id": "C02GEgkIMih",
+      "slug": "bmw-2-series-c02gegkimih",
+      "vehicle": "BMW 2 Series",
+      "date": "2023-12-14T19:30:00.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C02GEgkIMih/",
+      "sources": [
+        "C02GEgkIMih",
+        "C02GPEtomrm",
+        "C1-BoAMIVEa"
+      ],
+      "categories": [
+        "ppf",
+        "color-change"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання хромованою плівкою Two Face",
+          "en": "Two Face chrome-effect wrap"
+        },
+        {
+          "uk": "Повне обклеювання глянцевим поліуретаном",
+          "en": "Full gloss PPF"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 160,
+      "visible": true
+    },
+    {
+      "id": "C0t83xxI2Z4",
+      "slug": "bmw-x6-c0t83xxi2z4",
+      "vehicle": "BMW X6",
+      "date": "2023-12-11T15:35:42.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C0t83xxI2Z4/",
+      "sources": [
+        "C0t83xxI2Z4",
+        "C0t568nIijL"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "polish",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Локальна підготовка кузова під обклеювання",
+          "en": "Local body prep before wrapping"
+        },
+        {
+          "uk": "Повне обклеювання прозорим сатином",
+          "en": "Full clear satin PPF"
+        },
+        {
+          "uk": "Фарбування спойлера та дифузора у чорний глянець",
+          "en": "Spoiler and diffuser painted gloss black"
+        },
+        {
+          "uk": "Атермальне тонування двох передніх вікон і панорами 80%",
+          "en": "Athermal tint on both front windows and the panoramic roof, 80%"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 161,
+      "visible": true
+    },
+    {
+      "id": "C0j-iTkI7zp",
+      "slug": "porsche-macan-s-c0j-itki7zp",
+      "vehicle": "Porsche Macan S",
+      "date": "2023-12-07T18:38:10.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C0j-iTkI7zp/",
+      "sources": [
+        "C0j-iTkI7zp"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання авто",
+          "en": "Full-vehicle protection film"
+        },
+        {
+          "uk": "Повне атермальне тонування",
+          "en": "Full athermal window tint"
+        },
+        {
+          "uk": "Бронювання глянцевих елементів салону",
+          "en": "Gloss interior trim protected with film"
+        },
+        {
+          "uk": "Бронювання віконних молдингів",
+          "en": "Window mouldings protected"
+        },
+        {
+          "uk": "Бронювання внутрішніх порогів",
+          "en": "Inner sills protected with film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 162,
+      "visible": true
+    },
+    {
+      "id": "C0Wv7aBIJZG",
+      "slug": "mercedes-benz-c0wv7abijzg",
+      "vehicle": "Mercedes-Benz",
+      "date": "2023-12-02T15:20:04.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C0Wv7aBIJZG/",
+      "sources": [
+        "C0Wv7aBIJZG",
+        "C0POwJ3IBAU"
+      ],
+      "categories": [
+        "ppf",
+        "color-change",
+        "tint",
+        "polish",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання у два кольори",
+          "en": "Two-tone wrap"
+        },
+        {
+          "uk": "Вінілова плівка золотий сатин (низ авто)",
+          "en": "Satin gold vinyl (lower body)"
+        },
+        {
+          "uk": "Чорний поліуретан (верх авто)",
+          "en": "Black PPF (upper body)"
+        },
+        {
+          "uk": "Відновлення фар",
+          "en": "Headlight restoration"
+        },
+        {
+          "uk": "Бронювання оптики із затемненням",
+          "en": "Lights protected with tinted film"
+        },
+        {
+          "uk": "Брендування",
+          "en": "Branding graphics"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 163,
+      "visible": true
+    },
+    {
+      "id": "C0L_mRZojXJ",
+      "slug": "mercedes-benz-glc-c0l_mrzojxj",
+      "vehicle": "Mercedes-Benz GLC",
+      "date": "2023-11-28T11:05:20.000Z",
+      "sourceUrl": "https://www.instagram.com/p/C0L_mRZojXJ/",
+      "sources": [
+        "C0L_mRZojXJ",
+        "C0KalZDINQn"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Бронювання фронтальної частини, пакет VIP",
+          "en": "Front-end protection film, VIP package"
+        },
+        {
+          "uk": "Стійки лобового скла та смуга над лобовим",
+          "en": "A-pillars and the strip above the windscreen"
+        },
+        {
+          "uk": "Внутрішні пороги",
+          "en": "Inner sills protected"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Атермальне тонування двох передніх і лобового скла",
+          "en": "Athermal tint on both front windows and the windscreen"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітори",
+          "en": "Tempered screen protectors on the displays"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 164,
+      "visible": true
+    },
+    {
+      "id": "Cz64hYMIC_K",
+      "slug": "audi-rs-q8-cz64hymic_k",
+      "vehicle": "Audi RS Q8",
+      "date": "2023-11-21T19:40:21.000Z",
+      "sourceUrl": "https://www.instagram.com/p/Cz64hYMIC_K/",
+      "sources": [
+        "Cz64hYMIC_K"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання фронтальної частини повністю",
+          "en": "Full front-end protection film"
+        },
+        {
+          "uk": "Стійки лобового скла та смуга над лобовим",
+          "en": "A-pillars and the strip above the windscreen"
+        },
+        {
+          "uk": "Бронювання лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Бронювання низу дверей, задніх арок і відбійників",
+          "en": "Lower doors, rear arches and guards protected"
+        },
+        {
+          "uk": "Захисна полиця заднього бампера",
+          "en": "Rear-bumper loading edge protected"
+        },
+        {
+          "uk": "Максимальні прорізи",
+          "en": "Maximum-coverage door apertures"
+        },
+        {
+          "uk": "Чорний глянець салону",
+          "en": "Gloss-black interior trim protected"
+        },
+        {
+          "uk": "Встановлення захисного скла (3 шт.)",
+          "en": "Three tempered screen protectors fitted"
+        },
+        {
+          "uk": "Атермальне тонування двох передніх і лобового скла",
+          "en": "Athermal tint on both front windows and the windscreen"
+        },
+        {
+          "uk": "Євротонування 15%",
+          "en": "Rear-glass tint, 15%"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 165,
+      "visible": true
+    },
+    {
+      "id": "Czbz4YUockA",
+      "slug": "mercedes-amg-v8-biturbo-czbz4yuocka",
+      "vehicle": "Mercedes-AMG V8 Biturbo",
+      "date": "2023-11-09T18:00:05.000Z",
+      "sourceUrl": "https://www.instagram.com/p/Czbz4YUockA/",
+      "sources": [
+        "Czbz4YUockA"
+      ],
+      "categories": [
+        "tint"
+      ],
+      "works": [
+        {
+          "uk": "Тонування бокових і лобового скла",
+          "en": "Side windows and windscreen tinted"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 166,
+      "visible": true
+    },
+    {
+      "id": "CzUFBYCscWL",
+      "slug": "bmw-x5-czufbycscwl",
+      "vehicle": "BMW X5",
+      "date": "2023-11-06T17:55:58.000Z",
+      "sourceUrl": "https://www.instagram.com/p/CzUFBYCscWL/",
+      "sources": [
+        "CzUFBYCscWL"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Бронювання фронтальної частини, пакет VIP",
+          "en": "Front-end protection film, VIP package"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 167,
+      "visible": true
+    },
+    {
+      "id": "CzHJCtxMCb7",
+      "slug": "volkswagen-touareg-czhjctxmcb7",
+      "vehicle": "Volkswagen Touareg",
+      "date": "2023-11-01T17:22:23.000Z",
+      "sourceUrl": "https://www.instagram.com/p/CzHJCtxMCb7/",
+      "sources": [
+        "CzHJCtxMCb7"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Встановлення сітки в бампер",
+          "en": "Protective mesh in the bumper"
+        },
+        {
+          "uk": "Бронювання, пакет VIP",
+          "en": "Protection film, VIP package"
+        },
+        {
+          "uk": "Тонування",
+          "en": "Window tinting"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 168,
+      "visible": true
+    },
+    {
+      "id": "CzBZylOMiTM",
+      "slug": "bmw-x7-czbzylomitm",
+      "vehicle": "BMW X7",
+      "date": "2023-10-30T11:51:10.000Z",
+      "sourceUrl": "https://www.instagram.com/p/CzBZylOMiTM/",
+      "sources": [
+        "CzBZylOMiTM",
+        "Cy_ZgAiMPLK"
+      ],
+      "categories": [
+        "ppf",
+        "styling"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання фронтальної частини повністю",
+          "en": "Full front-end protection film"
+        },
+        {
+          "uk": "Стійки лобового скла та смуга над лобовим",
+          "en": "A-pillars and the strip above the windscreen"
+        },
+        {
+          "uk": "Обклеювання решітки сатиновим поліуретаном",
+          "en": "Grille wrapped in satin PPF"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 169,
+      "visible": true
+    },
+    {
+      "id": "Cy5T4pYMT4c",
+      "slug": "mercedes-benz-gle-cy5t4pymt4c",
+      "vehicle": "Mercedes-Benz GLE",
+      "date": "2023-10-27T08:25:39.000Z",
+      "sourceUrl": "https://www.instagram.com/p/Cy5T4pYMT4c/",
+      "sources": [
+        "Cy5T4pYMT4c",
+        "Cy3wQ14MAxx"
+      ],
+      "categories": [
+        "tint"
+      ],
+      "works": [
+        {
+          "uk": "Повне атермальне тонування разом із лобовим склом плівкою Xpel 80%",
+          "en": "Full athermal Xpel 80% tint including the windscreen"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 170,
+      "visible": true
+    },
+    {
+      "id": "Cy3PEW5sUk2",
+      "slug": "land-rover-defender-cy3pew5suk2",
+      "vehicle": "Land Rover Defender",
+      "date": "2023-10-26T13:05:04.000Z",
+      "sourceUrl": "https://www.instagram.com/p/Cy3PEW5sUk2/",
+      "sources": [
+        "Cy3PEW5sUk2"
+      ],
+      "categories": [
+        "ppf",
+        "tint"
+      ],
+      "works": [
+        {
+          "uk": "Бронювання фронтальної частини",
+          "en": "Front-end protection film"
+        },
+        {
+          "uk": "Бронювання внутрішніх порогів",
+          "en": "Inner sills protected with film"
+        },
+        {
+          "uk": "Бронювання стійок лобового скла та смуги над лобовим",
+          "en": "A-pillars and the strip above the windscreen protected"
+        },
+        {
+          "uk": "Євротонування",
+          "en": "Rear-glass tint"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 171,
+      "visible": true
+    },
+    {
+      "id": "CyynSrbMh67",
+      "slug": "volkswagen-touareg-cyynsrbmh67",
+      "vehicle": "Volkswagen Touareg",
+      "date": "2023-10-24T18:00:32.000Z",
+      "sourceUrl": "https://www.instagram.com/p/CyynSrbMh67/",
+      "sources": [
+        "CyynSrbMh67"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Повне розбирання даху під обклеювання",
+          "en": "Roof fully stripped for wrapping"
+        },
+        {
+          "uk": "Обклеювання чорним поліуретаном",
+          "en": "Wrapped in black PPF"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 172,
+      "visible": true
+    },
+    {
+      "id": "Cyv-0wZMXc_",
+      "slug": "bmw-x4-cyv-0wzmxc_",
+      "vehicle": "BMW X4",
+      "date": "2023-10-23T17:50:17.000Z",
+      "sourceUrl": "https://www.instagram.com/p/Cyv-0wZMXc_/",
+      "sources": [
+        "Cyv-0wZMXc_"
+      ],
+      "categories": [
+        "ppf"
+      ],
+      "works": [
+        {
+          "uk": "Обклеювання фронтальної частини авто",
+          "en": "Front-end protection film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 173,
+      "visible": true
+    },
+    {
+      "id": "CytBJ9isveA",
+      "slug": "toyota-land-cruiser-300-cytbj9isvea",
+      "vehicle": "Toyota Land Cruiser 300",
+      "date": "2023-10-22T13:51:06.000Z",
+      "sourceUrl": "https://www.instagram.com/p/CytBJ9isveA/",
+      "sources": [
+        "CytBJ9isveA"
+      ],
+      "categories": [
+        "soundproofing"
+      ],
+      "works": [
+        {
+          "uk": "Повна вібро- та шумоізоляція",
+          "en": "Full vibration and sound insulation"
+        },
+        {
+          "uk": "(підлога, багажник, двері, задні арки, кришка багажника, стеля)",
+          "en": "(floor, boot, doors, rear arches, boot lid, headliner)"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 174,
+      "visible": true
+    },
+    {
+      "id": "CynqcOosmB0",
+      "slug": "range-rover-vogue-cynqcoosmb0",
+      "vehicle": "Range Rover Vogue",
+      "date": "2023-10-20T11:56:25.000Z",
+      "sourceUrl": "https://www.instagram.com/p/CynqcOosmB0/",
+      "sources": [
+        "CynqcOosmB0"
+      ],
+      "categories": [
+        "ppf",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання прозорою захисною плівкою",
+          "en": "Full clear PPF"
+        },
+        {
+          "uk": "Обклеювання даху чорним поліуретаном",
+          "en": "Roof wrapped in black PPF"
+        },
+        {
+          "uk": "Бронювання внутрішніх порогів",
+          "en": "Inner sills protected with film"
+        },
+        {
+          "uk": "Захисне скло на монітор",
+          "en": "Tempered screen protector on the display"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 175,
+      "visible": true
+    },
+    {
+      "id": "CyeEopIs-gQ",
+      "slug": "mercedes-benz-g-class-cyeeopis-gq",
+      "vehicle": "Mercedes-Benz G-Class",
+      "date": "2023-10-16T18:33:14.000Z",
+      "sourceUrl": "https://www.instagram.com/p/CyeEopIs-gQ/",
+      "sources": [
+        "CyeEopIs-gQ"
+      ],
+      "categories": [
+        "tint"
+      ],
+      "works": [
+        {
+          "uk": "Захист лобового скла",
+          "en": "Windscreen protection film"
+        },
+        {
+          "uk": "Тонування лобового скла 35%",
+          "en": "Windscreen tint, 35%"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 176,
+      "visible": true
+    },
+    {
+      "id": "Cyd8wEwMYd_",
+      "slug": "audi-rs-7-cyd8wewmyd_",
+      "vehicle": "Audi RS 7",
+      "date": "2023-10-16T17:24:00.000Z",
+      "sourceUrl": "https://www.instagram.com/p/Cyd8wEwMYd_/",
+      "sources": [
+        "Cyd8wEwMYd_"
+      ],
+      "categories": [
+        "ppf",
+        "tint",
+        "interior"
+      ],
+      "works": [
+        {
+          "uk": "Повне обклеювання сатиновим поліуретаном",
+          "en": "Full satin PPF"
+        },
+        {
+          "uk": "Бронювання внутрішніх порогів",
+          "en": "Inner sills protected with film"
+        },
+        {
+          "uk": "Атермальне тонування передніх і лобового скла",
+          "en": "Athermal tint on the front windows and windscreen"
+        },
+        {
+          "uk": "Затемнення задніх ліхтарів",
+          "en": "Tinted tail lights"
+        },
+        {
+          "uk": "Євротонування звичайною плівкою",
+          "en": "Rear-glass tint with standard film"
+        },
+        {
+          "uk": "Встановлення захисного скла на монітори",
+          "en": "Tempered screen protectors on the displays"
+        },
+        {
+          "uk": "Бронювання глянцевих елементів салону",
+          "en": "Gloss interior trim protected with film"
+        }
+      ],
+      "summary": null,
+      "cover": null,
+      "photos": [],
+      "videos": [],
+      "featured": false,
+      "order": 177,
+      "visible": true
+    }
+  ]
+}

@@ -12,9 +12,11 @@ import { t, type Locale } from "@/lib/i18n";
 export function ContactView({
   locale,
   defaultService = "",
+  defaultMessage = "",
 }: {
   locale: Locale;
   defaultService?: string;
+  defaultMessage?: string;
 }) {
   const address = site.address;
 
@@ -35,7 +37,7 @@ export function ContactView({
               title={t(ui.form.heading, locale)}
             />
             <div className="mt-12">
-              <BookingForm locale={locale} defaultService={defaultService} />
+              <BookingForm locale={locale} defaultService={defaultService} defaultMessage={defaultMessage} />
             </div>
           </div>
 

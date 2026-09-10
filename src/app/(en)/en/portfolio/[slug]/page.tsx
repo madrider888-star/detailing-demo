@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getProject, projects } from "@/content/projects";
+import { getWorkProject, workProjects } from "@/content/work";
+import { ui } from "@/content/ui";
 import { ProjectView } from "@/views/project-view";
 import { t } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
@@ -8,7 +9,7 @@ import { pageMetadata } from "@/lib/seo";
 const locale = "en" as const;
 
 export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+  return workProjects.map((project) => ({ slug: project.slug }));
 }
 
 export async function generateMetadata({
@@ -17,20 +18,23 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProject(slug);
+  const project = getWorkProject(slug);
   if (!project) return {};
+
+  const description =
+    project.summary?.[locale] ?? project.works.map((item) => item[locale]).join(", ");
 
   return pageMetadata({
     locale,
-    title: `${t(project.title, locale)} — ${project.vehicle}`,
-    description: project.description[0] ? t(project.description[0], locale) : project.vehicle,
+    title: `${project.vehicle} — ${t(ui.nav.portfolio, locale)}`,
+    description,
     path: `/portfolio/${project.slug}`,
   });
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const project = getProject(slug);
+  const project = getWorkProject(slug);
   if (!project) notFound();
 
   return <ProjectView project={project} locale={locale} />;

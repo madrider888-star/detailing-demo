@@ -61,7 +61,7 @@ need to touch a component.
 | -------------------------- | -------------------------------------------------------------------- |
 | **`site.ts`**              | Phone, e-mail, address, opening hours, Instagram, messengers, hero copy |
 | **`services.ts`**          | The service list                                                     |
-| **`projects.ts`**          | Portfolio projects                                                   |
+| **`projects.ts`**          | Projects added by hand (Instagram ones come from `work/selection.json`) |
 | **`reviews.ts`**           | Client reviews                                                       |
 | **`faq.ts`**               | Frequently asked questions                                           |
 | **`about.ts`**             | Studio story, philosophy, process, equipment, materials              |
@@ -113,6 +113,43 @@ The project page, the portfolio filter and the sitemap update themselves.
 
 It appears automatically on the services page, in the booking form dropdown and
 in the sitemap.
+
+## "Our work" — importing projects from Instagram
+
+The portfolio is built from the studio's own Instagram posts. Photos and videos
+are copied into the repository, so nothing on the site depends on Instagram's
+servers.
+
+```bash
+npm run import:instagram -- ~/Downloads/instagram-export.json
+```
+
+The export (an Apify Instagram-scraper dataset) is read from wherever you keep
+it. **Never copy it into the repository** — its media links are signed, expire,
+and must not reach the client bundle. Running the import again is safe: it
+rebuilds the project list from scratch and skips files already on disk, so
+nothing is duplicated.
+
+| Input / output                           | Purpose                                                        |
+| ---------------------------------------- | -------------------------------------------------------------- |
+| `src/content/work/selection.json`        | Which posts become projects: exclusions (with reasons), reel + carousel merges, the 12 featured projects, which reels are downloaded, vehicle name spelling, filter categories, summaries |
+| `src/content/work/glossary.json`         | Every service phrase from the captions in Ukrainian and English |
+| `src/content/work/projects.generated.json` | What the site renders — rewritten by every import, do not edit |
+| `src/content/work/import-report.json`    | Untranslated phrases and media that failed to download          |
+| `public/work/<slug>/`                    | Photos (resized to 1600 px), reel posters and downloaded reels  |
+
+A project appears on the site only when it has a cover photo on disk — so until
+the media has been downloaded the section simply shows nothing. Videos are
+downloaded only for projects listed under `"videos"` in `selection.json`; every
+other reel shows its poster with a link to the post on Instagram. On the page a
+video loads only when the visitor presses play.
+
+To hide a project add its shortCode to `"hidden"`; to change its car name edit
+`"vehicleAliases"`; to fix a translation edit `glossary.json` — then run the
+import again. Projects that were never on Instagram go in `src/content/projects.ts`.
+
+Options: `--skip-media` (rebuild the list only), `--videos=all|selected|none`,
+`--max-video-mb=40`.
 
 ## Design system
 

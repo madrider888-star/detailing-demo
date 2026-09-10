@@ -1,0 +1,491 @@
+{
+  "_readme": [
+    "Curation for the Instagram import (scripts/import-instagram.mjs).",
+    "Keys are Instagram shortCodes — the last part of https://www.instagram.com/p/<shortCode>/.",
+    "exclude:  posts that are not a concrete project, with the reason.",
+    "merge:    a carousel and a reel about the same job → one project with photos and video.",
+    "featured: order of the projects shown first on the home page and at the top of Our work.",
+    "videos:   projects whose reel is downloaded and playable on the site (others link to Instagram).",
+    "hidden:   projects imported but not shown.",
+    "vehicleAliases: exact vehicle line from the caption → how it is written on the site.",
+    "categories: filter definitions; a project gets a category when any of its service lines matches.",
+    "summaries: optional one-sentence descriptions in both languages for the featured projects."
+  ],
+  "exclude": {
+    "DS8BwhIjTvk": "New Year greeting, not a project",
+    "DXwHsnDtrwi": "team photo, no project described",
+    "CztYNQZovrf": "empty caption",
+    "CyddaW6MvD-": "introductory promo post",
+    "CzETJbksbPb": "holiday post (Halloween) — work barely described",
+    "DVMFVcADSO2": "door closers only — accessory install, no detailing project to show",
+    "DSvFmQpjewF": "door closers only, posted two days after the full G 63 project that already lists them",
+    "C1sAPnso3Tn": "screen protector only",
+    "CzmArhLo2UZ": "screen protector only, plus a vendor advert",
+    "CysqZXtsdwo": "screen protector only, plus a vendor advert",
+    "DFDdY6_o23w": "windscreen-only post, three days after the full Denza Z9 project that already includes it",
+    "DAQi-7foswk": "windscreen-only post, one day before the full C-Class project that already includes it",
+    "DAlwn2-oxMN": "soundproofing-only post, one day before the full Lexus NX project that already includes it",
+    "DBN3sCuogSy": "soundproofing-only post, twelve days before the full Prado project that already includes it"
+  },
+  "merge": {
+    "DVG-2ENjSaq": [
+      "DUtWJ0DDYk3"
+    ],
+    "DUn3qxDDWHd": [
+      "DT_Vb7lDcvY"
+    ],
+    "DSF0uyPjZRV": [
+      "DSAqHq3DSOp"
+    ],
+    "DRkQJW4CAWF": [
+      "DRcfxZVjT_4"
+    ],
+    "DRfDaAhiMv9": [
+      "DRP4-EDDQge"
+    ],
+    "DAd31IKIZtK": [
+      "DAdA4OFIwD4"
+    ],
+    "C9r1SASI16P": [
+      "C9r1tOPoX63"
+    ],
+    "C6wy1nwIyqs": [
+      "C6w0PJLohPl"
+    ],
+    "C6ZTaeVoTCN": [
+      "C6ahiHvIktR"
+    ],
+    "C38bbr8IwYQ": [
+      "C35tfF2oKGg"
+    ],
+    "C35s4z0oSLK": [
+      "C3vYuEjIlbM"
+    ],
+    "C2h3nhGItYI": [
+      "C2cmhMRI8xF"
+    ],
+    "C02GEgkIMih": [
+      "C02GPEtomrm",
+      "C1-BoAMIVEa"
+    ],
+    "C1-Agvpo88Z": [
+      "C12WZXwIIRd"
+    ],
+    "C1aDtFAo-Ik": [
+      "C1ZsgKRoNFZ"
+    ],
+    "C0t83xxI2Z4": [
+      "C0t568nIijL"
+    ],
+    "C0Wv7aBIJZG": [
+      "C0POwJ3IBAU"
+    ],
+    "C0L_mRZojXJ": [
+      "C0KalZDINQn"
+    ],
+    "CzBZylOMiTM": [
+      "Cy_ZgAiMPLK"
+    ],
+    "Cy5T4pYMT4c": [
+      "Cy3wQ14MAxx"
+    ],
+    "DV3YhOjDXOl": [
+      "DLHgl9Rt35N"
+    ],
+    "DSkucNkjfmz": [
+      "DS2p03qDSAs"
+    ]
+  },
+  "featured": [
+    "DdGk2B0jVI5",
+    "DV3YhOjDXOl",
+    "DUn3qxDDWHd",
+    "DVZCLJqjcZZ",
+    "DVwRfEnDcdD",
+    "DQwp404DTN-",
+    "DUYwj0mjej2",
+    "DRfDaAhiMv9",
+    "DRkQJW4CAWF",
+    "DSkucNkjfmz",
+    "DUjA_vzDZiz",
+    "DSVHV6DiAE_"
+  ],
+  "videos": [
+    "DUn3qxDDWHd",
+    "DRfDaAhiMv9",
+    "DRkQJW4CAWF",
+    "DSkucNkjfmz",
+    "DV3YhOjDXOl",
+    "DadOmEHt9vK",
+    "Da0acyBNn4d",
+    "DXezBLcDem1",
+    "DXjTN_pjWLg",
+    "DYNSO8Mt-hQ",
+    "DA8vsVmo3wo",
+    "DVgNcrZCEth",
+    "DZIZyJNNDRO"
+  ],
+  "hidden": [],
+  "vehicleAliases": {
+    "AUDI A6": "Audi A6",
+    "Audi А6": "Audi A6",
+    "Audi А3": "Audi A3",
+    "AUDI E-TRON": "Audi e-tron",
+    "Audi E-tron": "Audi e-tron",
+    "AUDI E-TRON GT": "Audi e-tron GT",
+    "AUDI Q3": "Audi Q3",
+    "Audi Q8": "Audi Q8",
+    "Audi Q8 E-Tron": "Audi Q8 e-tron",
+    "Audi RS Q8": "Audi RS Q8",
+    "AUDI RSQ8": "Audi RS Q8",
+    "Audi RSQ8": "Audi RS Q8",
+    "Audi RS3": "Audi RS 3",
+    "Audi RS7": "Audi RS 7",
+    "AUDI S5": "Audi S5",
+    "AUSI S5": "Audi S5",
+    "AUDI S6": "Audi S6",
+    "Audi S7": "Audi S7",
+    "AUDI S7": "Audi S7",
+    "AUDI SQ7": "Audi SQ7",
+    "AUDI SQ8": "Audi SQ8",
+    "Bentley": "Bentley",
+    "BMW 2": "BMW 2 Series",
+    "BMW 3": "BMW 3 Series",
+    "BMW 4": "BMW 4 Series",
+    "BMW 5 G60": "BMW 5 Series (G60)",
+    "BMW 7": "BMW 7 Series",
+    "BMW 760LI": "BMW 760Li",
+    "BMW E36 Drift": "BMW E36",
+    "BMW I7": "BMW i7",
+    "BMW i7": "BMW i7",
+    "BMW I8": "BMW i8",
+    "BMW iX": "BMW iX",
+    "BMW M4": "BMW M4",
+    "BMW M8": "BMW M8",
+    "BMW S 1000RR": "BMW S 1000 RR",
+    "BMW X3": "BMW X3",
+    "BMW X4": "BMW X4",
+    "BMW X5": "BMW X5",
+    "BMW X6": "BMW X6",
+    "BMW X6M": "BMW X6 M",
+    "BMW X7": "BMW X7",
+    "BMW XM": "BMW XM",
+    "BYD HAN": "BYD Han",
+    "CHEVROLET CORVETTE": "Chevrolet Corvette",
+    "DENZA N8L": "Denza N8L",
+    "DENZA Z9": "Denza Z9",
+    "Dodge Challenger": "Dodge Challenger",
+    "Ferrari 812 Superfast": "Ferrari 812 Superfast",
+    "Ferrari Scaglietti": "Ferrari Scaglietti",
+    "FORD EXPEDITION": "Ford Expedition",
+    "FORD F-150": "Ford F-150",
+    "Honda E:NP1": "Honda e:NP1",
+    "Hyundai Tucson": "Hyundai Tucson",
+    "Land Cruiser 300": "Toyota Land Cruiser 300",
+    "Land Rover Range Rover": "Range Rover",
+    "LEXUS ES": "Lexus ES",
+    "LEXUS LX": "Lexus LX",
+    "Lexus LX": "Lexus LX",
+    "Lexus LX 500": "Lexus LX 500",
+    "Lexus LX600": "Lexus LX 600",
+    "Lexus NX": "Lexus NX",
+    "Lexus RX": "Lexus RX",
+    "LIXIANG L7": "Lixiang L7",
+    "Lixiang L9": "Lixiang L9",
+    "Mercedes AMG V8 biturbo": "Mercedes-AMG V8 Biturbo",
+    "Mercedes Benz": "Mercedes-Benz",
+    "Mercedes Benz C-class 2024": "Mercedes-Benz C-Class (2024)",
+    "Mercedes Benz Vito": "Mercedes-Benz Vito",
+    "Mercedes EQE": "Mercedes-Benz EQE",
+    "Mercedes G-class": "Mercedes-Benz G-Class",
+    "Mercedes GLC": "Mercedes-Benz GLC",
+    "Mercedes GLE": "Mercedes-Benz GLE",
+    "Mercedes Gle": "Mercedes-Benz GLE",
+    "Mercedes-Benz AMG 4 Matic": "Mercedes-AMG 4MATIC",
+    "Mercedes-Benz CLA": "Mercedes-Benz CLA",
+    "Mercedes-Benz EQS": "Mercedes-Benz EQS",
+    "Mercedes-Benz G-Class": "Mercedes-Benz G-Class",
+    "Mercedes-Benz G-class 2023": "Mercedes-Benz G-Class (2023)",
+    "Mercedes-Benz G-Wagen": "Mercedes-Benz G-Class",
+    "MERCEDES-BENZ G63": "Mercedes-AMG G 63",
+    "MERCEDES-BENZ G63 AMG": "Mercedes-AMG G 63",
+    "Mercedes-Benz GLE": "Mercedes-Benz GLE",
+    "Mercedes-Benz GLS": "Mercedes-Benz GLS",
+    "Mercedes-Benz S-class W223": "Mercedes-Benz S-Class (W223)",
+    "Mercedes-Benz SL500": "Mercedes-Benz SL 500",
+    "Mercedes-Benz W223": "Mercedes-Benz S-Class (W223)",
+    "MERCEDES-BENZ W223": "Mercedes-Benz S-Class (W223)",
+    "Mersedes-Benz S class": "Mercedes-Benz S-Class",
+    "Nissan Ariya": "Nissan Ariya",
+    "Porsche 911": "Porsche 911",
+    "PORSCHE 911": "Porsche 911",
+    "Porsche Cayenne": "Porsche Cayenne",
+    "Porsche Macan": "Porsche Macan",
+    "PORSCHE MACAN": "Porsche Macan",
+    "Porsche Macan S": "Porsche Macan S",
+    "Porsche Macan turbo": "Porsche Macan Turbo",
+    "Porsche Panamera": "Porsche Panamera",
+    "Porsche Panamera GTS": "Porsche Panamera GTS",
+    "PORSCHE TAYCAN": "Porsche Taycan",
+    "Range Rover": "Range Rover",
+    "Range Rover Autobiography": "Range Rover Autobiography",
+    "Range Rover Defender": "Land Rover Defender",
+    "Range Rover Velar": "Range Rover Velar",
+    "Range Rover Vogue": "Range Rover Vogue",
+    "RANGE ROVER VOGUE": "Range Rover Vogue",
+    "Range-Rover Sport SV": "Range Rover Sport SV",
+    "Seadoo 300": "Sea-Doo 300",
+    "Skoda enyaq": "Škoda Enyaq",
+    "Skoda Kodiaq": "Škoda Kodiaq",
+    "TESLA MODEL 3 “МРАМОР EDITION”": "Tesla Model 3",
+    "TESLA MODEL 3 “МРАМОР EDITION” @black_cars_odesa": "Tesla Model 3",
+    "TESLA model X": "Tesla Model X",
+    "Tesla S": "Tesla Model S",
+    "TOYOTA LAND CRUISER": "Toyota Land Cruiser",
+    "Toyota LAND CRUISER PRADO": "Toyota Land Cruiser Prado",
+    "Toyota Supra 1998 года": "Toyota Supra (1998)",
+    "Volkswagen Golf": "Volkswagen Golf",
+    "Volkswagen Passat": "Volkswagen Passat",
+    "VOLKSWAGEN TOUAREG": "Volkswagen Touareg",
+    "Volkswagen Touareg": "Volkswagen Touareg",
+    "Volvo EX30": "Volvo EX30",
+    "Yamaha": "Yamaha",
+    "ZEEKR 001": "Zeekr 001",
+    "Zeekr 001": "Zeekr 001",
+    "ZEEKR 8X": "Zeekr 8X"
+  },
+  "categories": [
+    {
+      "id": "ppf",
+      "uk": "Захисна плівка",
+      "en": "Paint protection film",
+      "match": [
+        "полиурет",
+        "поліурет",
+        "бронь",
+        "бронюв",
+        "бронир",
+        "антиграв",
+        "ppf",
+        "оклей",
+        "оклею",
+        "обклей",
+        "обклею",
+        "ламинац",
+        "ламінац",
+        "сатин"
+      ],
+      "exclude": [
+        "винил",
+        "вініл",
+        "тониров",
+        "тонув",
+        "аквапечат",
+        "наклей"
+      ]
+    },
+    {
+      "id": "color-change",
+      "uk": "Зміна кольору",
+      "en": "Colour change",
+      "match": [
+        "цветн",
+        "кольоров",
+        "замена цвета",
+        "заміна кольору",
+        "винил",
+        "вініл",
+        "two face",
+        "ливре",
+        "дизайн",
+        "два цвета",
+        "два кольор",
+        "мрамор",
+        "signal yellow",
+        "black plum",
+        "frozen black",
+        "золотий сатин"
+      ]
+    },
+    {
+      "id": "tint",
+      "uk": "Тонування",
+      "en": "Tinting",
+      "match": [
+        "тонир",
+        "тонув",
+        "тонов",
+        "атермал",
+        "євротон",
+        "евротон",
+        "растонир",
+        "перетон",
+        "притемнен",
+        "притимнен",
+        "затемнен",
+        "антидожд"
+      ]
+    },
+    {
+      "id": "ceramic",
+      "uk": "Кераміка",
+      "en": "Ceramic coating",
+      "match": [
+        "керамик",
+        "керамік",
+        "кварц"
+      ]
+    },
+    {
+      "id": "polish",
+      "uk": "Полірування та підготовка",
+      "en": "Polishing & paint prep",
+      "match": [
+        "полир",
+        "полір",
+        "коррекц",
+        "корекц",
+        "подготовк",
+        "підготовк",
+        "малярн",
+        "удаление вмятин",
+        "ремонт",
+        "восстановление фар",
+        "відновлення фар",
+        "демонтаж стар",
+        "демонтаж цветн",
+        "демонтаж винил"
+      ]
+    },
+    {
+      "id": "interior",
+      "uk": "Салон",
+      "en": "Interior",
+      "match": [
+        "салон",
+        "интерьер",
+        "інтер",
+        "монитор",
+        "моніт",
+        "защитн(ое|ых|ого|ые) стекл",
+        "захисн(е|ого|их) скл",
+        "химчист",
+        "хімчист",
+        "кожан",
+        "сиден",
+        "подлокотник",
+        "консол"
+      ]
+    },
+    {
+      "id": "soundproofing",
+      "uk": "Шумоізоляція",
+      "en": "Soundproofing",
+      "match": [
+        "шумо",
+        "обезшум",
+        "обесшум",
+        "вибро",
+        "вібро",
+        "антискрип"
+      ]
+    },
+    {
+      "id": "antichrome",
+      "uk": "Антихром",
+      "en": "Anti-chrome",
+      "match": [
+        "антихром"
+      ]
+    },
+    {
+      "id": "styling",
+      "uk": "Стайлінг та обладнання",
+      "en": "Styling & accessories",
+      "match": [
+        "обвес",
+        "обвіс",
+        "доводчик",
+        "покраск",
+        "фарбув",
+        "окрас",
+        "диск",
+        "выхлоп",
+        "вихлоп",
+        "сетк",
+        "сітк",
+        "рул",
+        "аудио",
+        "подсветк",
+        "підсвіт",
+        "звездное",
+        "шильд",
+        "карбон",
+        "наклей",
+        "брендув",
+        "аквапечат",
+        "решетк",
+        "решітк",
+        "зеркал",
+        "дзеркал",
+        "антивандал",
+        "электро-порог",
+        "стайлинг",
+        "замена лобового",
+        "заміна лобового",
+        "led",
+        "подкрас"
+      ]
+    }
+  ],
+  "summaries": {
+    "DdGk2B0jVI5": {
+      "uk": "Повна заміна кольору кузова, обклеювання рейлінгів і євротонування.",
+      "en": "Full colour change, roof-rail wrap and rear-glass tinting."
+    },
+    "DV3YhOjDXOl": {
+      "uk": "Кузов у кольоровому поліуретані Signal Yellow після повної підготовки, атермальне тонування двох передніх і лобового скла, фарбування супортів.",
+      "en": "Body wrapped in Signal Yellow colour PPF after full prep, athermal tint on the front side glass and windscreen, painted calipers."
+    },
+    "DUn3qxDDWHd": {
+      "uk": "Ліврея за власним дизайном студії під прозорим сатиновим поліуретаном, повна шумоізоляція й антискрип салону, доводчики дверей, унікальний обвіс і повне атермальне тонування.",
+      "en": "A livery designed in-house and laminated under clear satin PPF, full cabin soundproofing and anti-squeak, soft-close doors, a bespoke body kit and full athermal tint."
+    },
+    "DVZCLJqjcZZ": {
+      "uk": "Повне обклеювання кузова кольоровим поліуретаном з деталізацією глянцевих елементів, диски у притонованому поліуретані, бронь панорами та лобового, повне атермальне тонування.",
+      "en": "Full colour-PPF wrap with every gloss element detailed, wheels in tinted PPF, panoramic-roof and windscreen protection, full athermal tint."
+    },
+    "DVwRfEnDcdD": {
+      "uk": "Повна заміна кольору кольоровим поліуретаном, панорама у прозорому поліуретані, бронь лобового, атермальне тонування та захист усіх глянцевих елементів салону й моніторів.",
+      "en": "Full colour change in colour PPF, panoramic roof in clear PPF, windscreen protection, athermal tint, and every gloss interior element and screen protected."
+    },
+    "DQwp404DTN-": {
+      "uk": "Заміна кольору кольоровим матовим поліуретаном з повною деталізацією глянцю та оптики, тонування, антихром шильдиків, захист салону й моніторів.",
+      "en": "Colour change in matte colour PPF with all gloss trim and lights detailed, tinting, anti-chrome badges, interior gloss and screens protected."
+    },
+    "DUYwj0mjej2": {
+      "uk": "Кузов разом із дахом обклеєно кольоровим поліуретаном, усі стекла затоновано атермальною плівкою.",
+      "en": "Body and roof wrapped in colour PPF, all glass tinted with athermal film."
+    },
+    "DRfDaAhiMv9": {
+      "uk": "Повне обклеювання кузова з дахом у прозорий сатин із деталізацією глянцю та оптики, захист салону й монітора, атермальне тонування всіх стекол і панорами, бронь лобового.",
+      "en": "Full body and roof in clear satin PPF with gloss trim and lights detailed, interior and screen protection, athermal tint on all glass and the panoramic roof, windscreen protection."
+    },
+    "DRkQJW4CAWF": {
+      "uk": "Заміна кольору кузова та встановлення доводчиків дверей.",
+      "en": "Body colour change and soft-close door installation."
+    },
+    "DSkucNkjfmz": {
+      "uk": "Повне обклеювання в кольоровий поліуретан — «мармуровий» дизайн.",
+      "en": "Full wrap in colour PPF — the “marble” design."
+    },
+    "DUjA_vzDZiz": {
+      "uk": "Кузов у кольоровому поліуретані, антихром решітки, дзеркал, ручок і молдингів, додатковий обвіс на передньому й задньому бамперах.",
+      "en": "Body wrapped in colour PPF, anti-chrome grille, mirrors, handles and mouldings, additional front and rear bumper body kit."
+    },
+    "DSVHV6DiAE_": {
+      "uk": "Повне обклеювання у прозорий сатин з деталізацією елементів та оптики, захист декоративних елементів салону, повне атермальне тонування, бронь лобового.",
+      "en": "Full clear satin PPF with trim and lights detailed, interior decor protected, full athermal tint, windscreen protection."
+    }
+  }
+}

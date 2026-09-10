@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { projects } from "@/content/projects";
+import { workProjects } from "@/content/work";
 import { services } from "@/content/services";
 import { site } from "@/content/site";
 import { defaultLocale, localePath, locales, localeTag } from "@/lib/i18n";
@@ -18,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/about", priority: 0.6 },
     { path: "/contact", priority: 0.8 },
     ...services.map((service) => ({ path: `/services/${service.slug}`, priority: 0.8 })),
-    ...projects.map((project) => ({ path: `/portfolio/${project.slug}`, priority: 0.7 })),
+    ...workProjects.map((project) => ({ path: `/portfolio/${project.slug}`, priority: 0.7 })),
   ];
 
   return routes.flatMap((route) =>

@@ -11,7 +11,7 @@ import type { LocalizedText } from "@/lib/i18n";
 
 /** A photograph in `public/images/...`. Rendered with `fill`, so no dimensions needed. */
 export interface Photo {
-  /** Root-relative path, e.g. "/images/portfolio/bmw-m4/01.jpg" */
+  /** Root-relative path, e.g. "/images/services/ceramic/01.jpg" */
   src: string;
   /** Describe what is in the photo, in both languages, for screen readers and SEO. */
   alt: LocalizedText;
@@ -56,28 +56,66 @@ export interface Service {
   featured: boolean;
 }
 
-export interface BeforeAfterPair {
-  before: Photo;
-  after: Photo;
-  caption: LocalizedText;
+/* ── Our work ─────────────────────────────────────────────────────────── */
+
+/** A photo in `public/work/<slug>/`, with its pixel size for layout. */
+export interface WorkPhoto {
+  src: string;
+  width: number;
+  height: number;
+  /** Instagram shortCode the frame came from. */
+  source?: string;
 }
 
-export interface Project {
+/** A reel. `src` is null when the file has not been downloaded — the poster then links to Instagram. */
+export interface WorkVideo {
+  poster: WorkPhoto;
+  src: string | null;
+  sourceUrl: string;
+  source?: string;
+}
+
+/** One confirmed line of work, in both languages. */
+export interface WorkItem {
+  uk: string;
+  en: string;
+  /** Set by the importer when the glossary has no translation yet. */
+  untranslated?: boolean;
+}
+
+export interface WorkCategory {
+  id: string;
+  uk: string;
+  en: string;
+}
+
+/**
+ * A project in "Our work". Imported from Instagram by
+ * scripts/import-instagram.mjs; manual entries use the same shape.
+ */
+export interface WorkProject {
+  /** Stable id — the Instagram shortCode for imported projects. */
+  id: string;
   /** URL segment: /portfolio/<slug> and /en/portfolio/<slug> */
   slug: string;
-  title: LocalizedText;
-  /** Make and model — the same in both languages, so not translated. */
+  /** Make and model exactly as the studio wrote it. Not translated. */
   vehicle: string;
-  /** Optional model year or the year the work was done. */
-  year: string | null;
-  /** Slugs from services.ts — used to cross-link the project to its services. */
-  serviceSlugs: string[];
-  description: LocalizedText[];
-  cover: Photo | null;
-  photos: Photo[];
-  beforeAfter: BeforeAfterPair[];
-  /** Featured projects appear on the home page. */
+  /** ISO date of the source post. */
+  date: string;
+  /** The Instagram post the project comes from. */
+  sourceUrl: string;
+  /** All posts merged into this project. */
+  sources: string[];
+  /** Category ids from selection.json — drive the filters. */
+  categories: string[];
+  works: WorkItem[];
+  summary: LocalizedText | null;
+  cover: WorkPhoto | null;
+  photos: WorkPhoto[];
+  videos: WorkVideo[];
   featured: boolean;
+  order: number;
+  visible: boolean;
 }
 
 export interface Review {
