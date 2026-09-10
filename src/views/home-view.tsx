@@ -1,7 +1,6 @@
 import { Hero } from "@/components/sections/hero";
 import { ServiceCard } from "@/components/cards/service-card";
-import { ProjectCard } from "@/components/cards/project-card";
-import { BeforeAfter } from "@/components/sections/before-after";
+import { WorkCard } from "@/components/cards/work-card";
 import { ProcessSteps } from "@/components/sections/process-steps";
 import { ReviewsSection } from "@/components/sections/reviews-section";
 import { FaqSection } from "@/components/sections/faq-section";
@@ -12,13 +11,13 @@ import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/ui/section";
 import { SectionTitle } from "@/components/ui/section-title";
 import { differentiators, materials, process } from "@/content/about";
-import { featuredProjects, allBeforeAfterPairs } from "@/content/projects";
+import { featuredWork } from "@/content/work";
 import { featuredServices } from "@/content/services";
 import { ui } from "@/content/ui";
 import { localePath, t, type Locale } from "@/lib/i18n";
 
 export function HomeView({ locale }: { locale: Locale }) {
-  const comparison = allBeforeAfterPairs()[0];
+  const featured = featuredWork.slice(0, 6);
 
   return (
     <>
@@ -52,7 +51,7 @@ export function HomeView({ locale }: { locale: Locale }) {
         </Section>
       ) : null}
 
-      {featuredProjects.length > 0 ? (
+      {featured.length > 0 ? (
         <Section tone="raised" aria-labelledby="projects-title">
           <SectionTitle
             id="projects-title"
@@ -66,36 +65,12 @@ export function HomeView({ locale }: { locale: Locale }) {
             }
           />
           <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredProjects.map((project, index) => (
-              <Reveal as="li" key={project.slug} delay={index * 60}>
-                <ProjectCard project={project} locale={locale} priority={index < 3} />
+            {featured.map((project, index) => (
+              <Reveal as="li" key={project.slug} delay={index * 60} className="h-full">
+                <WorkCard project={project} locale={locale} priority={index < 3} className="h-full" />
               </Reveal>
             ))}
           </ul>
-        </Section>
-      ) : null}
-
-      {comparison ? (
-        <Section aria-labelledby="before-after-title">
-          <SectionTitle
-            id="before-after-title"
-            eyebrow={t(ui.sections.beforeAfterEyebrow, locale)}
-            title={t(ui.sections.beforeAfterTitle, locale)}
-            description={t(ui.labels.dragToCompare, locale)}
-          />
-          <div className="mt-14 max-w-4xl">
-            <BeforeAfter
-              before={comparison.pair.before}
-              after={comparison.pair.after}
-              beforeLabel={t(ui.labels.before, locale)}
-              afterLabel={t(ui.labels.after, locale)}
-              caption={t(comparison.pair.caption, locale)}
-              locale={locale}
-            />
-            <p className="mt-5 text-[15px] text-chalk-400">
-              {comparison.project.vehicle} — {t(comparison.pair.caption, locale)}
-            </p>
-          </div>
         </Section>
       ) : null}
 

@@ -3,7 +3,6 @@ import { ServiceCard } from "@/components/cards/service-card";
 import { CTASection } from "@/components/sections/cta-section";
 import { PageHeader } from "@/components/sections/page-header";
 import { PhotoGallery } from "@/components/sections/photo-gallery";
-import { ProjectCard } from "@/components/cards/project-card";
 import { ArrowIcon, Button } from "@/components/ui/button";
 import { Accordion } from "@/components/ui/accordion";
 import { Reveal } from "@/components/ui/reveal";
@@ -11,7 +10,6 @@ import { Section } from "@/components/ui/section";
 import { SectionTitle } from "@/components/ui/section-title";
 import { SpecList } from "@/components/ui/spec-list";
 import { getRelatedServices } from "@/content/services";
-import { getProjectsByService } from "@/content/projects";
 import { faq } from "@/content/faq";
 import { ui } from "@/content/ui";
 import { localePath, t, type Locale } from "@/lib/i18n";
@@ -19,7 +17,6 @@ import type { Service } from "@/types";
 
 export function ServiceDetailView({ service, locale }: { service: Service; locale: Locale }) {
   const related = getRelatedServices(service.slug);
-  const projects = getProjectsByService(service.slug);
   const price = service.price ? t(service.price, locale) : t(ui.labels.priceOnRequest, locale);
 
   const meta = [{ label: t(ui.labels.price, locale), value: price }];
@@ -128,29 +125,6 @@ export function ServiceDetailView({ service, locale }: { service: Service; local
             title={t(ui.sections.portfolioTitle, locale)}
           />
           <PhotoGallery photos={service.photos} locale={locale} className="mt-12" />
-        </Section>
-      ) : null}
-
-      {projects.length > 0 ? (
-        <Section tone="raised" aria-labelledby="service-projects-title">
-          <SectionTitle
-            id="service-projects-title"
-            eyebrow={t(ui.sections.portfolioEyebrow, locale)}
-            title={t(ui.labels.servicesPerformed, locale)}
-            aside={
-              <Button href={localePath("/portfolio", locale)} variant="outline">
-                {t(ui.actions.allProjects, locale)}
-                <ArrowIcon />
-              </Button>
-            }
-          />
-          <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.slice(0, 3).map((project) => (
-              <li key={project.slug}>
-                <ProjectCard project={project} locale={locale} />
-              </li>
-            ))}
-          </ul>
         </Section>
       ) : null}
 

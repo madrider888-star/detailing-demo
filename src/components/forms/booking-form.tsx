@@ -80,12 +80,19 @@ function Field({
 export function BookingForm({
   locale,
   defaultService = "",
+  defaultMessage = "",
 }: {
   locale: Locale;
   defaultService?: string;
+  /** Prefilled message, e.g. from a "discuss a similar project" button. */
+  defaultMessage?: string;
 }) {
   const formId = useId();
-  const [values, setValues] = useState<Values>({ ...emptyValues, service: defaultService });
+  const [values, setValues] = useState<Values>({
+    ...emptyValues,
+    service: defaultService,
+    message: defaultMessage,
+  });
   const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
@@ -201,7 +208,7 @@ export function BookingForm({
           <Button
             variant="ghost"
             onClick={() => {
-              setValues({ ...emptyValues, service: defaultService });
+              setValues({ ...emptyValues, service: defaultService, message: defaultMessage });
               setCopied(false);
               setSent(null);
             }}
