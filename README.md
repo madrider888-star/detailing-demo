@@ -224,11 +224,28 @@ through Tailwind utilities.
 - The logo is `src/components/layout/logo.tsx` — set `LOGO_SRC` to the logo file
   and it replaces the typographic wordmark.
 
-## Booking form → Telegram
+## Booking form → personal Telegram chat
 
-The form posts to `/api/lead`, which forwards each request as one message to
-the studio's Telegram. Two environment variables switch it on (Vercel →
-Project → Settings → Environment Variables, then redeploy):
+By default (`leads: "messenger"` in `site.ts`) the form opens the studio's own
+Telegram chat with the request already typed in — the client just presses Send.
+No bot, no server, nothing stored. The account is the first entry in
+`messaging` in `site.ts`:
+
+```ts
+messaging: [{ label: "Telegram", href: "https://t.me/<username>", icon: "telegram" }],
+bookingChannel: 0,
+```
+
+The same link drives the **Message** button in the phone action bar, the header
+menu and the contact page. WhatsApp links (`https://wa.me/<number>`) get the
+text prefilled too; Viber opens plain, with a copy button next to the text.
+
+### Optional: a bot instead
+
+Set `leads: "bot"` in `site.ts` and the form posts to `/api/lead`, which
+forwards each request as one message through a Telegram bot. Two environment
+variables switch it on (Vercel → Project → Settings → Environment Variables,
+then redeploy):
 
 | Variable             | Value                                                                 |
 | -------------------- | --------------------------------------------------------------------- |
@@ -241,9 +258,7 @@ To find the chat id: open the bot, press **Start**, then visit
 drops bots, and nothing is stored on the server.
 
 Until the variables are set the endpoint answers "not configured" and the form
-falls back to its original behaviour: it composes the enquiry as text and opens
-the studio's messenger or e-mail with it prefilled (`bookingChannel` in
-`site.ts`), with a copy-to-clipboard button.
+falls back to the personal-chat hand-off above.
 
 On phones a bar with **Call / Message / Book** stays pinned to the bottom of
 every page except the contact page.

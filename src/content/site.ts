@@ -81,22 +81,36 @@ export const site = {
   },
 
   /**
-   * TODO(client): messaging links used by the header, the contact page and the
-   * booking form hand-off. Add or remove entries freely.
+   * Messaging links used by the header, the contact page, the mobile action
+   * bar and the booking form hand-off. Add or remove entries freely.
    *
    *   { label: "Telegram",  href: "https://t.me/<username>",     icon: "telegram" }
    *   { label: "WhatsApp",  href: "https://wa.me/<number>",      icon: "whatsapp" }
    *   { label: "Viber",     href: "viber://chat?number=<number>", icon: "viber" }
+   *
+   * TODO(client): the studio's personal Telegram. Replace <username> with the
+   * account that should receive requests (the part after t.me/ in the
+   * profile link) and remove this note.
    */
   messaging: [] as MessagingLink[],
 
   /**
    * Where the booking form sends the completed request. The form builds a
-   * prefilled message and hands it to this channel — no server required.
+   * prefilled message and opens this channel with it — a personal chat, no
+   * bot and no server. Telegram and WhatsApp links get the text prefilled;
+   * other channels open plain, with the text ready to paste.
    * Set to the index of an entry in `messaging`, or leave null to fall back to
    * e-mail (and, if there is no e-mail either, to the phone number).
    */
-  bookingChannel: null as number | null,
+  bookingChannel: 0 as number | null,
+
+  /**
+   * How the booking form delivers requests:
+   *   "messenger" — opens the chat from `bookingChannel` with the text (default)
+   *   "bot"       — posts to /api/lead, which needs TELEGRAM_BOT_TOKEN and
+   *                 TELEGRAM_CHAT_ID in the hosting environment
+   */
+  leads: "messenger" as "messenger" | "bot",
 
   /* ── Home page hero ───────────────────────────────────────────────────── */
 

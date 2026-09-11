@@ -149,8 +149,12 @@ export function BookingForm({
   /** Opens the studio's channel with the enquiry prefilled. */
   function handoff(text: string) {
     const channel = bookingTarget();
-    if (channel?.href.startsWith("https://wa.me/")) {
-      window.open(`${channel.href}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+    // Telegram and WhatsApp accept the message as a query parameter, so the
+    // chat opens with the request already typed — the client only presses Send.
+    if (channel?.href.startsWith("https://wa.me/") || channel?.href.startsWith("https://t.me/")) {
+      const url = new URL(channel.href);
+      url.searchParams.set("text", text);
+      window.open(url.toString(), "_blank", "noopener");
       return;
     }
     if (site.email) {
@@ -197,12 +201,21 @@ export function BookingForm({
       return;
     }
 
+    const text = compose();
+
+    // Messenger hand-off must run synchronously inside the click, or the
+    // browser treats the new window as a pop-up and blocks it.
+    if (site.leads !== "bot") {
+      setSent(text);
+      handoff(text);
+      return;
+    }
+
     setSubmitting(true);
     setServerError(false);
     const ok = await deliver();
     setSubmitting(false);
 
-    const text = compose();
     if (ok) {
       setDelivered(true);
       setSent(text);
