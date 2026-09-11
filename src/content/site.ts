@@ -88,11 +88,12 @@ export const site = {
    *   { label: "WhatsApp",  href: "https://wa.me/<number>",      icon: "whatsapp" }
    *   { label: "Viber",     href: "viber://chat?number=<number>", icon: "viber" }
    *
-   * TODO(client): the studio's personal Telegram. Replace <username> with the
-   * account that should receive requests (the part after t.me/ in the
-   * profile link) and remove this note.
+   * The studio's Telegram is the account on its phone number: the link opens
+   * a direct chat. Only the label is shown on the site, never the link.
    */
-  messaging: [] as MessagingLink[],
+  messaging: [
+    { label: "Telegram", href: "https://t.me/+380737743158", icon: "telegram" },
+  ] as MessagingLink[],
 
   /**
    * Where the booking form sends the completed request. The form builds a
