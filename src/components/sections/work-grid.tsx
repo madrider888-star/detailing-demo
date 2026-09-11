@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ui } from "@/content/ui";
 import { WORK_PAGE_SIZE } from "@/content/work";
 import { t, type Locale } from "@/lib/i18n";
-import type { WorkCategory, WorkProject } from "@/types";
+import type { WorkCardData, WorkCategory } from "@/types";
 import { cn } from "@/lib/utils";
 
 function subscribeToHash(onChange: () => void) {
@@ -28,7 +28,7 @@ export function WorkGrid({
   locale,
   className,
 }: {
-  projects: WorkProject[];
+  projects: WorkCardData[];
   categories: WorkCategory[];
   locale: Locale;
   className?: string;

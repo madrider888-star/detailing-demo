@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowIcon, Button } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
+import { Magnetic } from "@/components/ui/magnetic";
 import { site } from "@/content/site";
 import { ui } from "@/content/ui";
 import { localePath, t, type Locale } from "@/lib/i18n";
@@ -44,10 +45,12 @@ export function CTASection({
           ) : null}
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Button href={localePath("/contact", locale)} size="lg">
-              {t(ui.actions.book, locale)}
-              <ArrowIcon />
-            </Button>
+            <Magnetic>
+              <Button href={localePath("/contact", locale)} size="lg" className="w-full sm:w-auto">
+                {t(ui.actions.book, locale)}
+                <ArrowIcon />
+              </Button>
+            </Magnetic>
             {phone ? (
               <Button external={`tel:${phone.replace(/\s/g, "")}`} variant="outline" size="lg">
                 <Icon name="phone" className="h-4 w-4" />

@@ -1,13 +1,19 @@
 import Image from "next/image";
+import { HeroVideo } from "@/components/sections/hero-video";
 import { ArrowIcon, Button } from "@/components/ui/button";
+import { Magnetic } from "@/components/ui/magnetic";
 import { Reveal } from "@/components/ui/reveal";
 import { site } from "@/content/site";
+import { workPhotoBlur } from "@/content/work";
 import { ui } from "@/content/ui";
 import { localePath, t, type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 export function Hero({ locale }: { locale: Locale }) {
   const media = site.hero.media;
+  const video = site.hero.video
+    ? { ...site.hero.video, poster: { ...site.hero.video.poster, blur: workPhotoBlur(site.hero.video.poster.src) } }
+    : null;
   const headline = t(site.hero.headline, locale);
 
   return (
@@ -15,11 +21,17 @@ export function Hero({ locale }: { locale: Locale }) {
       className={cn(
         "relative isolate flex flex-col justify-end overflow-hidden pt-32 pb-14 sm:pb-20",
         // Full-bleed height is only worth reserving once there is a photograph.
-        media ? "min-h-[92svh] lg:min-h-screen" : "min-h-[68svh]",
+        media || video ? "min-h-[92svh] lg:min-h-screen" : "min-h-[68svh]",
       )}
     >
       <div aria-hidden="true" className="absolute inset-0 -z-10">
-        {media ? (
+        {video ? (
+          <>
+            <HeroVideo video={video} locale={locale} />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/55 to-ink-950/65" />
+            <div className="absolute inset-0 bg-gradient-to-r from-ink-950/90 via-ink-950/40 to-ink-950/20" />
+          </>
+        ) : media ? (
           <>
             <Image
               src={media.src}
@@ -65,13 +77,17 @@ export function Hero({ locale }: { locale: Locale }) {
           </p>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Button href={localePath("/contact", locale)} size="lg">
-              {t(ui.actions.book, locale)}
-              <ArrowIcon />
-            </Button>
-            <Button href={localePath("/portfolio", locale)} variant="outline" size="lg">
-              {t(ui.actions.viewPortfolio, locale)}
-            </Button>
+            <Magnetic>
+              <Button href={localePath("/contact", locale)} size="lg" className="w-full sm:w-auto">
+                {t(ui.actions.book, locale)}
+                <ArrowIcon />
+              </Button>
+            </Magnetic>
+            <Magnetic>
+              <Button href={localePath("/portfolio", locale)} variant="outline" size="lg" className="w-full sm:w-auto">
+                {t(ui.actions.viewPortfolio, locale)}
+              </Button>
+            </Magnetic>
           </div>
         </Reveal>
 

@@ -1,7 +1,7 @@
 import manifest from "./work/projects.generated.json";
 import selection from "./work/selection.json";
 import { manualProjects } from "./projects";
-import type { WorkCategory, WorkProject } from "@/types";
+import type { WorkCardData, WorkCategory, WorkProject } from "@/types";
 
 /**
  * "Our work" — the single place the site reads projects from.
@@ -38,3 +38,35 @@ export function usedWorkCategories(projects: WorkProject[] = workProjects): Work
 
 /** How many projects the grid shows before "Show more". */
 export const WORK_PAGE_SIZE = 12;
+
+/** How many lines of work a tile previews. */
+export const CARD_PREVIEW_ITEMS = 3;
+
+/** Strips a project down to what a tile renders (no photo lists, no summaries). */
+export function toCardData(project: WorkProject): WorkCardData | null {
+  if (!project.cover) return null;
+  return {
+    id: project.id,
+    slug: project.slug,
+    vehicle: project.vehicle,
+    categories: project.categories,
+    works: project.works.slice(0, CARD_PREVIEW_ITEMS),
+    worksTotal: project.works.length,
+    cover: project.cover,
+    hasVideo: project.videos.length > 0,
+  };
+}
+
+export const workCards: WorkCardData[] = workProjects
+  .map(toCardData)
+  .filter((card): card is WorkCardData => card !== null);
+
+/** Looks up the blur preview of a photo that lives in public/work. */
+export function workPhotoBlur(src: string): string | undefined {
+  for (const project of workProjects) {
+    for (const photo of [project.cover, ...project.photos, ...project.videos.map((v) => v.poster)]) {
+      if (photo?.src === src) return photo.blur;
+    }
+  }
+  return undefined;
+}

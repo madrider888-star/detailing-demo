@@ -1,4 +1,4 @@
-import type { MessagingLink, NavItem, OpeningHours, Photo, StudioAddress } from "@/types";
+import type { HeroVideo, MessagingLink, NavItem, OpeningHours, Photo, StudioAddress } from "@/types";
 import type { LocalizedText } from "@/lib/i18n";
 
 /**
@@ -76,25 +76,42 @@ export const site = {
   instagram: {
     handle: "@thebox.detailing",
     url: "https://www.instagram.com/thebox.detailing/",
+    /** Opens a direct message to the studio's account. */
+    dm: "https://ig.me/m/thebox.detailing",
   },
 
   /**
-   * TODO(client): messaging links used by the header, the contact page and the
-   * booking form hand-off. Add or remove entries freely.
+   * Messaging links used by the header, the contact page, the mobile action
+   * bar and the booking form hand-off. Add or remove entries freely.
    *
    *   { label: "Telegram",  href: "https://t.me/<username>",     icon: "telegram" }
    *   { label: "WhatsApp",  href: "https://wa.me/<number>",      icon: "whatsapp" }
    *   { label: "Viber",     href: "viber://chat?number=<number>", icon: "viber" }
+   *
+   * The studio's Telegram is the account on its phone number: the link opens
+   * a direct chat. Only the label is shown on the site, never the link.
    */
-  messaging: [] as MessagingLink[],
+  messaging: [
+    { label: "Telegram", href: "https://t.me/+380737743158", icon: "telegram" },
+  ] as MessagingLink[],
 
   /**
    * Where the booking form sends the completed request. The form builds a
-   * prefilled message and hands it to this channel — no server required.
+   * prefilled message and opens this channel with it — a personal chat, no
+   * bot and no server. Telegram and WhatsApp links get the text prefilled;
+   * other channels open plain, with the text ready to paste.
    * Set to the index of an entry in `messaging`, or leave null to fall back to
    * e-mail (and, if there is no e-mail either, to the phone number).
    */
-  bookingChannel: null as number | null,
+  bookingChannel: 0 as number | null,
+
+  /**
+   * How the booking form delivers requests:
+   *   "messenger" — opens the chat from `bookingChannel` with the text (default)
+   *   "bot"       — posts to /api/lead, which needs TELEGRAM_BOT_TOKEN and
+   *                 TELEGRAM_CHAT_ID in the hosting environment
+   */
+  leads: "messenger" as "messenger" | "bot",
 
   /* ── Home page hero ───────────────────────────────────────────────────── */
 
@@ -115,6 +132,19 @@ export const site = {
      * Until then the hero renders as typography on black.
      */
     media: null as Photo | null,
+    /**
+     * Background clip behind the headline. Any short reel from public/work
+     * works; keep it under ~3 MB. Set to null for a still photograph (media)
+     * or plain black. The poster is shown until the clip plays and instead of
+     * it for visitors who prefer reduced motion.
+     */
+    video: {
+      src: "/work/bmw-x7-drfdaahimv9/video-drp4-eddqge.mp4",
+      poster: {
+        src: "/work/bmw-x7-drfdaahimv9/poster-drp4-eddqge.jpg",
+        alt: { uk: "BMW X7 у студії THE BOX", en: "BMW X7 at THE BOX studio" },
+      },
+    } as HeroVideo | null,
   },
 
   /* ── Facts ────────────────────────────────────────────────────────────── */

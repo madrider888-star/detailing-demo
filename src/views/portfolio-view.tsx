@@ -3,7 +3,7 @@ import { PageHeader } from "@/components/sections/page-header";
 import { WorkGrid } from "@/components/sections/work-grid";
 import { Section } from "@/components/ui/section";
 import { ui } from "@/content/ui";
-import { usedWorkCategories, workProjects } from "@/content/work";
+import { usedWorkCategories, workCards, workProjects } from "@/content/work";
 import { t, type Locale } from "@/lib/i18n";
 
 export function PortfolioView({ locale }: { locale: Locale }) {
@@ -17,13 +17,13 @@ export function PortfolioView({ locale }: { locale: Locale }) {
         title={t(ui.sections.portfolioTitle, locale)}
         media={
           first?.cover
-            ? { src: first.cover.src, alt: { uk: first.vehicle, en: first.vehicle } }
+            ? { src: first.cover.src, alt: { uk: first.vehicle, en: first.vehicle }, blur: first.cover.blur }
             : null
         }
       />
 
       <Section>
-        <WorkGrid projects={workProjects} categories={usedWorkCategories()} locale={locale} />
+        <WorkGrid projects={workCards} categories={usedWorkCategories()} locale={locale} />
       </Section>
 
       <CTASection locale={locale} />

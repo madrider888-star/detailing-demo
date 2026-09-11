@@ -1,0 +1,100 @@
+# Keeps "Our work" in step with Instagram without anyone touching the site.
+#
+# Every Monday morning (and on demand from the Actions tab) this job asks Apify
+# for the studio's most recent posts, runs the same importer a developer would
+# run locally, and commits whatever changed: new project folders under
+# public/work, the regenerated manifest and the posts archive. The commit
+# lands on main, which Vercel deploys automatically.
+#
+# Setup (once): Settings → Secrets and variables → Actions → New repository
+# secret, named APIFY_TOKEN, with the token from https://console.apify.com/account#/integrations
+# Optional variables (Settings → Variables): APIFY_ACTOR (default apify~instagram-scraper),
+# SYNC_POSTS (how many recent posts to fetch, default 30).
+#
+# Posts whose caption uses a phrase the glossary does not know yet still get
+# imported; the line is shown untranslated in both languages and listed in
+# src/content/work/import-report.json so it can be added to glossary.json.
+
+name: Sync Instagram
+
+on:
+  schedule:
+    - cron: "0 4 * * 1"
+  workflow_dispatch:
+    inputs:
+      posts:
+        description: "How many recent posts to fetch"
+        default: "30"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-instagram
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check that the Apify token is configured
+        id: config
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: |
+          if [ -z "$APIFY_TOKEN" ]; then
+            echo "APIFY_TOKEN secret is not set — nothing to do." >> "$GITHUB_STEP_SUMMARY"
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.config.outputs.ready == 'true'
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        if: steps.config.outputs.ready == 'true'
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        if: steps.config.outputs.ready == 'true'
+        run: npm ci
+
+      - name: Fetch recent posts from Apify
+        if: steps.config.outputs.ready == 'true'
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+          APIFY_ACTOR: ${{ vars.APIFY_ACTOR || 'apify~instagram-scraper' }}
+          SYNC_POSTS: ${{ github.event.inputs.posts || vars.SYNC_POSTS || '30' }}
+        run: |
+          curl --fail --silent --show-error \
+            -X POST "https://api.apify.com/v2/acts/${APIFY_ACTOR}/run-sync-get-dataset-items?token=${APIFY_TOKEN}&timeout=600&format=json&clean=true" \
+            -H "content-type: application/json" \
+            -d "{\"directUrls\":[\"https://www.instagram.com/thebox.detailing/\"],\"resultsType\":\"posts\",\"resultsLimit\":${SYNC_POSTS},\"addParentData\":false}" \
+            -o "$RUNNER_TEMP/instagram-export.json"
+          node -e "const d=require(process.env.RUNNER_TEMP+'/instagram-export.json');console.log(d.length+' posts fetched')"
+
+      - name: Import
+        if: steps.config.outputs.ready == 'true'
+        run: node scripts/import-instagram.mjs "$RUNNER_TEMP/instagram-export.json" --videos=selected --max-video-mb=40
+
+      - name: Commit and push changes
+        if: steps.config.outputs.ready == 'true'
+        run: |
+          git add public/work src/content/work
+          if git diff --cached --quiet; then
+            echo "No new posts — site already up to date." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git config user.name "instagram-sync[bot]"
+          git config user.email "instagram-sync@users.noreply.github.com"
+          git commit -m "Sync new projects from Instagram"
+          git push
+          echo "Imported new work from Instagram:" >> "$GITHUB_STEP_SUMMARY"
+          node -e "const r=require('./src/content/work/import-report.json');console.log(JSON.stringify(r.stats,null,2))" >> "$GITHUB_STEP_SUMMARY"

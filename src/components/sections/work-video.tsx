@@ -53,6 +53,8 @@ export function WorkVideoPlayer({
             src={video.poster.src}
             alt={alt}
             fill
+            placeholder={video.poster.blur ? "blur" : "empty"}
+            blurDataURL={video.poster.blur}
             sizes="(min-width: 1024px) 380px, 100vw"
             className="object-cover"
           />

@@ -1,6 +1,8 @@
-import type { ReactNode } from "react";
+import { ViewTransition, type ReactNode } from "react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { MobileActionBar } from "@/components/layout/mobile-action-bar";
+import { Cursor } from "@/components/ui/cursor";
 import { ui } from "@/content/ui";
 import { fontClassName } from "@/lib/fonts";
 import { localeTag, t, type Locale } from "@/lib/i18n";
@@ -25,8 +27,14 @@ export function SiteShell({ locale, children }: { locale: Locale; children: Reac
           {t(ui.nav.skipToContent, locale)}
         </a>
         <Header locale={locale} />
-        <main id="main">{children}</main>
+        {/* Route changes fade the old page out and ease the new one up; named
+            images inside (project covers) morph between the two instead. */}
+        <ViewTransition enter="page-in" exit="page-out" default="none">
+          <main id="main">{children}</main>
+        </ViewTransition>
         <Footer locale={locale} />
+        <MobileActionBar locale={locale} />
+        <Cursor />
         <script
           type="application/ld+json"
           // Built from the studio's own confirmed details in content/site.ts.

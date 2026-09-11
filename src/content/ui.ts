@@ -153,6 +153,11 @@ export const ui = {
       en: "We have opened your messenger with the request filled in — send it and we will reply shortly.",
     },
     successAgain: { uk: "Створити нову заявку", en: "Start another request" },
+    successSentTitle: { uk: "Заявку надіслано", en: "Request sent" },
+    successSentBody: {
+      uk: "Дякуємо! Ми отримали вашу заявку і зателефонуємо, щоб узгодити деталі.",
+      en: "Thank you! We have received your request and will call you to confirm the details.",
+    },
     required: { uk: "Обов'язкове поле", en: "Required" },
     errors: {
       name: {
@@ -170,7 +175,18 @@ export const ui = {
       make: { uk: "Вкажіть марку.", en: "Required." },
       model: { uk: "Вкажіть модель.", en: "Required." },
       service: { uk: "Оберіть послугу.", en: "Please choose a service." },
+      server: {
+        uk: "Не вдалося надіслати заявку. Спробуйте ще раз або напишіть нам напряму.",
+        en: "The request could not be sent. Try again or message us directly.",
+      },
     },
+  },
+
+  gallery: {
+    previous: { uk: "Попереднє фото", en: "Previous photo" },
+    next: { uk: "Наступне фото", en: "Next photo" },
+    zoomIn: { uk: "Збільшити", en: "Zoom in" },
+    zoomOut: { uk: "Зменшити", en: "Zoom out" },
   },
 
   work: {

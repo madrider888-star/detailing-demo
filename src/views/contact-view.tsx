@@ -1,6 +1,7 @@
 import { BookingForm } from "@/components/forms/booking-form";
 import { FaqSection } from "@/components/sections/faq-section";
 import { PageHeader } from "@/components/sections/page-header";
+import { ArrowIcon } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
 import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/ui/section";
@@ -134,10 +135,11 @@ export function ContactView({
                         href={channel.href}
                         target="_blank"
                         rel="noreferrer noopener"
-                        className="inline-flex items-center gap-2 text-[15px] text-chalk-200 transition-colors hover:text-accent"
+                        className="group inline-flex items-center gap-2 text-[15px] text-chalk-200 transition-colors hover:text-accent"
                       >
                         <Icon name={channel.icon} className="h-4 w-4" />
                         {channel.label}
+                        <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
                       </a>
                     </li>
                   ))}

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { WorkCard } from "@/components/cards/work-card";
 import { CTASection } from "@/components/sections/cta-section";
 import { PhotoGallery } from "@/components/sections/photo-gallery";
@@ -12,13 +13,17 @@ import { Section } from "@/components/ui/section";
 import { SectionTitle } from "@/components/ui/section-title";
 import { SpecList } from "@/components/ui/spec-list";
 import { ui } from "@/content/ui";
-import { workCategories, workProjects } from "@/content/work";
+import { toCardData, workCategories, workProjects } from "@/content/work";
 import { localePath, localeTag, t, type Locale } from "@/lib/i18n";
 import type { WorkProject } from "@/types";
 
 export function ProjectView({ project, locale }: { project: WorkProject; locale: Locale }) {
   const categories = workCategories.filter((category) => project.categories.includes(category.id));
-  const others = workProjects.filter((item) => item.slug !== project.slug).slice(0, 3);
+  const others = workProjects
+    .filter((item) => item.slug !== project.slug)
+    .slice(0, 3)
+    .map(toCardData)
+    .filter((card) => card !== null);
   const date = new Intl.DateTimeFormat(localeTag[locale], { month: "long", year: "numeric" }).format(
     new Date(project.date),
   );
@@ -92,14 +97,18 @@ export function ProjectView({ project, locale }: { project: WorkProject; locale:
         <div className="shell pt-10 sm:pt-14">
           <Reveal>
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-card border border-line sm:aspect-[16/10]">
-              <Image
-                src={project.cover.src}
-                alt={`${project.vehicle} — THE BOX Detailing`}
-                fill
-                priority
-                sizes="(min-width: 1280px) 1360px, 100vw"
-                className="object-cover"
-              />
+              <ViewTransition name={`work-cover-${project.id}`} share="morph" default="none">
+                <Image
+                  src={project.cover.src}
+                  alt={`${project.vehicle} — THE BOX Detailing`}
+                  fill
+                  priority
+                  placeholder={project.cover.blur ? "blur" : "empty"}
+                  blurDataURL={project.cover.blur}
+                  sizes="(min-width: 1280px) 1360px, 100vw"
+                  className="parallax-media object-cover"
+                />
+              </ViewTransition>
             </div>
           </Reveal>
         </div>
@@ -127,6 +136,9 @@ export function ProjectView({ project, locale }: { project: WorkProject; locale:
           <PhotoGallery
             photos={galleryPhotos.map((photo, index) => ({
               src: photo.src,
+              width: photo.width,
+              height: photo.height,
+              blur: photo.blur,
               alt: {
                 uk: `${project.vehicle} — фото ${index + 2}`,
                 en: `${project.vehicle} — photo ${index + 2}`,

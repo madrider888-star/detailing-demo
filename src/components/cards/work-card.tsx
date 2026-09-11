@@ -1,16 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { ArrowIcon } from "@/components/ui/button";
 import { ui } from "@/content/ui";
 import { localePath, t, type Locale } from "@/lib/i18n";
-import type { WorkProject } from "@/types";
+import type { WorkCardData } from "@/types";
 import { cn } from "@/lib/utils";
-
-const PREVIEW_ITEMS = 3;
 
 /**
  * Tile in "Our work": cover, vehicle, the first few confirmed jobs and a link.
- * The whole card is clickable through the title link.
+ * The whole card is clickable through the title link. The cover carries a
+ * view-transition name so it morphs into the project page's hero image.
  */
 export function WorkCard({
   project,
@@ -18,17 +18,13 @@ export function WorkCard({
   priority = false,
   className,
 }: {
-  project: WorkProject;
+  project: WorkCardData;
   locale: Locale;
   priority?: boolean;
   className?: string;
 }) {
-  if (!project.cover) return null;
-
   const href = localePath(`/portfolio/${project.slug}`, locale);
-  const preview = project.works.slice(0, PREVIEW_ITEMS);
-  const rest = project.works.length - preview.length;
-  const hasVideo = project.videos.length > 0;
+  const rest = project.worksTotal - project.works.length;
 
   return (
     <article
@@ -39,19 +35,23 @@ export function WorkCard({
       )}
     >
       <div className="relative aspect-[4/5] overflow-hidden">
-        <Image
-          src={project.cover.src}
-          alt={`${project.vehicle} — THE BOX Detailing`}
-          fill
-          priority={priority}
-          sizes="(min-width: 1024px) 420px, (min-width: 640px) 50vw, 100vw"
-          className="object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-105"
-        />
+        <ViewTransition name={`work-cover-${project.id}`} share="morph" default="none">
+          <Image
+            src={project.cover.src}
+            alt={`${project.vehicle} — THE BOX Detailing`}
+            fill
+            priority={priority}
+            placeholder={project.cover.blur ? "blur" : "empty"}
+            blurDataURL={project.cover.blur}
+            sizes="(min-width: 1024px) 420px, (min-width: 640px) 50vw, 100vw"
+            className="object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-105"
+          />
+        </ViewTransition>
         <div
           aria-hidden="true"
           className="absolute inset-0 bg-gradient-to-t from-ink-850 via-transparent to-transparent"
         />
-        {hasVideo ? (
+        {project.hasVideo ? (
           <span className="glass absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-button px-2.5 py-1 text-[10px] font-medium tracking-[0.18em] text-chalk-100 uppercase">
             <svg viewBox="0 0 16 16" aria-hidden="true" className="h-3 w-3 fill-current">
               <path d="M4 2.5v11l9-5.5-9-5.5Z" />
@@ -69,7 +69,7 @@ export function WorkCard({
         </h3>
 
         <ul className="mt-4 space-y-1.5 text-[13.5px] leading-snug text-chalk-400">
-          {preview.map((item) => (
+          {project.works.map((item) => (
             <li key={item.en} className="flex gap-2">
               <span aria-hidden="true" className="mt-[9px] h-px w-3 shrink-0 bg-accent-muted" />
               <span className="line-clamp-2">{item[locale]}</span>

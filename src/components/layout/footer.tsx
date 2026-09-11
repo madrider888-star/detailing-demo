@@ -10,7 +10,7 @@ export function Footer({ locale }: { locale: Locale }) {
   const address = site.address;
 
   return (
-    <footer className="border-t border-line bg-ink-950">
+    <footer className="border-t border-line bg-ink-950 pb-14 lg:pb-0">
       <div className="shell py-16 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr_1fr] lg:gap-16">
           <div>
