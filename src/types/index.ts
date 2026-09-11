@@ -118,6 +118,22 @@ export interface WorkCardData {
 }
 
 /**
+ * One service in the catalogue on /services, built by
+ * scripts/build-service-catalog.mjs from the work lines of every project.
+ */
+export interface CatalogService {
+  id: string;
+  uk: string;
+  en: string;
+  /** How many published projects include this service. */
+  projects: number;
+}
+
+export interface ServiceGroup extends WorkCategory {
+  services: CatalogService[];
+}
+
+/**
  * A project in "Our work". Imported from Instagram by
  * scripts/import-instagram.mjs; manual entries use the same shape.
  */

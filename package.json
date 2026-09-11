@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "import:instagram": "node scripts/import-instagram.mjs"
+    "import:instagram": "node scripts/import-instagram.mjs",
+    "work:services": "node scripts/build-service-catalog.mjs"
   },
   "dependencies": {
     "next": "16.3.4",

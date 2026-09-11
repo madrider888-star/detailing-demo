@@ -60,6 +60,33 @@ export function t<T>(value: Localized<T>, locale: Locale): T {
 }
 
 /** Picks one language, tolerating content that has not been filled in yet. */
-export function maybeT<T>(value: Localized<T> | null | undefined, locale: Locale): T | null {
+export function maybeT<T>(
+  value: Localized<T> | null | undefined,
+  locale: Locale,
+): T | null {
   return value ? value[locale] : null;
+}
+
+/**
+ * "12 робіт" / "12 projects" — picks the right plural form for a count.
+ * `forms` is [one, few, many] for Ukrainian and [one, many] for English.
+ */
+export function countLabel(
+  n: number,
+  forms: Localized<readonly string[]>,
+  locale: Locale,
+): string {
+  const words = forms[locale];
+  if (locale === "uk") {
+    const mod10 = n % 10;
+    const mod100 = n % 100;
+    const form =
+      mod10 === 1 && mod100 !== 11
+        ? words[0]
+        : mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)
+          ? words[1]
+          : words[2];
+    return `${n} ${form}`;
+  }
+  return `${n} ${n === 1 ? words[0] : words[words.length - 1]}`;
 }
