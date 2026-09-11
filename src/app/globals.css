@@ -123,6 +123,102 @@
   }
 }
 
+/* ── Motion: route transitions ─────────────────────────────────────────────
+   React's <ViewTransition> assigns these classes; the browser animates the
+   snapshots. Without View Transitions support the site simply cuts. */
+
+::view-transition-group(.morph) {
+  animation-duration: 560ms;
+  animation-timing-function: var(--ease-out-expo);
+}
+::view-transition-image-pair(.morph) {
+  animation-name: via-blur;
+}
+@keyframes via-blur {
+  30% {
+    filter: blur(3px);
+  }
+}
+::view-transition-old(.page-out) {
+  animation: page-out 200ms ease-in both;
+}
+::view-transition-new(.page-in) {
+  animation: page-in 600ms var(--ease-out-expo) both;
+}
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+@keyframes page-out {
+  to {
+    opacity: 0;
+  }
+}
+
+/* ── Motion: scroll parallax ───────────────────────────────────────────────
+   Pure CSS scroll-driven animation: a large photograph drifts slowly while its
+   frame scrolls through the viewport. Browsers without animation-timeline
+   show a static image. */
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .parallax-media {
+      animation: parallax-drift linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+  }
+}
+@keyframes parallax-drift {
+  from {
+    transform: translate3d(0, -7%, 0) scale(1.15);
+  }
+  to {
+    transform: translate3d(0, 7%, 0) scale(1.15);
+  }
+}
+
+/* ── Motion: pointer ring ───────────────────────────────────────────────────
+   A lagging ring that follows a mouse pointer and opens up over anything
+   clickable. Only mounted for fine pointers; the native cursor stays. */
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1px solid color-mix(in oklab, var(--color-accent) 75%, transparent);
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: difference;
+  transition:
+    width 0.4s var(--ease-out-expo),
+    height 0.4s var(--ease-out-expo),
+    margin 0.4s var(--ease-out-expo),
+    opacity 0.3s ease,
+    background-color 0.3s ease;
+}
+.cursor-ring[data-visible="true"] {
+  opacity: 1;
+}
+.cursor-ring[data-active="true"] {
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  background-color: color-mix(in oklab, var(--color-accent) 12%, transparent);
+}
+.cursor-ring[data-pressed="true"] {
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+}
+
 /* ── Utilities ─────────────────────────────────────────────────────────── */
 
 /** Page gutter. Every section uses it so columns line up across routes. */

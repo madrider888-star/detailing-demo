@@ -46,8 +46,10 @@ export function PageHeader({
             alt=""
             fill
             priority
+            placeholder={media.blur ? "blur" : "empty"}
+            blurDataURL={media.blur}
             sizes="100vw"
-            className="object-cover opacity-40"
+            className="parallax-media object-cover opacity-40"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-ink-950 via-ink-950/80 to-ink-950" />
         </div>

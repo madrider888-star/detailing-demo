@@ -22,6 +22,11 @@
  * Re-running is safe: the manifest is rebuilt from scratch every time and
  * files that already exist on disk are not downloaded again, so nothing is
  * ever duplicated. Delete a project folder to force a fresh download.
+ *
+ * INCREMENTAL  Every imported post is remembered in
+ *        src/content/work/posts.archive.json (captions and dates only — no
+ *        signed URLs). A later export that contains only recent posts is merged
+ *        over that archive, which is what the weekly GitHub Action relies on.
  */
 import { createWriteStream, existsSync, mkdirSync, readFileSync, statSync, writeFileSync, unlinkSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
@@ -160,6 +165,7 @@ async function loadSharp() {
 async function importPhoto(url, dest, failures, label) {
   if (existsSync(dest)) return await readSize(dest);
   if (SKIP_MEDIA) return null;
+  if (!url) { failures.push(`${label}: not on disk and the export has no URL for it (re-export this post)`); return null; }
   const raw = `${dest}.orig`;
   try {
     await fetchToFile(url, raw);
@@ -180,16 +186,20 @@ async function importPhoto(url, dest, failures, label) {
   }
 }
 
+/** Pixel size plus a 16px blurred preview (a few hundred bytes) for blur-up loading. */
 async function readSize(file) {
   const s = await loadSharp();
   if (!s) return { width: 0, height: 0 };
-  const meta = await s(file).metadata();
-  return { width: meta.width || 0, height: meta.height || 0 };
+  const image = s(file);
+  const meta = await image.metadata();
+  const preview = await image.clone().resize({ width: 16, fit: "inside" }).webp({ quality: 40 }).toBuffer();
+  return { width: meta.width || 0, height: meta.height || 0, blur: `data:image/webp;base64,${preview.toString("base64")}` };
 }
 
 async function importVideo(url, dest, failures, label) {
   if (existsSync(dest)) return true;
   if (SKIP_MEDIA) return false;
+  if (!url) { failures.push(`${label}: not on disk and the export has no URL for it (re-export this post)`); return false; }
   try {
     await fetchToFile(url, dest, { maxBytes: MAX_VIDEO_BYTES });
     return true;
@@ -202,15 +212,34 @@ async function importVideo(url, dest, failures, label) {
 /* ─────────────────────────────────────────────────────────── main */
 
 const exportData = readJson(resolve(inputPath));
+
+// Posts already imported are remembered in posts.archive.json WITHOUT their
+// signed media URLs (their files are on disk). A partial export — the weekly
+// sync only fetches recent posts — is merged over the archive, so older
+// projects never disappear and the archive keeps the caption of every post.
+const ARCHIVE_PATH = join(WORK_DIR, "posts.archive.json");
+const archive = existsSync(ARCHIVE_PATH) ? readJson(ARCHIVE_PATH) : [];
 const seen = new Set();
 const posts = [];
-for (const item of exportData) {
+for (const item of [...exportData, ...archive]) {
   if (item.ownerUsername !== OWNER) continue;
   if (!item.shortCode || seen.has(item.shortCode)) continue;
   seen.add(item.shortCode);
   posts.push(item);
 }
 const byCode = new Map(posts.map((p) => [p.shortCode, p]));
+const stripUrls = (post) => ({
+  shortCode: post.shortCode,
+  ownerUsername: post.ownerUsername,
+  type: post.type,
+  url: post.url,
+  timestamp: post.timestamp,
+  caption: post.caption ?? "",
+  ...(post.type === "Sidecar"
+    ? { childPosts: (post.childPosts?.length ? post.childPosts : post.images || []).map(() => ({ displayUrl: null })) }
+    : {}),
+  ...(post.type === "Video" ? { displayUrl: null, videoUrl: post.videoUrl ? null : undefined, hasVideo: Boolean(post.videoUrl) } : {}),
+});
 
 const excluded = selection.exclude || {};
 const mergedInto = new Map();
@@ -273,7 +302,7 @@ for (const post of posts.sort((a, b) => (a.timestamp < b.timestamp ? 1 : -1))) {
       const poster = size ? { src: `/work/${slug}/${posterFile}`, ...size, source: src.shortCode } : null;
       const wantVideo = VIDEO_MODE === "all" || (VIDEO_MODE === "selected" && videoWanted.has(code));
       let videoSrc = null;
-      if (wantVideo && src.videoUrl) {
+      if (wantVideo && (src.videoUrl || src.hasVideo)) {
         const videoFile = `video-${src.shortCode.toLowerCase()}.mp4`;
         if (await importVideo(src.videoUrl, join(dir, videoFile), mediaFailures, `${slug}/${videoFile}`)) videoSrc = `/work/${slug}/${videoFile}`;
       }
@@ -323,6 +352,7 @@ const manifest = {
   projects,
 };
 writeFileSync(join(WORK_DIR, "projects.generated.json"), JSON.stringify(manifest, null, 2) + "\n");
+writeFileSync(ARCHIVE_PATH, JSON.stringify(posts.map(stripUrls).sort((a, b) => (a.timestamp < b.timestamp ? 1 : -1)), null, 1) + "\n");
 writeFileSync(join(WORK_DIR, "import-report.json"), JSON.stringify({
   generatedAt: manifest.generatedAt,
   stats: manifest.stats,

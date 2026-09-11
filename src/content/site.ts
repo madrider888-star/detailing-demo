@@ -1,4 +1,4 @@
-import type { MessagingLink, NavItem, OpeningHours, Photo, StudioAddress } from "@/types";
+import type { HeroVideo, MessagingLink, NavItem, OpeningHours, Photo, StudioAddress } from "@/types";
 import type { LocalizedText } from "@/lib/i18n";
 
 /**
@@ -76,6 +76,8 @@ export const site = {
   instagram: {
     handle: "@thebox.detailing",
     url: "https://www.instagram.com/thebox.detailing/",
+    /** Opens a direct message to the studio's account. */
+    dm: "https://ig.me/m/thebox.detailing",
   },
 
   /**
@@ -115,6 +117,19 @@ export const site = {
      * Until then the hero renders as typography on black.
      */
     media: null as Photo | null,
+    /**
+     * Background clip behind the headline. Any short reel from public/work
+     * works; keep it under ~3 MB. Set to null for a still photograph (media)
+     * or plain black. The poster is shown until the clip plays and instead of
+     * it for visitors who prefer reduced motion.
+     */
+    video: {
+      src: "/work/bmw-x7-drfdaahimv9/video-drp4-eddqge.mp4",
+      poster: {
+        src: "/work/bmw-x7-drfdaahimv9/poster-drp4-eddqge.jpg",
+        alt: { uk: "BMW X7 у студії THE BOX", en: "BMW X7 at THE BOX studio" },
+      },
+    } as HeroVideo | null,
   },
 
   /* ── Facts ────────────────────────────────────────────────────────────── */

@@ -11,13 +11,13 @@ import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/ui/section";
 import { SectionTitle } from "@/components/ui/section-title";
 import { differentiators, materials, process } from "@/content/about";
-import { featuredWork } from "@/content/work";
+import { featuredWork, toCardData } from "@/content/work";
 import { featuredServices } from "@/content/services";
 import { ui } from "@/content/ui";
 import { localePath, t, type Locale } from "@/lib/i18n";
 
 export function HomeView({ locale }: { locale: Locale }) {
-  const featured = featuredWork.slice(0, 6);
+  const featured = featuredWork.slice(0, 6).map(toCardData).filter((card) => card !== null);
 
   return (
     <>

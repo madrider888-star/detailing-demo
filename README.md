@@ -151,6 +151,39 @@ import again. Projects that were never on Instagram go in `src/content/projects.
 Options: `--skip-media` (rebuild the list only), `--videos=all|selected|none`,
 `--max-video-mb=40`.
 
+Every imported post is remembered in `src/content/work/posts.archive.json`
+(captions and dates only — no media links), so an export that contains just the
+latest posts is merged over what is already there and older projects never
+disappear. The importer also stores a tiny blurred preview of every photo in the
+manifest; the site shows it while the real photo loads.
+
+### Automatic weekly sync
+
+`.github/workflows/sync-instagram.yml` fetches the studio's newest posts from
+Apify every Monday (or on demand from the **Actions** tab), runs the importer
+and commits the result to `main`, which Vercel deploys. To switch it on add one
+repository secret: **Settings → Secrets and variables → Actions → New
+repository secret** named `APIFY_TOKEN` (from
+<https://console.apify.com/account#/integrations>). Optional variables:
+`APIFY_ACTOR` (default `apify~instagram-scraper`) and `SYNC_POSTS` (default 30).
+
+Downloading media from a machine behind a restricted network needs these hosts
+allowed: `*.cdninstagram.com`, `www.instagram.com`, `*.fbcdn.net` and
+`*.fna.fbcdn.net`.
+
+## Motion
+
+- **Hero clip** — `site.hero.video` in `site.ts` names a short reel from
+  `public/work`; the poster paints first, the clip fades in once it plays and is
+  never loaded for visitors who prefer reduced motion or data saving.
+- **Route transitions** — pages fade/ease between each other and a project's
+  cover morphs from its tile into the project page (React `<ViewTransition>`,
+  CSS in `globals.css`). Browsers without the API simply cut.
+- **Blur-up photos**, a **scroll parallax** on large photographs (pure CSS),
+  **magnetic** primary buttons and a **pointer ring** on mouse devices. All of
+  it respects `prefers-reduced-motion`.
+- **Lightbox** — swipe, arrow keys, counter, thumbnail strip and tap-to-zoom.
+
 ## Design system
 
 All visual decisions live in **`src/app/globals.css`**. Colours, typography,
@@ -166,20 +199,41 @@ through Tailwind utilities.
 - The logo is `src/components/layout/logo.tsx` — set `LOGO_SRC` to the logo file
   and it replaces the typographic wordmark.
 
-## Booking form
+## Booking form → Telegram
 
-There is no server. The form validates, composes the enquiry as text and hands it
-to whichever channel the studio uses (WhatsApp link, or e-mail), with a
-copy-to-clipboard fallback. Configure the target with `bookingChannel` in
-`site.ts`. To send through a backend later, replace the `handoff()` function in
-`src/components/forms/booking-form.tsx` — nothing else changes.
+The form posts to `/api/lead`, which forwards each request as one message to
+the studio's Telegram. Two environment variables switch it on (Vercel →
+Project → Settings → Environment Variables, then redeploy):
+
+| Variable             | Value                                                                 |
+| -------------------- | --------------------------------------------------------------------- |
+| `TELEGRAM_BOT_TOKEN` | Token of a bot created with [@BotFather](https://t.me/BotFather)      |
+| `TELEGRAM_CHAT_ID`   | Id of the chat that should receive requests (the owner's chat or a group the bot was added to) |
+
+To find the chat id: open the bot, press **Start**, then visit
+`https://api.telegram.org/bot<TOKEN>/getUpdates` — the number under
+`message.chat.id` is it. Requests are rate-limited per IP, a honeypot field
+drops bots, and nothing is stored on the server.
+
+Until the variables are set the endpoint answers "not configured" and the form
+falls back to its original behaviour: it composes the enquiry as text and opens
+the studio's messenger or e-mail with it prefilled (`bookingChannel` in
+`site.ts`), with a copy-to-clipboard button.
+
+On phones a bar with **Call / Message / Book** stays pinned to the bottom of
+every page except the contact page.
 
 ## SEO
 
 Per-page metadata and canonical URLs, `hreflang` pairing between the Ukrainian
-and English versions of every page, Open Graph and Twitter cards, a generated PNG
-social image, a sitemap covering both languages, `robots.txt`, and `LocalBusiness`
-structured data built only from confirmed details.
+and English versions of every page, Open Graph and Twitter cards, a sitemap
+covering both languages, `robots.txt`, and `LocalBusiness` structured data built
+only from confirmed details.
+
+Social cards are photographic: every project page gets its own 1200×630 image
+built from the cover photo, the car's name and the first lines of work
+(`src/lib/og.tsx`), so links shared in messengers preview like a magazine
+cover. The home page card uses the hero clip's poster.
 
 There is deliberately **no `aggregateRating`** in the structured data. Publishing
 invented review scores breaches Google's guidelines and risks a manual penalty;
