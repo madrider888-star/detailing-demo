@@ -95,6 +95,20 @@ export function Header({ locale }: { locale: Locale }) {
               {site.phone}
             </a>
           ) : null}
+          {/* Messenger icons next to the phone: one tap opens a direct chat. */}
+          {site.messaging.map((channel) => (
+            <a
+              key={channel.href}
+              href={channel.href}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label={channel.label}
+              title={channel.label}
+              className="-mx-2 grid h-10 w-10 place-items-center rounded-button border border-line text-chalk-100 transition-colors hover:border-accent hover:text-accent"
+            >
+              <Icon name={channel.icon} className="h-[18px] w-[18px]" />
+            </a>
+          ))}
           <Button href={localePath("/contact", locale)} size="sm">
             {t(ui.actions.book, locale)}
           </Button>
@@ -102,6 +116,17 @@ export function Header({ locale }: { locale: Locale }) {
 
         <div className="flex items-center gap-3 lg:hidden">
           <LanguageSwitcher locale={locale} />
+          {site.messaging[0] ? (
+            <a
+              href={site.messaging[0].href}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label={site.messaging[0].label}
+              className="grid h-11 w-11 place-items-center text-chalk-100 transition-colors hover:text-accent"
+            >
+              <Icon name={site.messaging[0].icon} className="h-[22px] w-[22px]" />
+            </a>
+          ) : null}
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
