@@ -2,6 +2,7 @@ import { ViewTransition, type ReactNode } from "react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { MobileActionBar } from "@/components/layout/mobile-action-bar";
+import { LogoIntro } from "@/components/brand/logo-intro";
 import { Cursor } from "@/components/ui/cursor";
 import { ui } from "@/content/ui";
 import { fontClassName } from "@/lib/fonts";
@@ -18,7 +19,7 @@ export function SiteShell({ locale, children }: { locale: Locale; children: Reac
       <body className="min-h-screen antialiased">
         <noscript>
           {/* Scroll-reveal elements start hidden; without JS they must not stay that way. */}
-          <style>{"[data-reveal]{opacity:1!important;transform:none!important}"}</style>
+          <style>{"[data-reveal]{opacity:1!important;transform:none!important}[data-logo-intro]{display:none}"}</style>
         </noscript>
         <a
           href="#main"
@@ -26,6 +27,7 @@ export function SiteShell({ locale, children }: { locale: Locale; children: Reac
         >
           {t(ui.nav.skipToContent, locale)}
         </a>
+        <LogoIntro />
         <Header locale={locale} />
         {/* Route changes fade the old page out and ease the new one up; named
             images inside (project covers) morph between the two instead. */}
