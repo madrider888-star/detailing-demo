@@ -198,6 +198,12 @@ allowed: `*.cdninstagram.com`, `www.instagram.com`, `*.fbcdn.net` and
 
 ## Motion
 
+- **Logo intro** — once per browser session the wordmark is drawn along its
+  outlines on black, fills in, catches a highlight and glides into its place
+  above the headline (GSAP, `src/components/brand/logo-intro.tsx`). A tap skips
+  it; visitors who prefer reduced motion never see it. The vector wordmark
+  itself lives in `src/components/brand/logo-paths.ts` (traced from the PNG)
+  and renders through `<LogoMark>` wherever the logo is needed.
 - **Hero clip** — `site.hero.video` in `site.ts` names a short reel from
   `public/work`; the poster paints first, the clip fades in once it plays and is
   never loaded for visitors who prefer reduced motion or data saving.

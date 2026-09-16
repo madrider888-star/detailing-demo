@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { LogoMark } from "@/components/brand/logo-mark";
 import { HeroVideo } from "@/components/sections/hero-video";
 import { ArrowIcon, Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/ui/magnetic";
@@ -50,15 +51,13 @@ export function Hero({ locale }: { locale: Locale }) {
       </div>
 
       <div className="shell">
-        {/* Brand mark. Outside <Reveal> on purpose: it must not fade or move. */}
+        {/* Brand mark. Outside <Reveal> on purpose: the intro animation lands
+            the logo exactly here, so it must not fade or move on its own. */}
         <div className="mb-8 flex justify-center sm:mb-10">
-          <Image
-            src="/images/brand/logo-mark.png"
-            alt={site.name}
-            width={634}
-            height={448}
-            priority
-            className="h-auto w-[120px] select-none sm:w-[165px]"
+          <LogoMark
+            title={site.name}
+            data-hero-logo=""
+            className="w-[120px] select-none text-chalk-50 sm:w-[165px]"
           />
         </div>
 
