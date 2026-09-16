@@ -22,7 +22,7 @@ export function LogoMark({
     >
       {title ? <title>{title}</title> : null}
       {LOGO_LETTERS.map((letter) => (
-        <path key={letter.id} d={letter.d} data-letter={letter.id} />
+        <path key={letter.id} d={letter.d} data-letter={letter.id} fillRule="evenodd" />
       ))}
     </svg>
   );
