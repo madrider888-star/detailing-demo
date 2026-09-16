@@ -134,7 +134,7 @@ export function LogoIntro() {
           </linearGradient>
           <clipPath id="logo-intro-clip">
             {LOGO_LETTERS.map((letter) => (
-              <path key={letter.id} d={letter.d} />
+              <path key={letter.id} d={letter.d} clipRule="evenodd" />
             ))}
           </clipPath>
         </defs>
@@ -145,6 +145,7 @@ export function LogoIntro() {
             data-letter={letter.id}
             pathLength={1}
             fill="currentColor"
+            fillRule="evenodd"
             fillOpacity={0}
             stroke="currentColor"
             strokeWidth={14}
