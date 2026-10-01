@@ -128,7 +128,7 @@ ASPECT_TOLERANCE = 1.1  # отличие пропорций, при которо
 EU_PLATE_ASPECT = 520 / 112  # реальные пропорции номера; в кадре они искажены перспективой
 
 
-DEFAULT_HEIGHT_RATIO = 1.6  # высота макета другой формы относительно высоты номера
+DEFAULT_HEIGHT_RATIO = 1.5  # высота макета другой формы относительно высоты номера
 
 
 def template_box(
@@ -212,7 +212,7 @@ def add_rim_and_sheen(color: ImageArray, alpha: ImageArray) -> ImageArray:
     rim = cv2.GaussianBlur(rim, (0, 0), max(0.6, k / 3))[..., None]
     color = color * (1 - 0.55 * rim) + 150.0 * 0.55 * rim
     sheen = np.linspace(1.0, 0.0, h, dtype=np.float32)[:, None, None] ** 2
-    return color + 8.0 * sheen  # type: ignore[no-any-return]
+    return color + 16.0 * sheen  # type: ignore[no-any-return]
 
 
 def overlay_plate(

@@ -78,12 +78,10 @@ async def test_openai_plate_keeps_exact_logo_and_rest_of_car(settings: Settings)
     out = pil_to_bgr(open_image(result.image))
     original = pil_to_bgr(open_image(source))
     placed = provider.replacer.replace(original).image
-    target = fitted_quad(
-        truth, provider.template_aspect, height_ratio=provider.replacer.height_ratio
-    )
+    target = fitted_quad(truth, 732 / 290, height_ratio=provider.replacer.height_ratio)
     # Логотип и надписи — точно из макета: рисунок таблички совпадает с программной версией.
-    a = cv2.cvtColor(rectify(out, target, (377, 130)), cv2.COLOR_BGR2GRAY).astype(float)
-    b = cv2.cvtColor(rectify(placed, target, (377, 130)), cv2.COLOR_BGR2GRAY).astype(float)
+    a = cv2.cvtColor(rectify(out, target, (366, 145)), cv2.COLOR_BGR2GRAY).astype(float)
+    b = cv2.cvtColor(rectify(placed, target, (366, 145)), cv2.COLOR_BGR2GRAY).astype(float)
     a, b = a - a.mean(), b - b.mean()
     assert (a * b).sum() / np.sqrt((a * a).sum() * (b * b).sum()) > 0.95
     # Вне фрагмента вокруг номера — пиксели оригинала.
