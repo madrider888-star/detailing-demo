@@ -44,7 +44,7 @@ class PlateReplacer:
         *,
         confidence_threshold: float = 0.55,
         expand: float = 0.03,
-        height_ratio: float = 1.5,
+        height_ratio: float = 1.6,
     ) -> None:
         self.template = template_bgra
         self.detector = detector
