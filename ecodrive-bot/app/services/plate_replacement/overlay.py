@@ -68,7 +68,10 @@ def estimate_color_cast(plate: FloatImage, illum: FloatImage) -> ImageArray:
         return np.ones(3, dtype=np.float32)
     means = plate[mask].mean(axis=0)
     cast = means / max(float(means.mean()), 1e-3)
-    return np.clip(cast, 0.8, 1.2).astype(np.float32)
+    # Исходный номер бывает цветным (жёлтый, зелёный), это не свет. Берём лишь
+    # небольшую долю оттенка, чтобы не перекрашивать фирменную табличку.
+    cast = 1.0 + 0.25 * (cast - 1.0)
+    return np.clip(cast, 0.95, 1.05).astype(np.float32)
 
 
 def estimate_noise(gray: FloatImage) -> float:

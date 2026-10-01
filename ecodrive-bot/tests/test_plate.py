@@ -129,3 +129,15 @@ def test_parse_yolo_output() -> None:
     (x0, y0, x1, y1), score = boxes[0]
     assert (round(x0), round(y0), round(x1), round(y1)) == (576, 312, 704, 328)
     assert score == pytest.approx(0.9)
+
+
+def test_colored_original_plate_does_not_tint_overlay(template: np.ndarray) -> None:
+    scene, truth = make_scene()
+    mask = np.zeros(scene.shape[:2], np.uint8)
+    cv2.fillConvexPoly(mask, truth.astype(np.int32), 255)
+    yellow = scene.copy()
+    yellow[mask > 0] = (yellow[mask > 0] * np.array([0.35, 0.95, 1.0])).astype(np.uint8)
+    result, _ = overlay_plate(yellow, truth, template)
+    b, _g, r = rectify(result, truth, (520, 112)).reshape(-1, 3).mean(axis=0)
+    # Фирменная табличка остаётся нейтральной, а не жёлтой.
+    assert b / r > 0.85
