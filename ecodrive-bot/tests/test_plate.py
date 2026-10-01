@@ -8,10 +8,10 @@ import pytest
 
 from app.core.config import Settings
 from app.services.plate_replacement.detector import ContourPlateDetector, parse_yolo_output, rectify
-from app.services.plate_replacement.geometry import expand_quad, order_corners
-from app.services.plate_replacement.overlay import overlay_plate
+from app.services.plate_replacement.geometry import expand_quad, order_corners, quad_size
+from app.services.plate_replacement.overlay import fitted_quad, overlay_plate
 from app.services.plate_replacement.service import PlateReplacer, load_template
-from tests.synthetic import make_scene
+from tests.synthetic import make_plate, make_scene
 
 SCENES = {
     "frontal": None,
@@ -21,8 +21,17 @@ SCENES = {
 
 
 @pytest.fixture(scope="module")
-def template() -> np.ndarray:
+def branded() -> np.ndarray:
+    """Настоящий макет EcoDrive (≈2.5:1, выше обычного номера)."""
     return load_template(Settings(_env_file=None).branded_plate_path)  # type: ignore[call-arg]
+
+
+@pytest.fixture(scope="module")
+def template() -> np.ndarray:
+    """Макет в пропорциях EU-номера — для проверок геометрии наложения."""
+    # Инверсия, чтобы макет заметно отличался от исходного номера.
+    plate = 255 - make_plate("EC 0000 DR")
+    return cv2.cvtColor(plate, cv2.COLOR_BGR2BGRA)
 
 
 def _ncc(a: np.ndarray, b: np.ndarray) -> float:
@@ -141,3 +150,21 @@ def test_colored_original_plate_does_not_tint_overlay(template: np.ndarray) -> N
     b, _g, r = rectify(result, truth, (520, 112)).reshape(-1, 3).mean(axis=0)
     # Фирменная табличка остаётся нейтральной, а не жёлтой.
     assert b / r > 0.85
+
+
+def test_branded_template_keeps_its_proportions(branded: np.ndarray) -> None:
+    scene, truth = make_scene()
+    result, _ = overlay_plate(scene, truth, branded)
+    target = fitted_quad(truth, branded.shape[1] / branded.shape[0])
+    width, height = quad_size(target)
+    plate_w, plate_h = quad_size(truth)
+    # Макет не сплющен под EU-номер, а сохраняет свои ≈2.5:1 (относительно номера).
+    ratio = (width / height) / (plate_w / plate_h)
+    expected_ratio = (branded.shape[1] / branded.shape[0]) / (520 / 112)
+    assert ratio == pytest.approx(expected_ratio, rel=0.08)
+    rect = rectify(result, target, (branded.shape[1], branded.shape[0]))
+    expected = branded[..., :3].copy()
+    expected[branded[..., 3] < 128] = rect[branded[..., 3] < 128]  # прозрачные углы — фон
+    assert _ncc(rect, expected) > 0.8
+    # Старый номер полностью закрыт: его рисунок больше не читается.
+    assert _ncc(rectify(result, truth, (520, 112)), rectify(scene, truth, (520, 112))) < 0.3
