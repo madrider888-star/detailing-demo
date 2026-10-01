@@ -128,36 +128,45 @@ ASPECT_TOLERANCE = 1.1  # отличие пропорций, при которо
 EU_PLATE_ASPECT = 520 / 112  # реальные пропорции номера; в кадре они искажены перспективой
 
 
+DEFAULT_HEIGHT_RATIO = 1.4  # высота макета другой формы относительно высоты номера
+
+
 def template_box(
-    plate_w: int, plate_h: int, template_aspect: float, plate_aspect: float = EU_PLATE_ASPECT
+    plate_w: int,
+    plate_h: int,
+    template_aspect: float,
+    plate_aspect: float = EU_PLATE_ASPECT,
+    height_ratio: float = DEFAULT_HEIGHT_RATIO,
 ) -> tuple[float, float, float, float]:
     """Прямоугольник макета в плоскости номера (x0, y0, x1, y1), в пикселях `plate_w×plate_h`.
 
     Расчёт ведётся в реальных пропорциях номера (520×112 мм), а не в видимых: на
     снимке под углом номер кажется короче, но гомография вернёт перспективу.
     Если пропорции макета близки к номеру — макет занимает номер целиком. Иначе
-    макет сохраняет свои пропорции (по ширине номера, если он выше, или по высоте,
-    если он площе) с центром в центре номера.
+    макет сохраняет свои пропорции, его высота = `height_ratio` × высота номера,
+    центр — в центре номера. Видимые остатки старого номера закрашиваются отдельно.
     """
     if abs(np.log(template_aspect / plate_aspect)) < np.log(ASPECT_TOLERANCE):
         return 0.0, 0.0, float(plate_w), float(plate_h)
-    # Единицы: ширина номера = 1, высота = 1 / plate_aspect. Небольшой запас, чтобы
-    # скруглённые углы макета гарантированно закрыли старый номер.
-    margin = 1.05
-    # Макет «выше» номера — по ширине номера; «площе» — по его высоте.
-    tw = margin if template_aspect < plate_aspect else margin * template_aspect / plate_aspect
-    th = tw / template_aspect
+    # Единицы: ширина номера = 1, высота = 1 / plate_aspect.
+    th = height_ratio / plate_aspect
+    tw = th * template_aspect
     sx, sy = float(plate_w), float(plate_h) * plate_aspect
     x0, y0 = (1 - tw) / 2 * sx, (1 / plate_aspect - th) / 2 * sy
     return x0, y0, x0 + tw * sx, y0 + th * sy
 
 
-def fitted_quad(corners: Quad, template_aspect: float, expand: float = 0.03) -> Quad:
+def fitted_quad(
+    corners: Quad,
+    template_aspect: float,
+    expand: float = 0.03,
+    height_ratio: float = DEFAULT_HEIGHT_RATIO,
+) -> Quad:
     """Четырёхугольник в кадре, куда ляжет макет (с учётом перспективы номера)."""
     quad = expand_quad(corners.astype(np.float32), expand, expand * 1.5)
     width, height = quad_size(quad)
     cw, ch = max(16, round(width)), max(6, round(height))
-    x0, y0, x1, y1 = template_box(cw, ch, template_aspect)
+    x0, y0, x1, y1 = template_box(cw, ch, template_aspect, height_ratio=height_ratio)
     to_image = cv2.getPerspectiveTransform(_canon_corners(cw, ch), quad)
     box = np.array([[x0, y0], [x1, y0], [x1, y1], [x0, y1]], dtype=np.float32)
     return cv2.perspectiveTransform(box.reshape(1, 4, 2), to_image).reshape(4, 2)
@@ -169,12 +178,50 @@ def _shift(src: ImageArray, x0: float, y0: float, size: tuple[int, int], border:
     return cv2.warpAffine(src, matrix, size, flags=cv2.INTER_LINEAR, borderMode=border)
 
 
+def remove_old_plate(image: ImageBGR, corners: Quad, noise_sigma: float, seed: int) -> ImageBGR:
+    """Закрашивает старый номер окружающим фоном (там, где его не закроет макет)."""
+    region = expand_quad(corners.astype(np.float32), 0.06, 0.16)
+    h, w = image.shape[:2]
+    x0, y0 = np.floor(region.min(axis=0)).astype(int) - 8
+    x1, y1 = np.ceil(region.max(axis=0)).astype(int) + 8
+    x0, y0, x1, y1 = max(0, x0), max(0, y0), min(w, x1), min(h, y1)
+    if x1 - x0 < 4 or y1 - y0 < 4:
+        return image
+    roi = image[y0:y1, x0:x1]
+    mask = np.zeros(roi.shape[:2], np.uint8)
+    cv2.fillConvexPoly(mask, np.round(region - [x0, y0]).astype(np.int32), 255)
+    _, plate_h = quad_size(corners)
+    filled = cv2.inpaint(roi, mask, max(3.0, plate_h * 0.2), cv2.INPAINT_TELEA)
+    if noise_sigma > 0.5:  # у закрашенной области должно быть то же зерно, что у фото
+        rng = np.random.default_rng(seed + 1)
+        grain = rng.normal(0, noise_sigma, size=filled.shape[:2])[..., None]
+        noisy = np.clip(filled.astype(np.float32) + grain, 0, 255).astype(np.uint8)
+        filled = np.where(mask[..., None] > 0, noisy, filled)
+    out = image.copy()
+    out[y0:y1, x0:x1] = filled
+    return out
+
+
+def add_rim_and_sheen(color: ImageArray, alpha: ImageArray) -> ImageArray:
+    """Светлый кант по краю и лёгкий блик сверху — табличка выглядит объёмной, а не наклейкой."""
+    a = alpha[..., 0]
+    h = a.shape[0]
+    k = max(2, round(h * 0.03))
+    inner = cv2.erode(a, np.ones((k, k), np.uint8))
+    rim = np.clip(a - inner, 0, 1)
+    rim = cv2.GaussianBlur(rim, (0, 0), max(0.6, k / 3))[..., None]
+    color = color * (1 - 0.55 * rim) + 150.0 * 0.55 * rim
+    sheen = np.linspace(1.0, 0.0, h, dtype=np.float32)[:, None, None] ** 2
+    return color + 16.0 * sheen  # type: ignore[no-any-return]
+
+
 def overlay_plate(
     image: ImageBGR,
     corners: Quad,
     template_rgba: ImageArray,
     *,
     expand: float = 0.03,
+    height_ratio: float = DEFAULT_HEIGHT_RATIO,
     seed: int = 0,
 ) -> tuple[ImageBGR, OverlayInfo]:
     """Накладывает RGBA-макет (в порядке каналов BGRA) на номер `corners`."""
@@ -194,7 +241,8 @@ def overlay_plate(
 
     # Где лежит макет: его пропорции сохраняются.
     th_, tw_ = template_rgba.shape[:2]
-    x0, y0, x1, y1 = template_box(cw, ch, tw_ / th_)
+    x0, y0, x1, y1 = template_box(cw, ch, tw_ / th_, height_ratio=height_ratio)
+    covers_plate = x0 <= 0 and y0 <= 0 and x1 >= cw and y1 >= ch
     tcw, tch = max(16, round(x1 - x0)), max(6, round(y1 - y0))
     target_box = np.array([[x0, y0], [x1, y0], [x1, y1], [x0, y1]], dtype=np.float32)
     plate_to_image = cv2.getPerspectiveTransform(canon, quad)
@@ -206,6 +254,8 @@ def overlay_plate(
     tpl = cv2.resize(template_rgba, (tcw, tch), interpolation=cv2.INTER_AREA).astype(np.float32)
     alpha: ImageArray = tpl[..., 3:4] / 255.0
     color: ImageArray = tpl[..., :3]
+    if not covers_plate:
+        color = add_rim_and_sheen(color, alpha)
 
     # 3. Освещённость, тени, блики: макет «белый» = TEMPLATE_WHITE.
     gain = np.clip(illum_t / TEMPLATE_WHITE, 0.12, 1.15)[..., None]
@@ -247,7 +297,16 @@ def overlay_plate(
         borderValue=(0, 0, 0, 0),
     )
     a = np.clip(warped[..., 3:4] / 255.0, 0.0, 1.0)
-    out = warped[..., :3] + image.astype(np.float32) * (1.0 - a)
+    base = image
+    if not covers_plate:
+        # Макет меньше номера: убираем старый номер и кладём мягкую тень под табличку.
+        base = remove_old_plate(image, corners, noise, seed)
+        _, target_h = quad_size(target_quad.reshape(4, 2))
+        shadow = cv2.GaussianBlur(a[..., 0], (0, 0), max(1.0, target_h * 0.07))
+        dy = max(1, round(target_h * 0.05))
+        shadow = np.roll(shadow, dy, axis=0)[..., None]
+        base = (base.astype(np.float32) * (1.0 - 0.45 * shadow)).astype(np.float32)
+    out = warped[..., :3] + base.astype(np.float32) * (1.0 - a)
     result = np.clip(out + 0.5, 0, 255).astype(np.uint8)
 
     info = OverlayInfo(

@@ -53,6 +53,7 @@ def build_plate_provider(settings: Settings) -> ImageEditingProvider:
             load_template(settings.branded_plate_path),
             create_detector(settings.plate_detector_model_path),
             confidence_threshold=settings.plate_confidence_threshold,
+            height_ratio=settings.plate_template_height_ratio,
         )
         return OpenCVPlateProvider(replacer)
     return MockImageProvider()

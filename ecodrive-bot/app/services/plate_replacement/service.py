@@ -44,11 +44,13 @@ class PlateReplacer:
         *,
         confidence_threshold: float = 0.55,
         expand: float = 0.03,
+        height_ratio: float = 1.4,
     ) -> None:
         self.template = template_bgra
         self.detector = detector
         self.threshold = confidence_threshold
         self.expand = expand
+        self.height_ratio = height_ratio
 
     def replace(self, image_bgr: ImageArray) -> PlateReplacementResult:
         detections = self.detector.detect(image_bgr)
@@ -63,7 +65,13 @@ class PlateReplacer:
                 detection=best,
                 candidates=len(detections),
             )
-        result, info = overlay_plate(image_bgr, best.corners, self.template, expand=self.expand)
+        result, info = overlay_plate(
+            image_bgr,
+            best.corners,
+            self.template,
+            expand=self.expand,
+            height_ratio=self.height_ratio,
+        )
         return PlateReplacementResult(
             image=result,
             replaced=True,
