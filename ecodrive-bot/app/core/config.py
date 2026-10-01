@@ -62,7 +62,7 @@ class Settings(BaseSettings):
     backgrounds_path: Path = PROJECT_ROOT / "assets" / "backgrounds"
     plate_confidence_threshold: float = 0.55
     # Высота фирменной таблички относительно высоты номера (если её форма не как у номера)
-    plate_template_height_ratio: float = Field(default=1.4, ge=0.8, le=2.5)
+    plate_template_height_ratio: float = Field(default=1.5, ge=0.8, le=2.5)
     plate_detector_model_path: Path | None = None
 
     # Лимиты

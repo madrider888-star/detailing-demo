@@ -41,12 +41,12 @@ log = get_logger(__name__)
 
 
 def edit_region(corners: Quad, template_aspect: float, height_ratio: float) -> Quad:
-    """Область, где модели разрешено рисовать: старый номер + новая табличка с запасом."""
+    """Узкая область вокруг уже поставленной таблички: место для канта, бликов и тени.
+
+    Шире не даём — иначе модель растягивает табличку на ширину старого номера.
+    """
     target = fitted_quad(corners, template_aspect, height_ratio=height_ratio)
-    plate = expand_quad(corners.astype(np.float32), 0.08, 0.2)
-    points = np.vstack([expand_quad(target, 0.25, 0.45), plate]).astype(np.float32)
-    hull = cv2.convexHull(points)
-    return hull.reshape(-1, 2).astype(np.float32)
+    return expand_quad(target, 0.1, 0.3)
 
 
 def region_masks(shape: tuple[int, int], region: Quad) -> tuple[ImageArray, ImageArray]:
@@ -88,16 +88,28 @@ class OpenAIPlateProvider(ImageEditingProvider):
     async def _edit(self, request: EditRequest) -> EditResult:
         original = open_image(request.image).convert("RGB")
         bgr = pil_to_bgr(original)
-        detections = await asyncio.to_thread(self.replacer.detector.detect, bgr)
-        best = detections[0] if detections else None
-        if best is None or best.confidence < self.replacer.threshold:
+        # 1. Табличка ставится программно — точно в пропорциях макета, старый номер закрашен.
+        placed_outcome = await asyncio.to_thread(self.replacer.replace, bgr)
+        best = placed_outcome.detection
+        if not placed_outcome.replaced or best is None:
             # Без уверенно найденного номера модель может «нарисовать» его где угодно.
             return await self.fallback.edit(request)
+        placed = placed_outcome.image
+        placed_png = encode_png(bgr_to_pil(placed))
+        local = EditResult(
+            image=placed_png,
+            mime_type="image/png",
+            provider="opencv",
+            metadata={"confidence": round(best.confidence, 3)},
+        )
 
+        # 2. OpenAI только «оживляет» табличку в узкой области вокруг неё.
         region = edit_region(best.corners, self.template_aspect, self.replacer.height_ratio)
         api_mask, soft = region_masks(bgr.shape[:2], region)
         ai_request = dataclasses.replace(
             request,
+            image=placed_png,
+            mime_type="image/png",
             mask=encode_png(Image.fromarray(api_mask, "RGBA")),
             references=(ReferenceImage(self.template_png, "image/png", "plate"),),
         )
@@ -107,9 +119,10 @@ class OpenAIPlateProvider(ImageEditingProvider):
             raise
         except ProviderError as exc:
             log.warning("plate.openai_fallback", job_id=request.job_id, error=type(exc).__name__)
-            local = await self.fallback.edit(request)
             local.metadata["fallback"] = f"opencv ({type(exc).__name__})"
             return local
+
+        bgr = placed  # вклеиваем область таблички поверх программного результата
 
         def _composite() -> bytes:
             generated = pil_to_bgr(open_image(result.image).convert("RGB"))

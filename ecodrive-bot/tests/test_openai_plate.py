@@ -60,7 +60,7 @@ async def test_openai_plate_edits_only_plate_region(settings: Settings) -> None:
         body = request.content
         seen["mask"] = b'name="mask"' in body
         seen["reference"] = b"reference_0_plate.png" in body
-        seen["prompt"] = b"ECODRIVE" in body
+        seen["prompt"] = b"Do NOT change the plate" in body
         return _magenta((1536, 1024))  # модель «перекрасила» весь кадр
 
     scene, truth = make_scene()

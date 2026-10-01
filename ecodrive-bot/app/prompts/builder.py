@@ -124,19 +124,17 @@ def build_prompt(operation: Operation, params: dict[str, Any]) -> Prompt:
             task, extra = _interior_task(params)
         case Operation.PLATE:
             task = (
-                "Remove the existing licence plate and mount the dealer plate shown in the "
-                "second (reference) image in its place, inside the editable (masked) area only. "
-                "Reproduce the reference plate exactly: same black rounded rectangle, same green "
-                "logo, same white 'ECODRIVE' and green 'AUTO' lettering, same proportions — do "
-                "not redraw, restyle, translate or misspell anything on it. Make it look "
-                "physically mounted on the car: follow the perspective and tilt of the original "
-                "plate, match the scene lighting, reflections and blur, add a thin plastic edge "
-                "and a soft contact shadow. Fill any leftover area of the old plate with the "
-                "surrounding bodywork or plate mount."
+                "The editable (masked) area already contains a dealer plate placed on the car — "
+                "it is identical to the second (reference) image. Make it look like a real "
+                "physical plate photographed in this scene: match the scene lighting, "
+                "reflections, sharpness, noise and colour temperature, add a thin plastic edge "
+                "and a soft contact shadow on the car behind it."
             )
             extra = (
-                "Keep the bumper, grille, sensors, badges and everything outside the masked area "
-                "unchanged.",
-                "Keep the plate size realistic: about the size of the original plate.",
+                "Do NOT change the plate's size, position, proportions, shape, logo, lettering "
+                "or colours. Do not redraw, restyle or misspell the design. Do not make it "
+                "wider, narrower, taller or shorter.",
+                "Keep the bumper, grille, sensors, badges and everything outside the masked "
+                "area unchanged.",
             )
     return Prompt(task=task, preserve=(*PRESERVATION_RULES, *extra), negative=NEGATIVE_RULES)
