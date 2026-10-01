@@ -1,17 +1,22 @@
-"""Замена номера через OpenAI с жёсткой защитой остального кадра.
+"""Замена номера с участием OpenAI — без искажения логотипа и без потери резкости.
 
-1. OpenCV находит номер (те же детектор и порог, что у локального процессора).
-2. OpenAI получает фото, фирменный макет и маску: рисовать можно только около номера.
-3. Из ответа берётся только эта область (с мягким краем), всё остальное — пиксели
-   оригинала. Машина не меняется, даже если модель что-то «додумала» вне маски.
-4. Если OpenAI недоступен или отклонил запрос, номер заменяется локально (OpenCV),
-   чтобы сотрудник всё равно получил результат.
+Схема:
+1. Табличка ставится программно (OpenCV): точный макет, правильные пропорции и
+   перспектива, старый номер закрашен.
+2. В OpenAI уходит только квадратный фрагмент вокруг номера в высоком разрешении,
+   с маской-полосой вокруг таблички: модель «фотографирует» табличку в сцене —
+   свет, блики, кант, тень.
+3. Из ответа берётся **только освещение** (сглаженная яркость): оно переносится на
+   точный макет и на кузов вокруг (тень). Пиксели логотипа и форма таблички всегда
+   из макета — модель не может их перерисовать, размыть или обрезать.
+4. Всё вне фрагмента — пиксели оригинала. Если OpenAI недоступен — результат шага 1.
 """
 
 from __future__ import annotations
 
 import asyncio
 import dataclasses
+from dataclasses import dataclass
 from typing import ClassVar
 
 import cv2
@@ -20,7 +25,6 @@ from PIL import Image
 
 from app.core.enums import Operation
 from app.core.logging import get_logger
-from app.services.export.c2pa import embed_c2pa_png, extract_c2pa
 from app.services.image_editing.base import (
     EditRequest,
     EditResult,
@@ -31,7 +35,7 @@ from app.services.image_editing.base import (
 )
 from app.services.image_editing.openai_provider import OpenAIImageEditProvider
 from app.services.image_editing.opencv_plate import OpenCVPlateProvider
-from app.services.plate_replacement.geometry import expand_quad
+from app.services.plate_replacement.geometry import expand_quad, quad_size
 from app.services.plate_replacement.overlay import fitted_quad
 from app.services.plate_replacement.service import PlateReplacer
 from app.utils.images import bgr_to_pil, encode_png, open_image, pil_to_bgr
@@ -39,30 +43,81 @@ from app.utils.types import ImageArray, Quad
 
 log = get_logger(__name__)
 
-
-def edit_region(corners: Quad, template_aspect: float, height_ratio: float) -> Quad:
-    """Узкая область вокруг уже поставленной таблички: место для канта, бликов и тени.
-
-    Шире не даём — иначе модель растягивает табличку на ширину старого номера.
-    """
-    target = fitted_quad(corners, template_aspect, height_ratio=height_ratio)
-    return expand_quad(target, 0.1, 0.3)
+CROP_SCALE = 2.6  # сторона фрагмента относительно ширины таблички
+FACE_GAIN = (0.65, 1.3)  # насколько ИИ может затемнить/осветлить саму табличку
+BAND_GAIN = (0.55, 1.15)  # и кузов вокруг неё (тень, отсвет)
 
 
-def region_masks(shape: tuple[int, int], region: Quad) -> tuple[ImageArray, ImageArray]:
-    """Маска для OpenAI (RGBA, прозрачно = рисовать) и мягкая маска для вклейки (0..1)."""
+@dataclass(frozen=True)
+class Crop:
+    x0: int
+    y0: int
+    x1: int
+    y1: int
+
+    def take(self, image: ImageArray) -> ImageArray:
+        return image[self.y0 : self.y1, self.x0 : self.x1]
+
+    def shift(self, quad: Quad) -> Quad:
+        return (quad - np.array([self.x0, self.y0], dtype=np.float32)).astype(np.float32)
+
+
+def crop_around(quad: Quad, shape: tuple[int, int]) -> Crop:
+    """Квадратный фрагмент вокруг таблички (не выходит за кадр)."""
     h, w = shape
-    hard = np.zeros((h, w), np.uint8)
-    cv2.fillConvexPoly(hard, np.round(region).astype(np.int32), 255)
-    api_mask = np.full((h, w, 4), 255, np.uint8)
-    api_mask[..., 3] = 255 - hard
-    span = float(np.ptp(region[:, 1])) if len(region) else 10.0
-    soft = cv2.GaussianBlur(
-        cv2.erode(hard, np.ones((3, 3), np.uint8)).astype(np.float32) / 255.0,
-        (0, 0),
-        max(1.5, span * 0.04),
+    width, _ = quad_size(quad)
+    side = int(min(max(width * CROP_SCALE, 256), w, h))
+    cx, cy = quad.mean(axis=0)
+    x0 = int(np.clip(round(cx - side / 2), 0, w - side))
+    y0 = int(np.clip(round(cy - side / 2), 0, h - side))
+    return Crop(x0, y0, x0 + side, y0 + side)
+
+
+def edit_region(target: Quad) -> Quad:
+    """Полоса вокруг таблички, где модель рисует кант, блики и тень."""
+    return expand_quad(target, 0.14, 0.4)
+
+
+def _poly_mask(shape: tuple[int, int], quad: Quad) -> ImageArray:
+    mask = np.zeros(shape, np.uint8)
+    cv2.fillConvexPoly(mask, np.round(quad).astype(np.int32), 255)
+    return mask
+
+
+def _lum(image: ImageArray, sigma: float) -> ImageArray:
+    gray = cv2.cvtColor(image.astype(np.uint8), cv2.COLOR_BGR2GRAY).astype(np.float32)
+    return cv2.GaussianBlur(gray, (0, 0), sigma) + 1.0
+
+
+def transfer_lighting(
+    placed: ImageArray,
+    generated: ImageArray,
+    plate_quad: Quad,
+    region: Quad,
+) -> ImageArray:
+    """Переносит освещение из ответа модели на точный результат (в координатах фрагмента)."""
+    shape = placed.shape[:2]
+    _, plate_h = quad_size(plate_quad)
+    # Сильное сглаживание: переносим только свет (градиенты, тень), а не детали —
+    # иначе неточно нарисованный моделью логотип «проступает» ореолом.
+    sigma_face = max(3.0, plate_h * 0.35)
+    sigma_band = max(3.0, plate_h * 0.3)
+    gain_face = _lum(generated, sigma_face) / _lum(placed, sigma_face)
+    gain_band = _lum(generated, sigma_band) / _lum(placed, sigma_band)
+
+    face: ImageArray = cv2.GaussianBlur(
+        _poly_mask(shape, plate_quad).astype(np.float32) / 255.0, (0, 0), 1.0
     )
-    return api_mask, soft
+    band: ImageArray = cv2.GaussianBlur(
+        _poly_mask(shape, region).astype(np.float32) / 255.0, (0, 0), max(2.0, plate_h * 0.08)
+    )
+
+    g_face = np.clip(gain_face, *FACE_GAIN)
+    g_band = np.clip(gain_band, *BAND_GAIN)
+    total_gain = face * g_face + (1.0 - face) * (band * g_band + (1.0 - band))
+    out = placed.astype(np.float32) * total_gain[..., None]
+    result: ImageArray = np.clip(out + 0.5, 0, 255).astype(np.uint8)
+    return result
 
 
 class OpenAIPlateProvider(ImageEditingProvider):
@@ -86,29 +141,33 @@ class OpenAIPlateProvider(ImageEditingProvider):
         await self.editor.aclose()
 
     async def _edit(self, request: EditRequest) -> EditResult:
-        original = open_image(request.image).convert("RGB")
-        bgr = pil_to_bgr(original)
-        # 1. Табличка ставится программно — точно в пропорциях макета, старый номер закрашен.
+        bgr = pil_to_bgr(open_image(request.image).convert("RGB"))
+        # 1. Точная программная постановка таблички.
         placed_outcome = await asyncio.to_thread(self.replacer.replace, bgr)
         best = placed_outcome.detection
         if not placed_outcome.replaced or best is None:
-            # Без уверенно найденного номера модель может «нарисовать» его где угодно.
+            # Номер не найден уверенно — модель могла бы «нарисовать» его где угодно.
             return await self.fallback.edit(request)
         placed = placed_outcome.image
-        placed_png = encode_png(bgr_to_pil(placed))
         local = EditResult(
-            image=placed_png,
+            image=encode_png(bgr_to_pil(placed)),
             mime_type="image/png",
             provider="opencv",
             metadata={"confidence": round(best.confidence, 3)},
         )
 
-        # 2. OpenAI только «оживляет» табличку в узкой области вокруг неё.
-        region = edit_region(best.corners, self.template_aspect, self.replacer.height_ratio)
-        api_mask, soft = region_masks(bgr.shape[:2], region)
+        # 2. Фрагмент вокруг таблички + маска-полоса → OpenAI.
+        target = fitted_quad(
+            best.corners, self.template_aspect, height_ratio=self.replacer.height_ratio
+        )
+        crop = crop_around(target, placed.shape[:2])
+        placed_crop = crop.take(placed).copy()
+        target_c, region_c = crop.shift(target), crop.shift(edit_region(target))
+        api_mask = np.full((*placed_crop.shape[:2], 4), 255, np.uint8)
+        api_mask[..., 3] = 255 - _poly_mask(placed_crop.shape[:2], region_c)
         ai_request = dataclasses.replace(
             request,
-            image=placed_png,
+            image=encode_png(bgr_to_pil(placed_crop)),
             mime_type="image/png",
             mask=encode_png(Image.fromarray(api_mask, "RGBA")),
             references=(ReferenceImage(self.template_png, "image/png", "plate"),),
@@ -122,21 +181,21 @@ class OpenAIPlateProvider(ImageEditingProvider):
             local.metadata["fallback"] = f"opencv ({type(exc).__name__})"
             return local
 
-        bgr = placed  # вклеиваем область таблички поверх программного результата
-
-        def _composite() -> bytes:
+        # 3. Освещение из ответа модели → на точный макет.
+        def _finish() -> bytes:
             generated = pil_to_bgr(open_image(result.image).convert("RGB"))
-            if generated.shape[:2] != bgr.shape[:2]:
+            if generated.shape[:2] != placed_crop.shape[:2]:
                 generated = cv2.resize(
-                    generated, (bgr.shape[1], bgr.shape[0]), interpolation=cv2.INTER_LANCZOS4
+                    generated,
+                    (placed_crop.shape[1], placed_crop.shape[0]),
+                    interpolation=cv2.INTER_AREA,
                 )
-            a = soft[..., None]
-            merged = generated.astype(np.float32) * a + bgr.astype(np.float32) * (1.0 - a)
-            out = encode_png(bgr_to_pil(np.clip(merged + 0.5, 0, 255).astype(np.uint8)))
-            provenance = extract_c2pa(result.image)
-            return embed_c2pa_png(out, provenance) if provenance else out
+            lit = transfer_lighting(placed_crop, generated, target_c, region_c)
+            out = placed.copy()
+            out[crop.y0 : crop.y1, crop.x0 : crop.x1] = lit
+            return encode_png(bgr_to_pil(out))
 
-        data = await asyncio.to_thread(_composite)
+        data = await asyncio.to_thread(_finish)
         return EditResult(
             image=data,
             mime_type="image/png",
@@ -144,6 +203,6 @@ class OpenAIPlateProvider(ImageEditingProvider):
             metadata={
                 **result.metadata,
                 "confidence": round(best.confidence, 3),
-                "masked": True,
+                "mode": "lighting_transfer",
             },
         )

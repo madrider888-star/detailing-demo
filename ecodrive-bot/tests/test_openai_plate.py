@@ -5,6 +5,7 @@ from __future__ import annotations
 import base64
 import io
 
+import cv2
 import httpx
 import numpy as np
 from PIL import Image
@@ -17,6 +18,8 @@ from app.services.image_editing.base import EditRequest
 from app.services.image_editing.factory import build_plate_provider
 from app.services.image_editing.openai_plate import OpenAIPlateProvider
 from app.services.image_editing.openai_provider import OpenAIImageEditProvider
+from app.services.plate_replacement.detector import rectify
+from app.services.plate_replacement.overlay import fitted_quad
 from app.utils.images import encode_png, open_image, pil_to_bgr
 from tests.synthetic import make_scene, to_jpeg_bytes
 
@@ -45,15 +48,15 @@ def _request(image: bytes) -> EditRequest:
     )
 
 
-def _magenta(size: tuple[int, int]) -> httpx.Response:
+def _solid(size: tuple[int, int], color: tuple[int, int, int]) -> httpx.Response:
     buf = io.BytesIO()
-    Image.new("RGB", size, (255, 0, 255)).save(buf, "PNG")
+    Image.new("RGB", size, color).save(buf, "PNG")
     return httpx.Response(
         200, json={"data": [{"b64_json": base64.b64encode(buf.getvalue()).decode()}]}
     )
 
 
-async def test_openai_plate_edits_only_plate_region(settings: Settings) -> None:
+async def test_openai_plate_keeps_exact_logo_and_rest_of_car(settings: Settings) -> None:
     seen: dict[str, bool] = {}
 
     def handler(request: httpx.Request) -> httpx.Response:
@@ -61,19 +64,28 @@ async def test_openai_plate_edits_only_plate_region(settings: Settings) -> None:
         seen["mask"] = b'name="mask"' in body
         seen["reference"] = b"reference_0_plate.png" in body
         seen["prompt"] = b"Do NOT change the plate" in body
-        return _magenta((1536, 1024))  # модель «перекрасила» весь кадр
+        seen["square_crop"] = b'name="size"\r\n\r\n1024x1024' in body
+        # Модель вернула «кашу»: однотонный серый вместо таблички.
+        return _solid((1024, 1024), (90, 90, 90))
 
     scene, truth = make_scene()
-    result = await _provider(settings, handler).edit(_request(to_jpeg_bytes(scene, 95)))
-    assert seen == {"mask": True, "reference": True, "prompt": True}
+    source = to_jpeg_bytes(scene, 95)
+    provider = _provider(settings, handler)
+    result = await provider.edit(_request(source))
+    assert seen == {"mask": True, "reference": True, "prompt": True, "square_crop": True}
     assert result.provider == "openai"
+
     out = pil_to_bgr(open_image(result.image))
-    original = pil_to_bgr(open_image(to_jpeg_bytes(scene, 95)))
-    center = truth.mean(axis=0).astype(int)
-    # Внутри области номера — результат модели.
-    assert tuple(out[center[1], center[0]]) == (255, 0, 255)
-    # Вне её — пиксели оригинала, несмотря на то что модель изменила весь кадр.
-    for x, y in [(100, 100), (300, 400), (1200, 800), (center[0], center[1] - 250)]:
+    original = pil_to_bgr(open_image(source))
+    placed = provider.replacer.replace(original).image
+    target = fitted_quad(truth, 732 / 290, height_ratio=provider.replacer.height_ratio)
+    # Логотип и надписи — точно из макета: рисунок таблички совпадает с программной версией.
+    a = cv2.cvtColor(rectify(out, target, (366, 145)), cv2.COLOR_BGR2GRAY).astype(float)
+    b = cv2.cvtColor(rectify(placed, target, (366, 145)), cv2.COLOR_BGR2GRAY).astype(float)
+    a, b = a - a.mean(), b - b.mean()
+    assert (a * b).sum() / np.sqrt((a * a).sum() * (b * b).sum()) > 0.95
+    # Вне фрагмента вокруг номера — пиксели оригинала.
+    for x, y in [(60, 60), (1200, 60), (60, 800), (1220, 820)]:
         assert np.abs(out[y, x].astype(int) - original[y, x].astype(int)).max() <= 2
 
 
@@ -93,7 +105,7 @@ async def test_openai_plate_without_plate_needs_review(settings: Settings) -> No
 
     def handler(request: httpx.Request) -> httpx.Response:
         calls["n"] += 1
-        return _magenta((1024, 1024))
+        return _solid((1024, 1024), (255, 0, 255))
 
     blank = encode_png(Image.new("RGB", (900, 600), (120, 130, 140)))
     result = await _provider(settings, handler).edit(_request(blank))
