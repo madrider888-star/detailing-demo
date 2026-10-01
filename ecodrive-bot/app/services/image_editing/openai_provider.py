@@ -11,6 +11,7 @@ import binascii
 from typing import Any, ClassVar
 
 import httpx
+from PIL import Image
 
 from app.core.enums import Operation
 from app.core.logging import get_logger
@@ -25,7 +26,7 @@ from app.services.image_editing.base import (
     ProviderTimeoutError,
     ProviderUnavailableError,
 )
-from app.utils.canvas import fit_to_canvas, restore_from_canvas
+from app.utils.canvas import fit_mask_to_canvas, fit_to_canvas, restore_from_canvas
 from app.utils.images import encode_png, open_image
 from app.utils.retry import call_with_retry
 
@@ -38,7 +39,7 @@ _REJECT_CODES = {"moderation_blocked", "content_policy_violation", "image_genera
 class OpenAIImageEditProvider(ImageEditingProvider):
     name: ClassVar[str] = "openai"
     supported_operations: ClassVar[frozenset[Operation]] = frozenset(
-        {Operation.BACKGROUND, Operation.WHEELS, Operation.INTERIOR_COLOR}
+        {Operation.BACKGROUND, Operation.WHEELS, Operation.INTERIOR_COLOR, Operation.PLATE}
     )
 
     def __init__(
@@ -78,8 +79,11 @@ class OpenAIImageEditProvider(ImageEditingProvider):
             ("image[]", ("source.png", encode_png(canvas), "image/png"))
         ]
         for idx, ref in enumerate(request.references):
-            ref_png = encode_png(open_image(ref.data).convert("RGB"))
+            ref_png = encode_png(_flatten_reference(open_image(ref.data)))
             files.append(("image[]", (f"reference_{idx}_{ref.role}.png", ref_png, "image/png")))
+        if request.mask is not None:
+            mask_png = encode_png(fit_mask_to_canvas(open_image(request.mask), layout))
+            files.append(("mask", ("mask.png", mask_png, "image/png")))
 
         data: dict[str, Any] = {
             "model": self.model,
@@ -149,3 +153,13 @@ class OpenAIImageEditProvider(ImageEditingProvider):
         if code in _REJECT_CODES:
             return ProviderRejectedError(f"rejected: {code}")
         return ProviderError(f"http {status} {code}", retryable=False)
+
+
+def _flatten_reference(image: Image.Image) -> Image.Image:
+    """Прозрачность референса (скруглённые углы макета) — на светло-сером фоне."""
+    if image.mode in ("RGBA", "LA", "PA") or "transparency" in image.info:
+        rgba = image.convert("RGBA")
+        base = Image.new("RGB", rgba.size, (210, 210, 210))
+        base.paste(rgba, mask=rgba.getchannel("A"))
+        return base
+    return image.convert("RGB")

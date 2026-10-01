@@ -81,3 +81,14 @@ def restore_from_canvas(result: Image.Image, layout: CanvasLayout) -> Image.Imag
     )
     content = rgb.crop(box)
     return content.resize((layout.orig_width, layout.orig_height), Image.Resampling.LANCZOS)
+
+
+def fit_mask_to_canvas(mask: Image.Image, layout: CanvasLayout) -> Image.Image:
+    """Маска в той же раскладке, что и исходник; поля — непрозрачные (не редактировать)."""
+    alpha = mask.convert("RGBA").getchannel("A")
+    alpha = alpha.resize((layout.content_width, layout.content_height), Image.Resampling.NEAREST)
+    canvas_alpha = Image.new("L", (layout.canvas_width, layout.canvas_height), 255)
+    canvas_alpha.paste(alpha, (layout.pad_left, layout.pad_top))
+    out = Image.new("RGBA", canvas_alpha.size, (0, 0, 0, 255))
+    out.putalpha(canvas_alpha)
+    return out

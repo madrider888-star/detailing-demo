@@ -124,8 +124,19 @@ def build_prompt(operation: Operation, params: dict[str, Any]) -> Prompt:
             task, extra = _interior_task(params)
         case Operation.PLATE:
             task = (
-                "Replace only the licence plate with the branded plate from the reference "
-                "image, matching the plate's four corners, perspective, lighting and blur."
+                "Remove the existing licence plate and mount the dealer plate shown in the "
+                "second (reference) image in its place, inside the editable (masked) area only. "
+                "Reproduce the reference plate exactly: same black rounded rectangle, same green "
+                "logo, same white 'ECODRIVE' and green 'AUTO' lettering, same proportions — do "
+                "not redraw, restyle, translate or misspell anything on it. Make it look "
+                "physically mounted on the car: follow the perspective and tilt of the original "
+                "plate, match the scene lighting, reflections and blur, add a thin plastic edge "
+                "and a soft contact shadow. Fill any leftover area of the old plate with the "
+                "surrounding bodywork or plate mount."
             )
-            extra = ("Keep the plate frame, bumper and all surrounding pixels unchanged.",)
+            extra = (
+                "Keep the bumper, grille, sensors, badges and everything outside the masked area "
+                "unchanged.",
+                "Keep the plate size realistic: about the size of the original plate.",
+            )
     return Prompt(task=task, preserve=(*PRESERVATION_RULES, *extra), negative=NEGATIVE_RULES)

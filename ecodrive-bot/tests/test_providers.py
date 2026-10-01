@@ -94,10 +94,10 @@ def test_openai_without_key_is_config_error(settings: Settings) -> None:
         build_registry(settings.model_copy(update={"image_provider": "openai"}))
 
 
-async def test_unsupported_operation() -> None:
-    provider = _provider(httpx.MockTransport(lambda r: _ok_response((1024, 1024))))
+async def test_unsupported_operation(settings: Settings) -> None:
+    plate_only = build_registry(settings).for_operation(Operation.PLATE)
     with pytest.raises(UnsupportedOperationError):
-        await provider.edit(_request(_png((800, 600)), Operation.PLATE))
+        await plate_only.edit(_request(_png((800, 600)), Operation.BACKGROUND))
 
 
 # ─────────────────────────── OpenAI-совместимый API ───────────────────────────

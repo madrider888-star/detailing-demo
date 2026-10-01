@@ -30,6 +30,8 @@ class EditRequest:
     parameters: dict[str, Any]
     prompt: Prompt
     references: tuple[ReferenceImage, ...] = ()
+    # PNG RGBA размера исходника: прозрачные пиксели (alpha = 0) — где можно рисовать.
+    mask: bytes | None = None
 
 
 @dataclass

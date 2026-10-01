@@ -48,7 +48,7 @@ class Settings(BaseSettings):
 
     # Провайдеры
     image_provider: Literal["mock", "openai"] = "mock"
-    plate_provider: Literal["opencv", "mock"] = "opencv"
+    plate_provider: Literal["opencv", "openai", "mock"] = "opencv"
     openai_api_key: SecretStr = SecretStr("")
     openai_base_url: str = "https://api.openai.com/v1"
     openai_image_model: str = "gpt-image-1"
