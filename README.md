@@ -310,3 +310,10 @@ src/
 
 Each page exists once in `src/views/` and is rendered by two thin route files,
 one per language, so the two versions can never drift apart.
+
+## Telegram-бот EcoDrive Auto
+
+В каталоге [`ecodrive-bot/`](ecodrive-bot/README.md) — отдельный Python-проект:
+корпоративный Telegram-бот для обработки фотографий автомобилей (замена номерной
+таблички, фона, дисков, цвета салона). Он не связан со сборкой сайта; инструкция по
+запуску — в [`ecodrive-bot/README.md`](ecodrive-bot/README.md).

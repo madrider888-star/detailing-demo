@@ -1,0 +1,27 @@
+name: ecodrive-bot
+
+on:
+  push:
+    paths: ["ecodrive-bot/**", ".github/workflows/ecodrive-bot.yml"]
+  pull_request:
+    paths: ["ecodrive-bot/**", ".github/workflows/ecodrive-bot.yml"]
+
+defaults:
+  run:
+    working-directory: ecodrive-bot
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: ecodrive-bot/pyproject.toml
+      - run: pip install -e ".[dev]"
+      - run: ruff check app tests scripts alembic
+      - run: ruff format --check app tests scripts alembic
+      - run: mypy app
+      - run: pytest -q
