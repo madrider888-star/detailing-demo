@@ -44,6 +44,7 @@ from app.utils.types import ImageArray, Quad
 log = get_logger(__name__)
 
 CROP_SCALE = 2.6  # сторона фрагмента относительно ширины таблички
+MIN_LOGO_SIMILARITY = 0.75  # насколько табличка модели должна совпадать с макетом
 FACE_GAIN = (0.65, 1.3)  # насколько ИИ может затемнить/осветлить саму табличку
 BAND_GAIN = (0.55, 1.15)  # и кузов вокруг неё (тень, отсвет)
 
@@ -89,6 +90,33 @@ def _lum(image: ImageArray, sigma: float) -> ImageArray:
     return cv2.GaussianBlur(gray, (0, 0), sigma) + 1.0
 
 
+def logo_similarity(a: ImageArray, b: ImageArray, quad: Quad) -> float:
+    """Совпадение рисунка таблички (нормированная корреляция в её плоскости)."""
+    from app.services.plate_replacement.detector import rectify
+
+    width, height = quad_size(quad)
+    size = (max(32, round(width)), max(16, round(height)))
+    ga = cv2.cvtColor(rectify(a, quad, size), cv2.COLOR_BGR2GRAY).astype(np.float32)
+    gb = cv2.cvtColor(rectify(b, quad, size), cv2.COLOR_BGR2GRAY).astype(np.float32)
+    ga, gb = ga - ga.mean(), gb - gb.mean()
+    denom = float(np.sqrt((ga * ga).sum() * (gb * gb).sum())) + 1e-6
+    return float((ga * gb).sum() / denom)
+
+
+def blend_generated(
+    placed: ImageArray, generated: ImageArray, region: Quad, plate_h: float
+) -> ImageArray:
+    """Пиксели модели внутри полосы вокруг таблички, мягкий край, снаружи — без изменений."""
+    hard = _poly_mask(placed.shape[:2], region).astype(np.float32) / 255.0
+    soft = cv2.GaussianBlur(
+        cv2.erode(hard, np.ones((3, 3), np.uint8)), (0, 0), max(1.5, plate_h * 0.06)
+    )
+    a = soft[..., None]
+    out = generated.astype(np.float32) * a + placed.astype(np.float32) * (1.0 - a)
+    result: ImageArray = np.clip(out + 0.5, 0, 255).astype(np.uint8)
+    return result
+
+
 def transfer_lighting(
     placed: ImageArray,
     generated: ImageArray,
@@ -129,7 +157,12 @@ class OpenAIPlateProvider(ImageEditingProvider):
         editor: OpenAIImageEditProvider,
         replacer: PlateReplacer,
         template_png: bytes,
+        *,
+        mode: str = "auto",
+        min_similarity: float = MIN_LOGO_SIMILARITY,
     ) -> None:
+        self.mode = mode
+        self.min_similarity = min_similarity
         self.editor = editor
         self.replacer = replacer
         self.template_png = template_png
@@ -181,8 +214,9 @@ class OpenAIPlateProvider(ImageEditingProvider):
             local.metadata["fallback"] = f"opencv ({type(exc).__name__})"
             return local
 
-        # 3. Освещение из ответа модели → на точный макет.
-        def _finish() -> bytes:
+        # 3. Если модель нарисовала табличку точно (логотип совпадает с макетом) —
+        #    берём её пиксели; иначе — только освещение на точный макет.
+        def _finish() -> tuple[bytes, str, float]:
             generated = pil_to_bgr(open_image(result.image).convert("RGB"))
             if generated.shape[:2] != placed_crop.shape[:2]:
                 generated = cv2.resize(
@@ -190,12 +224,23 @@ class OpenAIPlateProvider(ImageEditingProvider):
                     (placed_crop.shape[1], placed_crop.shape[0]),
                     interpolation=cv2.INTER_AREA,
                 )
-            lit = transfer_lighting(placed_crop, generated, target_c, region_c)
+            similarity = logo_similarity(generated, placed_crop, target_c)
+            _, plate_h = quad_size(target_c)
+            if self.mode == "auto" and similarity >= self.min_similarity:
+                patch, used = (
+                    blend_generated(placed_crop, generated, region_c, plate_h),
+                    "generated",
+                )
+            else:
+                patch, used = (
+                    transfer_lighting(placed_crop, generated, target_c, region_c),
+                    "lighting",
+                )
             out = placed.copy()
-            out[crop.y0 : crop.y1, crop.x0 : crop.x1] = lit
-            return encode_png(bgr_to_pil(out))
+            out[crop.y0 : crop.y1, crop.x0 : crop.x1] = patch
+            return encode_png(bgr_to_pil(out)), used, similarity
 
-        data = await asyncio.to_thread(_finish)
+        data, used, similarity = await asyncio.to_thread(_finish)
         return EditResult(
             image=data,
             mime_type="image/png",
@@ -203,6 +248,7 @@ class OpenAIPlateProvider(ImageEditingProvider):
             metadata={
                 **result.metadata,
                 "confidence": round(best.confidence, 3),
-                "mode": "lighting_transfer",
+                "mode": used,
+                "logo_similarity": round(similarity, 3),
             },
         )

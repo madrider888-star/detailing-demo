@@ -36,6 +36,7 @@ def _openai_editor(settings: Settings) -> ImageEditingProvider:
         model=settings.openai_image_model,
         quality=settings.openai_image_quality,
         input_fidelity=settings.openai_input_fidelity or None,
+        max_edge=settings.openai_image_max_edge,
         timeout=settings.provider_timeout_seconds,
         max_retries=settings.provider_max_retries,
     )
@@ -67,7 +68,13 @@ def build_plate_provider(settings: Settings) -> ImageEditingProvider:
 
         editor = _openai_editor(settings)
         assert isinstance(editor, OpenAIImageEditProvider)
-        return OpenAIPlateProvider(editor, replacer, settings.branded_plate_path.read_bytes())
+        return OpenAIPlateProvider(
+            editor,
+            replacer,
+            settings.branded_plate_path.read_bytes(),
+            mode=settings.plate_ai_mode,
+            min_similarity=settings.plate_ai_min_similarity,
+        )
     return OpenCVPlateProvider(replacer)
 
 

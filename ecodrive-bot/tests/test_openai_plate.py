@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import base64
 import io
+import re
 
 import cv2
 import httpx
@@ -64,7 +65,7 @@ async def test_openai_plate_keeps_exact_logo_and_rest_of_car(settings: Settings)
         seen["mask"] = b'name="mask"' in body
         seen["reference"] = b"reference_0_plate.png" in body
         seen["prompt"] = b"Do NOT change the plate" in body
-        seen["square_crop"] = b'name="size"\r\n\r\n1024x1024' in body
+        seen["square_crop"] = re.search(rb'name="size"\r\n\r\n(\d+)x\1\r', body) is not None
         # Модель вернула «кашу»: однотонный серый вместо таблички.
         return _solid((1024, 1024), (90, 90, 90))
 
@@ -123,3 +124,42 @@ def test_factory_builds_openai_plate_provider(settings: Settings) -> None:
         )
     )
     assert isinstance(provider, OpenAIPlateProvider)
+
+
+async def test_accurate_model_output_is_used_directly(settings: Settings) -> None:
+    """Модель «сфотографировала» табличку точно — берём её пиксели (с тенью и бликами)."""
+    scene, _ = make_scene()
+    source = to_jpeg_bytes(scene, 95)
+    holder: dict[str, OpenAIPlateProvider] = {}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        # Возвращаем присланный фрагмент, чуть «подсветив» его: рисунок таблички тот же.
+        match = re.search(
+            rb'filename="source.png"\r\nContent-Type: image/png\r\n\r\n', request.content
+        )
+        assert match is not None
+        start = match.end()
+        end = request.content.index(b"\r\n--", start)
+        crop = Image.open(io.BytesIO(request.content[start:end])).convert("RGB")
+        brighter = crop.point(lambda v: min(255, int(v * 1.1) + 3))
+        buf = io.BytesIO()
+        brighter.save(buf, "PNG")
+        return httpx.Response(
+            200, json={"data": [{"b64_json": base64.b64encode(buf.getvalue()).decode()}]}
+        )
+
+    holder["p"] = _provider(settings, handler)
+    result = await holder["p"].edit(_request(source))
+    assert result.metadata["mode"] == "generated"
+    assert result.metadata["logo_similarity"] >= 0.75
+
+
+async def test_plate_ai_mode_lighting_never_uses_model_pixels(settings: Settings) -> None:
+    def handler(request: httpx.Request) -> httpx.Response:
+        return _solid((1024, 1024), (90, 90, 90))
+
+    provider = _provider(settings, handler)
+    provider.mode = "lighting"
+    scene, _ = make_scene()
+    result = await provider.edit(_request(to_jpeg_bytes(scene)))
+    assert result.metadata["mode"] == "lighting"

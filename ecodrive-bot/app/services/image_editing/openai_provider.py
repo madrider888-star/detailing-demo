@@ -32,7 +32,42 @@ from app.utils.retry import call_with_retry
 
 log = get_logger(__name__)
 
-SUPPORTED_SIZES: list[tuple[int, int]] = [(1024, 1024), (1536, 1024), (1024, 1536)]
+# gpt-image-1 / 1.5: только фиксированные размеры.
+LEGACY_SIZES: list[tuple[int, int]] = [(1024, 1024), (1536, 1024), (1024, 1536)]
+SUPPORTED_SIZES = LEGACY_SIZES  # совместимость
+# gpt-image-2: любой размер — стороны кратны 16, ≤ 3840, соотношение ≤ 3:1, 0.65–8.3 Мп.
+FLEX_MIN_PIXELS, FLEX_MAX_PIXELS, FLEX_MAX_EDGE = 655_360, 8_294_400, 3840
+
+
+def is_flexible_model(model: str) -> bool:
+    """gpt-image-2 и новее принимают произвольный размер и всегда работают в high fidelity."""
+    return not model.startswith(("gpt-image-1", "dall-e"))
+
+
+def flexible_size(width: int, height: int, max_edge: int) -> tuple[int, int]:
+    """Размер холста для gpt-image-2: пропорции исходника, близкое к нему разрешение."""
+    aspect = min(max(width / height, 1 / 3), 3.0)
+    long_edge = float(min(max(width, height), max_edge, FLEX_MAX_EDGE))
+    if aspect >= 1:
+        w, h = long_edge, long_edge / aspect
+    else:
+        w, h = long_edge * aspect, long_edge
+    pixels = w * h
+    scale = 1.0
+    if pixels < FLEX_MIN_PIXELS:
+        scale = (FLEX_MIN_PIXELS / pixels) ** 0.5
+    elif pixels > FLEX_MAX_PIXELS:
+        scale = (FLEX_MAX_PIXELS / pixels) ** 0.5
+    w, h = w * scale, h * scale
+
+    def snap(v: float, up: bool) -> int:
+        q = (int(v) + 15) // 16 if up else int(v) // 16
+        return max(16, q * 16)
+
+    up = pixels < FLEX_MIN_PIXELS
+    return snap(w, up), snap(h, up)
+
+
 _REJECT_CODES = {"moderation_blocked", "content_policy_violation", "image_generation_user_error"}
 
 
@@ -47,9 +82,10 @@ class OpenAIImageEditProvider(ImageEditingProvider):
         *,
         api_key: str,
         base_url: str = "https://api.openai.com/v1",
-        model: str = "gpt-image-1",
+        model: str = "gpt-image-2",
         quality: str = "high",
         input_fidelity: str | None = "high",
+        max_edge: int = 2560,
         timeout: float = 180.0,
         max_retries: int = 3,
         transport: httpx.AsyncBaseTransport | None = None,
@@ -60,6 +96,7 @@ class OpenAIImageEditProvider(ImageEditingProvider):
         self.model = model
         self.quality = quality
         self.input_fidelity = input_fidelity
+        self.max_edge = max_edge
         self.max_retries = max_retries
         self.retry_initial_delay = retry_initial_delay
         self._client = httpx.AsyncClient(
@@ -74,7 +111,12 @@ class OpenAIImageEditProvider(ImageEditingProvider):
 
     async def _edit(self, request: EditRequest) -> EditResult:
         source = open_image(request.image)
-        canvas, layout = fit_to_canvas(source, SUPPORTED_SIZES)
+        sizes = (
+            [flexible_size(source.width, source.height, self.max_edge)]
+            if is_flexible_model(self.model)
+            else LEGACY_SIZES
+        )
+        canvas, layout = fit_to_canvas(source, sizes)
         files: list[tuple[str, tuple[str, bytes, str]]] = [
             ("image[]", ("source.png", encode_png(canvas), "image/png"))
         ]
@@ -92,7 +134,8 @@ class OpenAIImageEditProvider(ImageEditingProvider):
             "quality": self.quality,
             "n": "1",
         }
-        if self.input_fidelity:
+        # gpt-image-2 всегда работает в high fidelity и отвечает 400 на этот параметр.
+        if self.input_fidelity and not is_flexible_model(self.model):
             data["input_fidelity"] = self.input_fidelity
 
         async def _call() -> bytes:

@@ -49,11 +49,15 @@ class Settings(BaseSettings):
     # Провайдеры
     image_provider: Literal["mock", "openai"] = "mock"
     plate_provider: Literal["opencv", "openai", "mock"] = "opencv"
+    # auto — брать рисунок модели, если логотип совпал с макетом; lighting — только свет
+    plate_ai_mode: Literal["auto", "lighting"] = "auto"
+    plate_ai_min_similarity: float = Field(default=0.75, ge=0.0, le=1.0)
     openai_api_key: SecretStr = SecretStr("")
     openai_base_url: str = "https://api.openai.com/v1"
-    openai_image_model: str = "gpt-image-1"
+    openai_image_model: str = "gpt-image-2"
     openai_image_quality: str = "high"
-    openai_input_fidelity: str | None = "high"
+    openai_input_fidelity: str | None = "high"  # только для gpt-image-1.x
+    openai_image_max_edge: int = Field(default=2560, ge=1024, le=3840)
     provider_timeout_seconds: float = 180.0
     provider_max_retries: int = 3
 

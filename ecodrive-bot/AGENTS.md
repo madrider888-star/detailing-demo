@@ -62,7 +62,7 @@ worker → ImageEditingProvider (opencv | openai | mock) → нормализа�
 | `app/bot/notifier.py` | одно статус-сообщение на задание, отправка результата документом |
 | `app/workers/processor.py` | обработка задания: провайдер → экспорт → S3 → уведомление |
 | `app/services/image_editing/base.py` | интерфейс `ImageEditingProvider`, ошибки провайдера |
-| `app/services/image_editing/openai_provider.py` | реальный провайдер: `POST /images/edits` (gpt-image-1) |
+| `app/services/image_editing/openai_provider.py` | реальный провайдер: `POST /images/edits` (gpt-image-2; gpt-image-1 — legacy) |
 | `app/services/image_editing/factory.py` | выбор провайдера по `.env` |
 | `app/prompts/builder.py` | серверные промпты + негативные правила (пользователь промпт не пишет) |
 | `app/services/operations.py` | пресеты фонов, цветов, элементов салона, размеры дисков |
@@ -95,8 +95,9 @@ worker → ImageEditingProvider (opencv | openai | mock) → нормализа�
 **Режим OpenAI (`PLATE_PROVIDER=openai`, `app/services/image_editing/openai_plate.py`):**
 1) табличка ставится программно (точный макет, пропорции, старый номер закрашен);
 2) в OpenAI уходит квадратный фрагмент вокруг номера (без потери резкости) с маской-полосой;
-3) из ответа берётся **только освещение** (сильно сглаженная яркость) и переносится на точный
-макет и кузов вокруг (тень/блики). Логотип и форма — всегда из макета.
+3) `PLATE_AI_MODE=auto` (по умолчанию): если табличка в ответе модели совпадает с макетом
+(корреляция ≥ `PLATE_AI_MIN_SIMILARITY`, 0.75) — берутся пиксели модели в полосе вокруг
+таблички; иначе (и всегда при `lighting`) — только сглаженное освещение на точный макет.
 История: версия, вклеивавшая пиксели модели, давала размытый, перерисованный и обрезанный
 логотип — к ней не возвращаться. Если номер не найден — `needs_review`; если OpenAI
 недоступен — результат шага 1.
@@ -113,15 +114,17 @@ worker → ImageEditingProvider (opencv | openai | mock) → нормализа�
    ```
    IMAGE_PROVIDER=openai
    OPENAI_API_KEY=sk-...
-   OPENAI_IMAGE_MODEL=gpt-image-1
+   OPENAI_IMAGE_MODEL=gpt-image-2
    OPENAI_IMAGE_QUALITY=high
    OPENAI_INPUT_FIDELITY=high
    ```
 3. `cd ~/detailing-demo/ecodrive-bot && docker compose up -d` — бот и воркер перечитают `.env`.
 
-Как устроен провайдер (`openai_provider.py`): исходник дополняется полями до размера
-1024×1024 / 1536×1024 / 1024×1536, потом обрезается и возвращается к исходному
-разрешению (пропорции не искажаются). Референсы (диск, фон) уходят вторым изображением.
+Как устроен провайдер (`openai_provider.py`): модель по умолчанию **gpt-image-2** (апрель
+2026). Холст считается под пропорции исходника, почти в исходном разрешении
+(`OPENAI_IMAGE_MAX_EDGE`, по умолчанию 2560; стороны кратны 16, ≤ 3:1, 0.65–8.3 Мп).
+`input_fidelity` для gpt-image-2 не отправляется (иначе 400). Для gpt-image-1 — старые
+фиксированные размеры 1024/1536 с полями. Референсы (диск, фон) уходят вторым изображением.
 Используются тайм-аут, повторы с backoff (429/5xx/сеть) и понятные ошибки для модерации и ключа.
 
 Что стоит улучшить в первую очередь:

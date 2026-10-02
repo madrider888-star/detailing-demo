@@ -26,7 +26,7 @@ from app.services.image_editing.base import (
 )
 from app.services.image_editing.factory import build_registry
 from app.services.image_editing.mock import MockImageProvider
-from app.services.image_editing.openai_provider import OpenAIImageEditProvider
+from app.services.image_editing.openai_provider import OpenAIImageEditProvider, flexible_size
 from app.services.image_editing.opencv_plate import OpenCVPlateProvider
 from app.utils.canvas import fit_to_canvas, restore_from_canvas
 
@@ -109,15 +109,53 @@ async def test_openai_success_keeps_original_resolution() -> None:
     def handler(request: httpx.Request) -> httpx.Response:
         seen["auth"] = request.headers["Authorization"]
         body = request.content.decode("latin-1")
-        seen["size"] = "1536x1024" in body
+        seen["model"] = "gpt-image-2" in body
+        seen["size"] = "1792x1344" in body  # пропорции и почти исходное разрешение
+        seen["no_fidelity"] = "input_fidelity" not in body  # gpt-image-2 отвечает 400
         seen["prompt_has_negative"] = "Do not change the vehicle make" in body
-        return _ok_response((1536, 1024))
+        return _ok_response((1792, 1344))
 
     provider = _provider(httpx.MockTransport(handler))
     result = await provider.edit(_request(_png((1800, 1350))))
-    assert seen == {"auth": f"Bearer {API_KEY}", "size": True, "prompt_has_negative": True}
+    assert seen == {
+        "auth": f"Bearer {API_KEY}",
+        "model": True,
+        "size": True,
+        "no_fidelity": True,
+        "prompt_has_negative": True,
+    }
     assert Image.open(io.BytesIO(result.image)).size == (1800, 1350)
     assert result.provider == "openai"
+
+
+async def test_legacy_model_uses_fixed_sizes_and_fidelity() -> None:
+    seen: dict[str, bool] = {}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        body = request.content.decode("latin-1")
+        seen["size"] = "1536x1024" in body
+        seen["fidelity"] = "input_fidelity" in body
+        return _ok_response((1536, 1024))
+
+    provider = OpenAIImageEditProvider(
+        api_key=API_KEY,
+        base_url="https://example.test/v1",
+        model="gpt-image-1",
+        transport=httpx.MockTransport(handler),
+        retry_initial_delay=0.01,
+    )
+    result = await provider.edit(_request(_png((1800, 1350))))
+    assert seen == {"size": True, "fidelity": True}
+    assert Image.open(io.BytesIO(result.image)).size == (1800, 1350)
+
+
+def test_flexible_size_rules() -> None:
+    for src in [(1800, 1350), (2508, 1672), (700, 700), (4032, 3024), (300, 1200)]:
+        w, h = flexible_size(*src, 2560)
+        assert w % 16 == 0 and h % 16 == 0
+        assert max(w, h) <= 2560
+        assert max(w / h, h / w) <= 3.0
+        assert 655_360 <= w * h <= 8_294_400
 
 
 async def test_openai_retries_with_backoff_then_succeeds() -> None:
