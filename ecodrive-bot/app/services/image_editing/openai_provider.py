@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import base64
 import binascii
+import io
 from typing import Any, ClassVar
 
 import httpx
@@ -118,11 +119,11 @@ class OpenAIImageEditProvider(ImageEditingProvider):
         )
         canvas, layout = fit_to_canvas(source, sizes)
         files: list[tuple[str, tuple[str, bytes, str]]] = [
-            ("image[]", ("source.png", encode_png(canvas), "image/png"))
+            ("image[]", upload_file("source", canvas))
         ]
         for idx, ref in enumerate(request.references):
-            ref_png = encode_png(_flatten_reference(open_image(ref.data)))
-            files.append(("image[]", (f"reference_{idx}_{ref.role}.png", ref_png, "image/png")))
+            ref_image = _flatten_reference(open_image(ref.data))
+            files.append(("image[]", upload_file(f"reference_{idx}_{ref.role}", ref_image)))
         if request.mask is not None:
             mask_png = encode_png(fit_mask_to_canvas(open_image(request.mask), layout))
             files.append(("mask", ("mask.png", mask_png, "image/png")))
@@ -206,3 +207,24 @@ def _flatten_reference(image: Image.Image) -> Image.Image:
         base.paste(rgba, mask=rgba.getchannel("A"))
         return base
     return image.convert("RGB")
+
+
+UPLOAD_LIMIT_BYTES = 9_500_000  # лимит OpenAI — 10 МБ на изображение
+
+
+def upload_file(stem: str, image: Image.Image) -> tuple[str, bytes, str]:
+    """PNG без потерь; если не влезает в лимит (4K-фото) — JPEG 97–92 % (визуально без потерь)."""
+    png = encode_png(image)
+    if len(png) <= UPLOAD_LIMIT_BYTES:
+        return f"{stem}.png", png, "image/png"
+    # Размер не меняем (иначе разъедется с маской) — только степень сжатия.
+    # Реальное 4K-фото в JPEG 90–97 % весит 2–6 МБ.
+    rgb = image.convert("RGB")
+    data = b""
+    for quality in (97, 95, 92, 90, 85, 80):
+        buf = io.BytesIO()
+        rgb.save(buf, "JPEG", quality=quality, subsampling=0 if quality >= 92 else 2, optimize=True)
+        data = buf.getvalue()
+        if len(data) <= UPLOAD_LIMIT_BYTES:
+            break
+    return f"{stem}.jpg", data, "image/jpeg"

@@ -144,7 +144,7 @@ cp .env.example .env
 | `MAX_IMAGE_PIXELS` | 60 Мп | Защита от «бомб» распаковки |
 | `MIN_IMAGE_SIDE` | 320 | Минимальная короткая сторона |
 | `MAX_ACTIVE_JOBS_PER_USER` | 2 | Одновременных заданий на сотрудника |
-| `PROVIDER_TIMEOUT_SECONDS` | 180 | Тайм-аут запроса к AI |
+| `PROVIDER_TIMEOUT_SECONDS` | 300 | Тайм-аут запроса к AI |
 | `PROVIDER_MAX_RETRIES` | 3 | Повторы с экспоненциальной задержкой |
 | `EXPORT_MAX_SIDE` | 2560 | Максимальная сторона результата |
 | `EXPORT_JPEG_QUALITY` / `EXPORT_MIN_JPEG_QUALITY` | 92 / 90 | Качество JPEG (диапазон 90–95) |

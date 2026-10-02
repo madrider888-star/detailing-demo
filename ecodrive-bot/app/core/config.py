@@ -57,8 +57,8 @@ class Settings(BaseSettings):
     openai_image_model: str = "gpt-image-2"
     openai_image_quality: str = "high"
     openai_input_fidelity: str | None = "high"  # только для gpt-image-1.x
-    openai_image_max_edge: int = Field(default=2560, ge=1024, le=3840)
-    provider_timeout_seconds: float = 180.0
+    openai_image_max_edge: int = Field(default=3840, ge=1024, le=3840)
+    provider_timeout_seconds: float = 300.0
     provider_max_retries: int = 3
 
     # Номера

@@ -248,3 +248,20 @@ def test_secret_masker_masks_bot_token() -> None:
         "https://api.telegram.org/bot123456789:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw/getMe"
     )
     assert "AAHdqTcv" not in text
+
+
+def test_large_upload_switches_to_jpeg_within_limit() -> None:
+    import numpy as np
+
+    from app.services.image_editing.openai_provider import UPLOAD_LIMIT_BYTES, upload_file
+
+    # «Фотография» 4K: плавный градиент + зерно — PNG такого размера больше 10 МБ.
+    rng = np.random.default_rng(0)
+    yy, xx = np.mgrid[0:2560, 0:3840]
+    base = np.dstack([xx / 15, yy / 10, (xx + yy) / 25]) % 255
+    photo = np.clip(base + rng.normal(0, 12, base.shape), 0, 255).astype(np.uint8)
+    name, data, mime = upload_file("source", Image.fromarray(photo))
+    assert mime == "image/jpeg" and name == "source.jpg"
+    assert len(data) <= UPLOAD_LIMIT_BYTES
+    small_name, _, small_mime = upload_file("source", Image.new("RGB", (800, 600)))
+    assert (small_name, small_mime) == ("source.png", "image/png")
