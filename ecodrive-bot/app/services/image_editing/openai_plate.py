@@ -158,7 +158,7 @@ class OpenAIPlateProvider(ImageEditingProvider):
         replacer: PlateReplacer,
         template_png: bytes,
         *,
-        mode: str = "auto",
+        mode: str = "lighting",
         min_similarity: float = MIN_LOGO_SIMILARITY,
     ) -> None:
         self.mode = mode

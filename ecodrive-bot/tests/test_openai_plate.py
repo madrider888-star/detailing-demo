@@ -149,6 +149,7 @@ async def test_accurate_model_output_is_used_directly(settings: Settings) -> Non
         )
 
     holder["p"] = _provider(settings, handler)
+    holder["p"].mode = "auto"
     result = await holder["p"].edit(_request(source))
     assert result.metadata["mode"] == "generated"
     assert result.metadata["logo_similarity"] >= 0.75

@@ -49,8 +49,9 @@ class Settings(BaseSettings):
     # Провайдеры
     image_provider: Literal["mock", "openai"] = "mock"
     plate_provider: Literal["opencv", "openai", "mock"] = "opencv"
-    # auto — брать рисунок модели, если логотип совпал с макетом; lighting — только свет
-    plate_ai_mode: Literal["auto", "lighting"] = "auto"
+    # lighting — геометрия и логотип строго из макета, от модели только свет и тень;
+    # auto — брать рисунок модели, если логотип совпал (может исказить форму таблички)
+    plate_ai_mode: Literal["auto", "lighting"] = "lighting"
     plate_ai_min_similarity: float = Field(default=0.75, ge=0.0, le=1.0)
     openai_api_key: SecretStr = SecretStr("")
     openai_base_url: str = "https://api.openai.com/v1"
