@@ -65,9 +65,15 @@ class PlateReplacer:
                 detection=best,
                 candidates=len(detections),
             )
+        return self.place(image_bgr, best, candidates=len(detections))
+
+    def place(
+        self, image_bgr: ImageArray, detection: PlateDetection, *, candidates: int = 1
+    ) -> PlateReplacementResult:
+        """Ставит табличку на заданный (уже выбранный) номер."""
         result, info = overlay_plate(
             image_bgr,
-            best.corners,
+            detection.corners,
             self.template,
             expand=self.expand,
             height_ratio=self.height_ratio,
@@ -75,9 +81,9 @@ class PlateReplacer:
         return PlateReplacementResult(
             image=result,
             replaced=True,
-            confidence=best.confidence,
-            detection=best,
+            confidence=detection.confidence,
+            detection=detection,
             overlay=info,
-            candidates=len(detections),
-            metadata={"corners": best.corners.round(1).tolist(), "method": best.method},
+            candidates=candidates,
+            metadata={"corners": detection.corners.round(1).tolist(), "method": detection.method},
         )

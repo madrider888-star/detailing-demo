@@ -65,15 +65,27 @@ def build_plate_provider(settings: Settings) -> ImageEditingProvider:
     if settings.plate_provider == "openai":
         from app.services.image_editing.openai_plate import OpenAIPlateProvider
         from app.services.image_editing.openai_provider import OpenAIImageEditProvider
+        from app.services.image_editing.plate_picker import OpenAIPlatePicker
 
         editor = _openai_editor(settings)
         assert isinstance(editor, OpenAIImageEditProvider)
+        picker = (
+            OpenAIPlatePicker(
+                api_key=settings.openai_api_key.get_secret_value(),
+                base_url=settings.openai_base_url,
+                model=settings.openai_vision_model,
+                max_retries=settings.provider_max_retries,
+            )
+            if settings.openai_vision_model
+            else None
+        )
         return OpenAIPlateProvider(
             editor,
             replacer,
             settings.branded_plate_path.read_bytes(),
             mode=settings.plate_ai_mode,
             min_similarity=settings.plate_ai_min_similarity,
+            picker=picker,
         )
     return OpenCVPlateProvider(replacer)
 

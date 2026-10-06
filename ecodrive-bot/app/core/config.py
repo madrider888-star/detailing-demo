@@ -53,6 +53,8 @@ class Settings(BaseSettings):
     # auto — брать рисунок модели, если логотип совпал (может исказить форму таблички)
     plate_ai_mode: Literal["auto", "lighting"] = "lighting"
     plate_ai_min_similarity: float = Field(default=0.75, ge=0.0, le=1.0)
+    # Vision-модель выбирает, какой из найденных прямоугольников — номер машины ("" — выкл.)
+    openai_vision_model: str = "gpt-5"
     openai_api_key: SecretStr = SecretStr("")
     openai_base_url: str = "https://api.openai.com/v1"
     openai_image_model: str = "gpt-image-2"
