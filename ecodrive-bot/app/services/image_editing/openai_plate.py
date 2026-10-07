@@ -230,7 +230,10 @@ class OpenAIPlateProvider(ImageEditingProvider):
 
         # 3. Фрагмент вокруг таблички + маска-полоса → OpenAI.
         target = fitted_quad(
-            best.corners, self.template_aspect, height_ratio=self.replacer.height_ratio
+            best.corners,
+            self.template_aspect,
+            height_ratio=self.replacer.height_ratio,
+            fit=self.replacer.fit,
         )
         crop = crop_around(target, placed.shape[:2])
         placed_crop = crop.take(placed).copy()

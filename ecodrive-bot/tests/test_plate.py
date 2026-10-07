@@ -9,7 +9,12 @@ import pytest
 from app.core.config import Settings
 from app.services.plate_replacement.detector import ContourPlateDetector, parse_yolo_output, rectify
 from app.services.plate_replacement.geometry import expand_quad, order_corners, quad_size
-from app.services.plate_replacement.overlay import fitted_quad, overlay_plate
+from app.services.plate_replacement.overlay import (
+    FIT_LOGO,
+    fit_template,
+    fitted_quad,
+    overlay_plate,
+)
 from app.services.plate_replacement.service import PlateReplacer, load_template
 from tests.synthetic import make_plate, make_scene
 
@@ -152,10 +157,10 @@ def test_colored_original_plate_does_not_tint_overlay(template: np.ndarray) -> N
     assert b / r > 0.85
 
 
-def test_branded_template_keeps_its_proportions(branded: np.ndarray) -> None:
+def test_branded_template_keeps_its_proportions_in_logo_fit(branded: np.ndarray) -> None:
     scene, truth = make_scene()
-    result, _ = overlay_plate(scene, truth, branded)
-    target = fitted_quad(truth, branded.shape[1] / branded.shape[0])
+    result, _ = overlay_plate(scene, truth, branded, fit=FIT_LOGO)
+    target = fitted_quad(truth, branded.shape[1] / branded.shape[0], fit=FIT_LOGO)
     width, height = quad_size(target)
     plate_w, plate_h = quad_size(truth)
     # Макет не сплющен под EU-номер, а сохраняет свои ≈2.5:1 (относительно номера).
@@ -168,3 +173,39 @@ def test_branded_template_keeps_its_proportions(branded: np.ndarray) -> None:
     assert _ncc(rect, expected) > 0.8
     # Старый номер полностью закрыт: его рисунок больше не читается.
     assert _ncc(rectify(result, truth, (520, 112)), rectify(scene, truth, (520, 112))) < 0.3
+
+
+def _content_box(bgra: np.ndarray) -> tuple[int, int, int, int]:
+    hsv = cv2.cvtColor(bgra[..., :3], cv2.COLOR_BGR2HSV)
+    content = ((hsv[..., 2] > 70) | (hsv[..., 1] > 80)) & (bgra[..., 3] > 200)
+    cols, rows = np.where(content.any(axis=0))[0], np.where(content.any(axis=1))[0]
+    return int(cols[0]), int(rows[0]), int(cols[-1]) + 1, int(rows[-1]) + 1
+
+
+@pytest.mark.parametrize("aspect", [4.64, 3.4, 2.0, 1.2])
+def test_fit_template_extends_background_not_logo(branded: np.ndarray, aspect: float) -> None:
+    fitted = fit_template(branded, aspect)
+    h, w = fitted.shape[:2]
+    assert h == branded.shape[0]
+    assert w == pytest.approx(h * aspect, abs=1)
+    x0, y0, x1, y1 = _content_box(branded)
+    fx0, fy0, fx1, fy1 = _content_box(fitted)
+    # Логотип не растянут: пропорции те же, стоит по центру.
+    assert (fx1 - fx0) / (fy1 - fy0) == pytest.approx((x1 - x0) / (y1 - y0), rel=0.04)
+    assert (fx0 + fx1) / 2 == pytest.approx(w / 2, abs=3)
+    assert fx0 > 0 and fx1 < w and fy0 > 0 and fy1 < h
+    # Углы остаются скруглёнными (прозрачными), середина края — непрозрачная.
+    assert fitted[0, 0, 3] == 0 and fitted[h - 1, w - 1, 3] == 0
+    assert fitted[h // 2, 1, 3] > 200 and fitted[1, w // 2, 3] > 200
+
+
+def test_plate_fit_matches_original_plate_size(branded: np.ndarray) -> None:
+    scene, truth = make_scene()
+    result, _ = overlay_plate(scene, truth, branded)
+    # Табличка занимает ровно контур старого номера (с запасом expand).
+    target = fitted_quad(truth, branded.shape[1] / branded.shape[0])
+    assert np.abs(target - expand_quad(truth, 0.03, 0.045)).max() < 1e-3
+    plate = rectify(result, truth, (520, 112))
+    # Внутри — фон фирменной таблички (тёмный), старый белый номер не проглядывает.
+    assert np.percentile(cv2.cvtColor(plate, cv2.COLOR_BGR2GRAY), 50) < 60
+    assert _ncc(plate, rectify(scene, truth, (520, 112))) < 0.3

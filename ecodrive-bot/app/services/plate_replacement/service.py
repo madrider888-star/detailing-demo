@@ -9,7 +9,7 @@ from typing import Any
 import cv2
 
 from app.services.plate_replacement.detector import PlateDetection, PlateDetector
-from app.services.plate_replacement.overlay import OverlayInfo, overlay_plate
+from app.services.plate_replacement.overlay import FIT_PLATE, OverlayInfo, overlay_plate
 from app.utils.types import ImageArray
 
 
@@ -45,7 +45,9 @@ class PlateReplacer:
         confidence_threshold: float = 0.55,
         expand: float = 0.03,
         height_ratio: float = 1.5,
+        fit: str = FIT_PLATE,
     ) -> None:
+        self.fit = fit
         self.template = template_bgra
         self.detector = detector
         self.threshold = confidence_threshold
@@ -77,6 +79,7 @@ class PlateReplacer:
             self.template,
             expand=self.expand,
             height_ratio=self.height_ratio,
+            fit=self.fit,
         )
         return PlateReplacementResult(
             image=result,

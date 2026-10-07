@@ -130,6 +130,67 @@ EU_PLATE_ASPECT = 520 / 112  # реальные пропорции номера;
 
 DEFAULT_HEIGHT_RATIO = 1.5  # высота макета другой формы относительно высоты номера
 
+# plate — табличка точно по контуру старого номера (длина и высота как у оригинала);
+# logo — макет в своих пропорциях, height_ratio × высота номера (прежнее поведение).
+FIT_PLATE, FIT_LOGO = "plate", "logo"
+LOGO_GROW = 1.15  # насколько логотип может быть крупнее, чем в макете
+LOGO_MIN_MARGIN = 0.14  # минимальное поле сверху/снизу, доля высоты таблички
+
+
+def fit_template(template_bgra: ImageArray, aspect: float) -> ImageArray:
+    """Макет под пропорции номера без искажения логотипа.
+
+    Фон таблички (со скруглёнными углами и прозрачностью) удлиняется или укорачивается
+    по ширине, логотип переносится без растяжения, по центру. Высота логотипа
+    относительно высоты таблички — как в макете; если табличка уже — логотип
+    уменьшается, сохраняя боковые поля макета.
+    """
+    h, w = template_bgra.shape[:2]
+    new_w = max(16, round(h * aspect))
+    if abs(new_w - w) <= 1:
+        return template_bgra
+    alpha = template_bgra[..., 3]
+    color = template_bgra[..., :3].astype(np.int16)
+    opaque = alpha > 200
+    if opaque.sum() < 0.3 * h * w:
+        return cv2.resize(template_bgra, (new_w, h), interpolation=cv2.INTER_AREA)
+    content = opaque & (np.abs(color - np.median(color[opaque], axis=0)).max(axis=2) > 40)
+    cols, rows = np.where(content.any(axis=0))[0], np.where(content.any(axis=1))[0]
+    if not len(cols):
+        return cv2.resize(template_bgra, (new_w, h), interpolation=cv2.INTER_AREA)
+    cx0, cx1, cy0, cy1 = int(cols[0]), int(cols[-1]) + 1, int(rows[0]), int(rows[-1]) + 1
+    if min(cx0, w - cx1) < 0.03 * w or min(cy0, h - cy1) < 0.03 * h:
+        # Рисунок до самого края (макет в виде номера с рамкой) — переставлять нечего.
+        return cv2.resize(template_bgra, (new_w, h), interpolation=cv2.INTER_AREA)
+
+    # Пустой фон: логотип закрашен цветом фона.
+    empty = template_bgra.copy()
+    fill = cv2.dilate(content.astype(np.uint8), np.ones((5, 5), np.uint8)) > 0
+    empty[..., :3][fill & opaque] = np.median(color[opaque & ~fill], axis=0).astype(np.uint8)
+
+    # Удлиняем/укорачиваем фон за счёт середины (углы и кант не трогаем).
+    left = new_w // 2
+    if new_w > w:
+        middle = np.repeat(empty[:, w // 2 : w // 2 + 1], new_w - w, axis=1)
+        plate = np.concatenate([empty[:, : w // 2], middle, empty[:, w // 2 :]], axis=1)
+    else:
+        plate = np.concatenate([empty[:, :left], empty[:, w - (new_w - left) :]], axis=1)
+
+    # Логотип: чуть крупнее, чем в макете, если есть место (как надпись на старом номере);
+    # уже табличка — уменьшаем под боковые поля макета.
+    logo = template_bgra[cy0:cy1, cx0:cx1]
+    lw, lh = cx1 - cx0, cy1 - cy0
+    scale = min(LOGO_GROW, (h - 2 * LOGO_MIN_MARGIN * h) / lh, max(8, new_w - 2 * cx0) / lw)
+    if abs(scale - 1.0) > 1e-3:
+        lw, lh = max(1, round(lw * scale)), max(1, round(lh * scale))
+        logo = cv2.resize(logo, (lw, lh), interpolation=cv2.INTER_AREA)
+    x0 = (new_w - lw) // 2
+    y0 = (cy0 + cy1) // 2 - lh // 2
+    region = plate[y0 : y0 + lh, x0 : x0 + lw]
+    a = logo[..., 3:4].astype(np.float32) / 255.0
+    region[..., :3] = (logo[..., :3] * a + region[..., :3] * (1 - a)).astype(np.uint8)
+    return np.ascontiguousarray(plate)
+
 
 def template_box(
     plate_w: int,
@@ -161,9 +222,12 @@ def fitted_quad(
     template_aspect: float,
     expand: float = 0.03,
     height_ratio: float = DEFAULT_HEIGHT_RATIO,
+    fit: str = FIT_PLATE,
 ) -> Quad:
     """Четырёхугольник в кадре, куда ляжет макет (с учётом перспективы номера)."""
     quad = expand_quad(corners.astype(np.float32), expand, expand * 1.5)
+    if fit == FIT_PLATE:
+        return quad
     width, height = quad_size(quad)
     cw, ch = max(16, round(width)), max(6, round(height))
     x0, y0, x1, y1 = template_box(cw, ch, template_aspect, height_ratio=height_ratio)
@@ -222,6 +286,7 @@ def overlay_plate(
     *,
     expand: float = 0.03,
     height_ratio: float = DEFAULT_HEIGHT_RATIO,
+    fit: str = FIT_PLATE,
     seed: int = 0,
 ) -> tuple[ImageBGR, OverlayInfo]:
     """Накладывает RGBA-макет (в порядке каналов BGRA) на номер `corners`."""
@@ -239,10 +304,19 @@ def overlay_plate(
     illum = estimate_illumination(src_gray)
     occ_plate = occlusion_mask(src_gray, illum, src_plate)
 
-    # Где лежит макет: его пропорции сохраняются.
+    # Где лежит макет: точно по контуру номера (фон макета подогнан под его пропорции)
+    # или в своих пропорциях по центру номера.
     th_, tw_ = template_rgba.shape[:2]
-    x0, y0, x1, y1 = template_box(cw, ch, tw_ / th_, height_ratio=height_ratio)
-    covers_plate = x0 <= 0 and y0 <= 0 and x1 >= cw and y1 >= ch
+    # Макет в форме номера (≈ 520×112) покрывает его как есть и берёт свет с него — без канта.
+    plate_shaped = abs(np.log(tw_ / th_ / EU_PLATE_ASPECT)) < np.log(ASPECT_TOLERANCE)
+    if fit == FIT_PLATE:
+        if not plate_shaped:
+            template_rgba = fit_template(template_rgba, cw / ch)
+        x0, y0, x1, y1 = 0.0, 0.0, float(cw), float(ch)
+        decorate = not plate_shaped
+    else:
+        x0, y0, x1, y1 = template_box(cw, ch, tw_ / th_, height_ratio=height_ratio)
+        decorate = not (x0 <= 0 and y0 <= 0 and x1 >= cw and y1 >= ch)
     tcw, tch = max(16, round(x1 - x0)), max(6, round(y1 - y0))
     target_box = np.array([[x0, y0], [x1, y0], [x1, y1], [x0, y1]], dtype=np.float32)
     plate_to_image = cv2.getPerspectiveTransform(canon, quad)
@@ -254,7 +328,7 @@ def overlay_plate(
     tpl = cv2.resize(template_rgba, (tcw, tch), interpolation=cv2.INTER_AREA).astype(np.float32)
     alpha: ImageArray = tpl[..., 3:4] / 255.0
     color: ImageArray = tpl[..., :3]
-    if not covers_plate:
+    if decorate:
         color = add_rim_and_sheen(color, alpha)
 
     # 3. Освещённость, тени, блики: макет «белый» = TEMPLATE_WHITE.
@@ -298,8 +372,8 @@ def overlay_plate(
     )
     a = np.clip(warped[..., 3:4] / 255.0, 0.0, 1.0)
     base = image
-    if not covers_plate:
-        # Макет меньше номера: убираем старый номер и кладём мягкую тень под табличку.
+    if decorate:
+        # Убираем остатки старого номера вокруг и кладём мягкую тень под табличку.
         base = remove_old_plate(image, corners, noise, seed)
         _, target_h = quad_size(target_quad.reshape(4, 2))
         shadow = cv2.GaussianBlur(a[..., 0], (0, 0), max(1.0, target_h * 0.07))
