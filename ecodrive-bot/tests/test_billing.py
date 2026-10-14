@@ -56,12 +56,26 @@ async def test_costs_client_sums_all_pages() -> None:
     assert seen[1].url.params["page"] == "p2"
 
 
-async def test_costs_client_rejects_wrong_key() -> None:
-    transport = httpx.MockTransport(lambda r: httpx.Response(401, json={}))
+@pytest.mark.parametrize(("status", "hint"), [(401, "sk-admin-"), (403, "Owner")])
+async def test_costs_client_explains_auth_errors(status: int, hint: str) -> None:
+    error = {"error": {"message": "Missing scopes: api.usage.read", "type": "invalid_request"}}
+    transport = httpx.MockTransport(lambda r: httpx.Response(status, json=error))
     client = OpenAICostsClient("sk-wrong", transport=transport)
-    with pytest.raises(BillingError, match="Ключ администратора"):
+    with pytest.raises(BillingError) as exc_info:
         await client.spent_since(0)
     await client.aclose()
+    assert hint in exc_info.value.user_message
+    assert "Missing scopes: api.usage.read" in exc_info.value.user_message
+
+
+def test_pasted_keys_are_cleaned() -> None:
+    settings = Settings(
+        _env_file=None,  # type: ignore[call-arg]
+        openai_admin_key="  \x1b[200~sk-admin-abc123\x1b[201~ \r",
+        openai_api_key='"sk-proj-xyz"',
+    )
+    assert settings.openai_admin_key.get_secret_value() == "sk-admin-abc123"
+    assert settings.openai_api_key.get_secret_value() == "sk-proj-xyz"
 
 
 def test_progress_bar() -> None:

@@ -84,10 +84,17 @@ class OpenAICostsClient:
                 response = await self._client.get("/organization/costs", params=params)
             except httpx.HTTPError as exc:
                 raise BillingError("OpenAI не ответил. Попробуйте позже.") from exc
-            if response.status_code in (401, 403):
+            if response.status_code == 401:
                 raise BillingError(
-                    "Ключ администратора OpenAI не подходит (OPENAI_ADMIN_KEY). "
-                    "Нужен Admin key с правом чтения."
+                    "OpenAI не принял ключ администратора (OPENAI_ADMIN_KEY). Нужен именно "
+                    "Admin key — он начинается с sk-admin-, обычный ключ sk-proj- не подойдёт."
+                    + _openai_reason(response)
+                )
+            if response.status_code == 403:
+                raise BillingError(
+                    "У ключа администратора нет доступа к расходам. Создайте Admin key "
+                    "под владельцем организации (Owner), права — Read only или All."
+                    + _openai_reason(response)
                 )
             if response.status_code >= 400:
                 log.warning("billing.costs_error", status=response.status_code)
@@ -106,6 +113,15 @@ class OpenAICostsClient:
                 break
             params["page"] = str(next_page)
         return total
+
+
+def _openai_reason(response: httpx.Response) -> str:
+    """Текст ошибки от OpenAI (ключ в нём замаскирован) — чтобы было видно точную причину."""
+    try:
+        message = str((response.json().get("error") or {}).get("message") or "")
+    except (ValueError, AttributeError):
+        message = ""
+    return f"\n\nOpenAI: {message[:300]}" if message else ""
 
 
 def progress_bar(fraction: float) -> str:

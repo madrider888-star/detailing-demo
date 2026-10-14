@@ -110,6 +110,16 @@ class Settings(BaseSettings):
     def _parse_csv(cls, value: object) -> object:
         return _split_csv(value)
 
+    @field_validator("bot_token", "openai_api_key", "openai_admin_key", mode="before")
+    @classmethod
+    def _clean_secret(cls, value: object) -> object:
+        # Ключ, вставленный в консоль, может прийти с пробелами, кавычками или
+        # служебными символами вставки (ESC[200~ … ESC[201~).
+        if isinstance(value, str):
+            value = value.replace("\x1b[200~", "").replace("\x1b[201~", "")
+            value = value.strip().strip("\"'").strip()
+        return value
+
     @field_validator("plate_detector_model_path", "s3_endpoint_url", mode="before")
     @classmethod
     def _empty_to_none(cls, value: object) -> object:
