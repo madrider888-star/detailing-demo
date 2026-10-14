@@ -81,6 +81,15 @@ class ProviderConfigError(ProviderError):
     user_message = "Сервис обработки не настроен. Сообщите администратору."
 
 
+class ProviderQuotaError(ProviderConfigError):
+    """Закончились деньги на счёте поставщика (OpenAI: insufficient_quota)."""
+
+    user_message = (
+        "Закончился баланс OpenAI — обработка через ИИ остановлена. "
+        "Администратору: пополните счёт на platform.openai.com → Settings → Billing."
+    )
+
+
 class UnsupportedOperationError(ProviderError):
     retryable = False
     user_message = "Эта операция пока не поддерживается выбранным сервисом обработки."

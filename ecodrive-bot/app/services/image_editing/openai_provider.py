@@ -23,6 +23,7 @@ from app.services.image_editing.base import (
     ImageEditingProvider,
     ProviderConfigError,
     ProviderError,
+    ProviderQuotaError,
     ProviderRejectedError,
     ProviderTimeoutError,
     ProviderUnavailableError,
@@ -69,6 +70,7 @@ def flexible_size(width: int, height: int, max_edge: int) -> tuple[int, int]:
     return snap(w, up), snap(h, up)
 
 
+_QUOTA_CODES = {"insufficient_quota", "billing_hard_limit_reached"}
 _REJECT_CODES = {"moderation_blocked", "content_policy_violation", "image_generation_user_error"}
 
 
@@ -190,6 +192,9 @@ class OpenAIImageEditProvider(ImageEditingProvider):
         except ValueError:
             pass
         log.warning("provider.http_error", provider="openai", status=status, code=code)
+        if code in _QUOTA_CODES:
+            # Приходит как 429, но повтор не поможет — нужен платёж.
+            return ProviderQuotaError(f"quota exhausted: {code}")
         if status in (401, 403):
             return ProviderConfigError(f"auth error {status}")
         if status == 429 or status >= 500:

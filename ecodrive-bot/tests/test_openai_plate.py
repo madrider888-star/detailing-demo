@@ -9,13 +9,14 @@ import re
 import cv2
 import httpx
 import numpy as np
+import pytest
 from PIL import Image
 from pydantic import SecretStr
 
 from app.core.config import Settings
 from app.core.enums import Operation
 from app.prompts.builder import build_prompt
-from app.services.image_editing.base import EditRequest
+from app.services.image_editing.base import EditRequest, ProviderQuotaError
 from app.services.image_editing.factory import build_plate_provider
 from app.services.image_editing.openai_plate import OpenAIPlateProvider
 from app.services.image_editing.openai_provider import OpenAIImageEditProvider
@@ -164,3 +165,15 @@ async def test_plate_ai_mode_lighting_never_uses_model_pixels(settings: Settings
     scene, _ = make_scene()
     result = await provider.edit(_request(to_jpeg_bytes(scene)))
     assert result.metadata["mode"] == "lighting"
+
+
+async def test_out_of_balance_is_reported_not_hidden(settings: Settings) -> None:
+    """Закончился баланс OpenAI — задание падает с понятной причиной, а не тихо без ИИ."""
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(429, json={"error": {"code": "insufficient_quota"}})
+
+    scene, _ = make_scene()
+    with pytest.raises(ProviderQuotaError) as exc_info:
+        await _provider(settings, handler).edit(_request(to_jpeg_bytes(scene)))
+    assert "баланс OpenAI" in exc_info.value.user_message

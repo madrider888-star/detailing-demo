@@ -20,6 +20,7 @@ from app.services.image_editing.base import (
     EditRequest,
     ProviderConfigError,
     ProviderError,
+    ProviderQuotaError,
     ProviderRejectedError,
     ProviderUnavailableError,
     UnsupportedOperationError,
@@ -192,6 +193,8 @@ async def test_openai_gives_up_after_max_retries() -> None:
         (400, "moderation_blocked", ProviderRejectedError),
         (401, "invalid_api_key", ProviderConfigError),
         (429, "rate_limit_exceeded", ProviderUnavailableError),
+        (429, "insufficient_quota", ProviderQuotaError),
+        (400, "billing_hard_limit_reached", ProviderQuotaError),
     ],
 )
 async def test_openai_error_mapping(
