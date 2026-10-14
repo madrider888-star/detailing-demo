@@ -227,6 +227,17 @@ DATABASE_URL=postgresql+asyncpg://ecodrive:...@localhost:5432/ecodrive \
 | `/users` | admin | Пользователи, роли, статус |
 | `/allow_user 123456789 [employee\|moderator\|admin]` | admin | Выдать доступ / сменить роль |
 | `/block_user 123456789` | admin | Заблокировать |
+| `/balance` | moderator, admin | Шкала: сколько денег осталось на OpenAI |
+| `/balance 100` | admin | Записать сумму на счёте после пополнения |
+
+### Баланс OpenAI
+
+У OpenAI нет API остатка денег, поэтому бот считает так: администратор после пополнения
+пишет `/balance <сумма из Credit balance>`, бот вычитает расходы, которые OpenAI
+насчитал с этого момента (Costs API). Для этого нужен ключ администратора только на чтение:
+platform.openai.com → Settings → Organization → **Admin keys** → `OPENAI_ADMIN_KEY` в `.env`.
+OpenAI сообщает расходы с задержкой до нескольких часов — шкала приблизительная. Ниже
+`OPENAI_BALANCE_LOW_USD` (по умолчанию 10 $) бот предлагает пополнить счёт.
 
 Жалобы сотрудников («Сообщить о проблеме») и передача фото оператору приходят всем
 активным модераторам и администраторам. Все действия пишутся в `audit_logs`.

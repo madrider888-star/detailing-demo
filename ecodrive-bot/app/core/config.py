@@ -60,6 +60,9 @@ class Settings(BaseSettings):
     openai_image_model: str = "gpt-image-2"
     openai_image_quality: str = "high"
     openai_input_fidelity: str | None = "high"  # только для gpt-image-1.x
+    # Ключ администратора (только чтение) — для шкалы баланса /balance; можно не задавать
+    openai_admin_key: SecretStr = SecretStr("")
+    openai_balance_low_usd: float = 10.0  # ниже — предупреждение «пополните счёт»
     openai_image_max_edge: int = Field(default=3840, ge=1024, le=3840)
     provider_timeout_seconds: float = 300.0
     provider_max_retries: int = 3
@@ -119,7 +122,13 @@ class Settings(BaseSettings):
 
     def secret_values(self) -> list[str]:
         """Значения секретов — для маскировки в логах."""
-        secrets = [self.bot_token, self.openai_api_key, self.s3_access_key, self.s3_secret_key]
+        secrets = [
+            self.bot_token,
+            self.openai_api_key,
+            self.openai_admin_key,
+            self.s3_access_key,
+            self.s3_secret_key,
+        ]
         values = [s.get_secret_value() for s in secrets if s.get_secret_value()]
         if "@" in self.database_url and ":" in self.database_url.split("@")[0]:
             password = self.database_url.split("@")[0].rsplit(":", 1)[-1]

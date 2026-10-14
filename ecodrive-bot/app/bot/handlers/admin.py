@@ -21,6 +21,7 @@ from app.repositories.jobs import JobRepository
 from app.repositories.users import UserRepository
 from app.services.access import AccessService
 from app.services.jobs import JobService
+from app.services.openai_billing import BillingError, BillingService
 
 router = Router(name="admin")
 staff = RoleFilter(Role.MODERATOR)
@@ -28,6 +29,8 @@ admins_only = RoleFilter(Role.ADMIN)
 
 ADMIN_HELP = (
     "🛠 <b>Администрирование</b>\n\n"
+    "/balance — сколько денег осталось на OpenAI\n"
+    "/balance &lt;сумма&gt; — записать баланс после пополнения (admin)\n"
     "/stats — статистика и очередь\n"
     "/jobs — последние задания\n"
     "/failed — ошибки и задания на проверке\n"
@@ -40,6 +43,36 @@ ADMIN_HELP = (
 @router.message(Command("admin"), staff)
 async def cmd_admin(message: Message) -> None:
     await message.answer(ADMIN_HELP)
+
+
+@router.message(Command("balance"), staff)
+async def cmd_balance(
+    message: Message,
+    command: CommandObject,
+    session: AsyncSession,
+    db_user: User,
+    ctx: AppContext,
+) -> None:
+    service = BillingService(session, ctx.settings)
+    arg = (command.args or "").strip().lstrip("$").replace(",", ".")
+    try:
+        if arg:
+            if db_user.role is not Role.ADMIN:
+                await message.answer("Записать баланс может только администратор.")
+                return
+            try:
+                amount = float(arg)
+            except ValueError:
+                amount = -1.0
+            if not 0 < amount < 100_000:
+                await message.answer("Напишите сумму числом, например: <code>/balance 100</code>")
+                return
+            await service.set_balance(db_user, amount)
+            await session.commit()
+            await message.answer(f"✅ Записал: на счёте OpenAI <b>${amount:.2f}</b>.")
+        await message.answer(await service.report(), disable_web_page_preview=True)
+    except BillingError as exc:
+        await message.answer(f"💰 Баланс OpenAI\n\n{html.escape(exc.user_message)}")
 
 
 @router.message(Command("stats"), staff)
@@ -181,6 +214,8 @@ async def cmd_block_user(
     await message.answer(f"⛔ Пользователь <code>{telegram_id}</code> заблокирован.")
 
 
-@router.message(Command("admin", "stats", "jobs", "failed", "users", "allow_user", "block_user"))
+@router.message(
+    Command("admin", "balance", "stats", "jobs", "failed", "users", "allow_user", "block_user")
+)
 async def cmd_no_rights(message: Message) -> None:
     await message.answer("Недостаточно прав для этой команды.")

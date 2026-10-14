@@ -20,7 +20,7 @@ from app.core.enums import AssetType, JobStatus, Operation
 from app.models import Asset, Job
 from app.services.storage import LocalStorage
 from app.workers.queue import InMemoryJobQueue
-from tests.conftest import EMPLOYEE_ID, STRANGER_ID
+from tests.conftest import ADMIN_ID, EMPLOYEE_ID, STRANGER_ID
 from tests.fake_telegram import FakeSession, UpdateFactory, make_bot
 
 
@@ -250,3 +250,15 @@ async def test_concurrency_limit(harness: Harness, car_jpeg: bytes, settings: Se
 async def test_admin_commands_require_role(harness: Harness) -> None:
     await harness.feed(harness.updates.text("/stats"))
     assert "Недостаточно прав" in harness.session.last_text()
+
+
+async def test_balance_command_admin_sets_and_employee_cannot(harness: Harness) -> None:
+    await harness.feed(harness.updates.text("/balance"))
+    assert "Недостаточно прав" in harness.session.last_text()
+
+    boss = UpdateFactory(ADMIN_ID, "boss")
+    await harness.feed(boss.text("/balance 120,5"))
+    texts = harness.session.texts()
+    assert any("$120.50" in t and "Записал" in t for t in texts)
+    # Ключа администратора в тестовых настройках нет — бот подсказывает, что нужно.
+    assert "OPENAI_ADMIN_KEY" in texts[-1]
