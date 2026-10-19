@@ -74,6 +74,38 @@ def test_detector_keeps_dark_flag_strip_on_holder(name: str) -> None:
     assert np.abs(best.corners - truth).max() < 6.0
 
 
+def _yellow_placeholder_scene() -> tuple[np.ndarray, np.ndarray]:
+    """Белая машина сзади под углом, жёлтая заглушка 懂车帝 (логотип и «иероглифы»
+    из штрихов — шрифта с иероглифами в проекте нет)."""
+    pw, ph = 440, 140
+    plate = np.full((ph, pw, 3), (20, 200, 245), np.uint8)  # BGR — жёлтый
+    cv2.circle(plate, (80, 72), 36, (25, 25, 25), 14)
+    for x in (150, 240, 330):
+        cv2.rectangle(plate, (x, 34), (x + 70, 44), (25, 25, 25), -1)
+        cv2.rectangle(plate, (x + 30, 30), (x + 40, 112), (25, 25, 25), -1)
+        cv2.rectangle(plate, (x + 6, 70), (x + 64, 80), (25, 25, 25), -1)
+        cv2.rectangle(plate, (x + 4, 100), (x + 66, 110), (25, 25, 25), -1)
+    scene = np.full((860, 1280, 3), 236, np.uint8)
+    cv2.rectangle(scene, (0, 620), (1280, 860), (200, 200, 205), -1)
+    truth = np.array([[700, 470], [880, 452], [890, 532], [710, 556]], np.float32)
+    src = np.array([[0, 0], [pw - 1, 0], [pw - 1, ph - 1], [0, ph - 1]], np.float32)
+    m = cv2.getPerspectiveTransform(src, truth)
+    warped = cv2.warpPerspective(plate, m, (1280, 860))
+    mask = cv2.warpPerspective(np.ones((ph, pw), np.float32), m, (1280, 860))[..., None]
+    out = scene * (1 - mask) + warped * mask
+    return np.clip(out, 0, 255).astype(np.uint8), truth
+
+
+def test_detector_takes_whole_yellow_placeholder_at_angle() -> None:
+    """Жёлтая заглушка сбоку: вся табличка по границе цвета, а не строка символов
+    внутри и не повёрнутый описанный прямоугольник с тенью."""
+    scene, truth = _yellow_placeholder_scene()
+    best = ContourPlateDetector().detect(scene)[0]
+    assert best.method == "color"
+    assert best.confidence > 0.7
+    assert np.abs(best.corners - truth).max() < 5.0
+
+
 def test_detector_low_confidence_without_plate() -> None:
     blank = np.full((700, 1000, 3), 128, np.uint8)
     cv2.rectangle(blank, (100, 100), (900, 600), (40, 40, 140), -1)

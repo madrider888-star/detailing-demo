@@ -468,10 +468,81 @@ def _refine_once(image: ImageBGR, quad: Quad, *, outermost: bool = False) -> Qua
     return refined
 
 
+def color_plate_quad(image: ImageBGR, rough: Quad) -> Quad | None:
+    """Точные 4 угла цветной таблички по исходному кадру: маска того же цвета в окрестности
+    грубого контура, внешний контур, четырёхугольник по нему."""
+    h, w = image.shape[:2]
+    x0, y0 = np.floor(rough.min(axis=0)).astype(int)
+    x1, y1 = np.ceil(rough.max(axis=0)).astype(int)
+    pad_x, pad_y = max(4, (x1 - x0) // 5), max(4, (y1 - y0) // 3)
+    x0, y0 = max(0, x0 - pad_x), max(0, y0 - pad_y)
+    x1, y1 = min(w, x1 + pad_x), min(h, y1 + pad_y)
+    roi = image[y0:y1, x0:x1]
+    if roi.size == 0:
+        return None
+    hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
+    center = np.round(rough.mean(axis=0) - [x0, y0]).astype(int)
+    inner = hsv[
+        max(0, center[1] - 2) : center[1] + 3, max(0, center[0] - (x1 - x0) // 4) : center[0]
+    ]
+    if inner.size == 0:
+        return None
+    hue = float(np.median(inner[..., 0]))
+    diff = np.abs(hsv[..., 0].astype(np.int16) - round(hue))
+    diff = np.minimum(diff, 180 - diff)
+    mask = ((diff <= 12) & (hsv[..., 1] >= 70) & (hsv[..., 2] >= 50)).astype(np.uint8) * 255
+    k = max(3, (y1 - y0) // 6) | 1
+    mask = cv2.morphologyEx(
+        mask, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_RECT, (k, k))
+    )
+    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    if not contours:
+        return None
+    contour = max(contours, key=cv2.contourArea)
+    if cv2.contourArea(contour) < 0.3 * quad_area(rough - np.array([x0, y0], np.float32)):
+        return None
+    hull = cv2.convexHull(contour)
+    quad = _quad_from_contour(hull)
+    if not is_convex(quad):
+        return None
+    return (quad + np.array([x0, y0], dtype=np.float32)).astype(np.float32)
+
+
+def color_plate_confidence(feats: dict[str, float], fill: float) -> float:
+    """Сплошная цветная прямоугольная область с символами — номер, даже если в кадре он
+    из-за ракурса «короче» EU-пропорций (жёлтая заглушка 懂车帝 сбоку ≈ 2:1)."""
+    # Иероглифы (懂车帝) распадаются на штрихи и «символами» не считаются — поэтому
+    # проверяем просто наличие тёмной надписи/логотипа: ровная деталь кузова её не имеет.
+    dark = feats.get("dark_ratio", 0.0)
+    if not 0.08 <= dark <= 0.55 or feats.get("contrast", 0.0) < 25:
+        return 0.0
+    if not 1.3 <= feats.get("aspect", 0.0) <= 6.0:
+        return 0.0
+    content = min(1.0, feats.get("chars", 0.0) / 4.0)
+    return 0.6 + 0.2 * _band(fill, 0.8, 1.0, 0.3) + 0.1 * content
+
+
 class ContourPlateDetector:
     def __init__(self, max_side: int = 1280, max_candidates: int = 5) -> None:
         self.max_side = max_side
         self.max_candidates = max_candidates
+
+    def _color_maps(self, image: ImageBGR) -> list[ImageArray]:
+        """Цветные таблички целиком: жёлтая заглушка 懂车帝 / жёлтый номер, синий и
+        зелёный китайские. Без этого детектор видит в них только строку символов."""
+        hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+        h, s, v = hsv[..., 0], hsv[..., 1], hsv[..., 2]
+        masks = [
+            (h >= 15) & (h <= 38) & (s >= 90) & (v >= 90),  # жёлтый
+            (h >= 100) & (h <= 125) & (s >= 110) & (v >= 60),  # синий
+            (h >= 40) & (h <= 85) & (s >= 50) & (v >= 90),  # зелёный (электромобили)
+        ]
+        ih, iw = image.shape[:2]
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (max(3, iw // 80), max(3, ih // 80)))
+        return [
+            cv2.morphologyEx(m.astype(np.uint8) * 255, cv2.MORPH_CLOSE, kernel, iterations=2)
+            for m in masks
+        ]
 
     def _binary_maps(self, gray: ImageArray) -> list[ImageArray]:
         h, w = gray.shape
@@ -506,7 +577,9 @@ class ContourPlateDetector:
         gray = cv2.cvtColor(small, cv2.COLOR_BGR2GRAY)
         sh, sw = gray.shape
         candidates: list[PlateDetection] = []
-        for binary in self._binary_maps(gray):
+        gray_maps, color_maps = self._binary_maps(gray), self._color_maps(small)
+        for index, binary in enumerate(gray_maps + color_maps):
+            colored = index >= len(gray_maps)
             contours, _ = cv2.findContours(binary, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
             for contour in contours:
                 area = cv2.contourArea(contour)
@@ -521,6 +594,25 @@ class ContourPlateDetector:
                     continue
                 fill = min(1.0, area / q_area)
                 conf, feats = score_candidate(quad, small, fill)
+                if colored:
+                    # Цветная табличка: граница цвета и есть край номера (жёлтое на белом
+                    # кузове видно точно), уточнять по яркости не нужно — оно «съезжает»
+                    # на тень и описанный прямоугольник.
+                    exact = color_plate_quad(image, (quad / scale).astype(np.float32))
+                    if exact is not None:
+                        quad = exact * scale
+                        conf, feats = score_candidate(quad, small, fill)
+                        conf = max(conf, color_plate_confidence(feats, fill))
+                        if conf > 0.2:
+                            candidates.append(
+                                PlateDetection(
+                                    corners=exact,
+                                    confidence=conf,
+                                    method="color",
+                                    features=feats,
+                                )
+                            )
+                    continue
                 if conf <= 0.2:
                     continue
                 # Углы уточняем по исходному кадру: на уменьшенной копии номер под углом
