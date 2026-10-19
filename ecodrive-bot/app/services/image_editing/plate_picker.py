@@ -40,6 +40,8 @@ PROMPT = (
     "any colour (white, yellow, black...), or a dealer/placeholder plate with a logo instead "
     "of a number. Boxes on road signs, kerbs, buildings, windows, lights, stickers, other "
     "cars or any object that is not the main car's plate do NOT count. "
+    "If more than one box lies on the plate, choose the box whose edges match the whole "
+    "plate's outer border, not a box around only its lettering or logo. "
     'Answer with JSON only: {"plate": N} where N is the box number, '
     'or {"plate": 0} if no box contains the main car\'s licence plate.'
 )

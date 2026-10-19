@@ -639,10 +639,31 @@ class ContourPlateDetector:
         return _non_max_suppression(candidates)[: self.max_candidates]
 
 
-def _non_max_suppression(cands: list[PlateDetection], iou: float = 0.4) -> list[PlateDetection]:
+def _bbox_containment(a: Quad, b: Quad) -> float:
+    """Какая доля меньшей рамки лежит внутри большей (по описанным прямоугольникам)."""
+    ax0, ay0 = a.min(axis=0)
+    ax1, ay1 = a.max(axis=0)
+    bx0, by0 = b.min(axis=0)
+    bx1, by1 = b.max(axis=0)
+    iw = max(0.0, min(ax1, bx1) - max(ax0, bx0))
+    ih = max(0.0, min(ay1, by1) - max(ay0, by0))
+    smaller = min((ax1 - ax0) * (ay1 - ay0), (bx1 - bx0) * (by1 - by0))
+    return float(iw * ih / smaller) if smaller > 0 else 0.0
+
+
+def _non_max_suppression(
+    cands: list[PlateDetection], iou: float = 0.4, containment: float = 0.7
+) -> list[PlateDetection]:
+    """Убирает повторы и вложенные рамки: строка символов внутри таблички или кусок
+    бампера вокруг неё не должны соперничать с самой табличкой (vision-модель, видя
+    вложенные рамки, выбирала внутреннюю — табличка ложилась на надпись)."""
     kept: list[PlateDetection] = []
     for cand in sorted(cands, key=lambda c: c.confidence, reverse=True):
-        if all(bbox_iou(cand.corners, k.corners) < iou for k in kept):
+        if all(
+            bbox_iou(cand.corners, k.corners) < iou
+            and _bbox_containment(cand.corners, k.corners) < containment
+            for k in kept
+        ):
             kept.append(cand)
     return kept
 

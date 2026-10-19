@@ -106,6 +106,16 @@ def test_detector_takes_whole_yellow_placeholder_at_angle() -> None:
     assert np.abs(best.corners - truth).max() < 5.0
 
 
+def test_detector_drops_lettering_box_inside_plate() -> None:
+    """Рамка строки символов внутри таблички не показывается vision-модели рядом с самой
+    табличкой: иначе она выбирает внутреннюю, и табличка ложится на надпись."""
+    scene, truth = _yellow_placeholder_scene()
+    lo, hi = truth.min(axis=0) - 2, truth.max(axis=0) + 2
+    for det in ContourPlateDetector().detect(scene)[1:]:
+        inside = (det.corners.min(axis=0) >= lo).all() and (det.corners.max(axis=0) <= hi).all()
+        assert not inside
+
+
 def test_detector_low_confidence_without_plate() -> None:
     blank = np.full((700, 1000, 3), 128, np.uint8)
     cv2.rectangle(blank, (100, 100), (900, 600), (40, 40, 140), -1)
