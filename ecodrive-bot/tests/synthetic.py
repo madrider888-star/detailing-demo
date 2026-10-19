@@ -13,12 +13,16 @@ from PIL import Image, ImageDraw, ImageFont
 FONT = Path(__file__).resolve().parents[1] / "assets" / "fonts" / "DejaVuSans-Bold.ttf"
 
 
-def make_plate(text: str = "AA 1234 BB", size: tuple[int, int] = (520, 112)) -> NDArray[np.uint8]:
+def make_plate(
+    text: str = "AA 1234 BB",
+    size: tuple[int, int] = (520, 112),
+    strip: tuple[int, int, int] = (0, 51, 153),
+) -> NDArray[np.uint8]:
     w, h = size
     img = Image.new("RGB", (w, h), (244, 244, 240))
     draw = ImageDraw.Draw(img)
     draw.rectangle((0, 0, w - 1, h - 1), outline=(20, 20, 20), width=3)
-    draw.rectangle((3, 3, 48, h - 4), fill=(0, 51, 153))
+    draw.rectangle((3, 3, 48, h - 4), fill=strip)
     draw.text(
         (26, h - 22),
         "UA",
@@ -43,7 +47,11 @@ def make_scene(
     shade: float = 1.0,
     blur: float = 0.0,
     seed: int = 1,
+    strip: tuple[int, int, int] = (0, 51, 153),
+    holder: bool = False,
 ) -> tuple[NDArray[np.uint8], NDArray[np.float32]]:
+    """`holder` — тёмный кузов и чёрная рамка-держатель вокруг номера, как на реальных
+    фото тёмных машин; `strip` — цвет полосы слева (у новых украинских — тёмно-серая)."""
     w, h = size
     rng = np.random.default_rng(seed)
     yy = np.linspace(0, 1, h)[:, None]
@@ -61,10 +69,17 @@ def make_scene(
     cv2.ellipse(scene, (int(w * 0.75), int(h * 0.45)), (60, 25), 0, 0, 360, (210, 210, 220), -1)
     if corners is None:
         corners = np.array([[520, 600], [790, 590], [792, 650], [522, 664]], dtype=np.float32)
-    plate = make_plate().astype(np.float32) * shade
+    plate = make_plate(strip=strip).astype(np.float32) * shade
     ph, pw = plate.shape[:2]
     src = np.array([[0, 0], [pw - 1, 0], [pw - 1, ph - 1], [0, ph - 1]], dtype=np.float32)
     m = cv2.getPerspectiveTransform(src, corners)
+    if holder:
+        cv2.rectangle(
+            scene, (int(w * 0.15), int(h * 0.3)), (int(w * 0.85), int(h * 0.85)), (28, 28, 30), -1
+        )
+        frame = np.array([[-40, -14], [pw + 40, -14], [pw + 40, ph + 14], [-40, ph + 14]])
+        frame_quad = cv2.perspectiveTransform(frame.reshape(1, 4, 2).astype(np.float32), m)
+        cv2.fillConvexPoly(scene, np.round(frame_quad[0]).astype(np.int32), (10, 10, 10))
     warped = cv2.warpPerspective(plate, m, (w, h))
     mask = cv2.warpPerspective(np.ones((ph, pw), np.float32), m, (w, h))[..., None]
     scene = scene * (1 - mask) + warped * mask

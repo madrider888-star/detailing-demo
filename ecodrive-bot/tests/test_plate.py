@@ -62,6 +62,18 @@ def test_detector_finds_plate_corners(name: str) -> None:
     assert np.abs(best.corners - truth).max() < 6.0
 
 
+@pytest.mark.parametrize("name", list(SCENES))
+def test_detector_keeps_dark_flag_strip_on_holder(name: str) -> None:
+    """Новый украинский номер (тёмно-серая полоса с флагом) в чёрном держателе на тёмной
+    машине: край не должен обрезаться по светлому фону и не уходить на держатель."""
+    scene, truth = make_scene(SCENES[name], strip=(78, 76, 72), holder=True)
+    detections = ContourPlateDetector().detect(scene)
+    assert detections, "plate not detected"
+    best = detections[0]
+    assert best.confidence > 0.8
+    assert np.abs(best.corners - truth).max() < 6.0
+
+
 def test_detector_low_confidence_without_plate() -> None:
     blank = np.full((700, 1000, 3), 128, np.uint8)
     cv2.rectangle(blank, (100, 100), (900, 600), (40, 40, 140), -1)

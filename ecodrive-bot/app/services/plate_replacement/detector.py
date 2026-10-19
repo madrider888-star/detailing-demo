@@ -31,6 +31,10 @@ ImageBGR = ImageArray
 # Европейский формат (Украина): 520×112 мм.
 EU_ASPECT = 520 / 112
 CANON_W, CANON_H = 260, 56
+# Кромка над тёмной полосой с флагом слабее, чем над белым полем (≈ 0.3 от неё),
+# а переход держатель → тёмный кузов — ≈ 0.08: порог между ними.
+EDGE_RUN_MIN = 0.18
+REFINE_MAX_GAIN = 0.1  # насколько уточнение углов может поднять уверенность кандидата
 
 
 @dataclass(frozen=True)
@@ -159,9 +163,187 @@ def _fit_line_x(ys: ImageArray, xs: ImageArray) -> tuple[float, float] | None:
     return _fit_line_y(ys, xs)
 
 
+def _strip_like(
+    canon: ImageBGR,
+    top: tuple[float, float],
+    bottom: tuple[float, float],
+    x_a: float,
+    x_b: float,
+) -> bool:
+    """Похожа ли зона между x_a и x_b на полосу номера: синяя EU-полоса, либо тёмная
+    полоса с флагом сверху и светлыми буквами «UA» снизу. Держатель и бампер — нет."""
+    x0, x1 = sorted((round(x_a), round(x_b)))
+    xc = (x0 + x1) / 2
+    y0 = round(top[0] * xc + top[1])
+    y1 = round(bottom[0] * xc + bottom[1])
+    h = y1 - y0
+    if x1 - x0 < 2 or h < 6:
+        return False
+    zone = canon[y0 + round(h * 0.12) : y1 - round(h * 0.12), x0:x1]
+    if zone.size == 0:
+        return False
+    hsv = cv2.cvtColor(zone, cv2.COLOR_BGR2HSV)
+    sat = hsv[..., 1] >= 70
+    gray = cv2.cvtColor(zone, cv2.COLOR_BGR2GRAY)
+    half = gray.shape[0] // 2
+    letters = float((gray[half:] >= 150).mean()) if half else 0.0
+    colored_top = float(sat[:half].mean()) if half else 0.0
+    return bool(float(sat.mean()) >= 0.5 or colored_top >= 0.08 or letters >= 0.04)
+
+
+def edge_run_side(
+    gy: ImageArray,
+    gx: ImageArray,
+    top: tuple[float, float],
+    bottom: tuple[float, float],
+    left_x: float,
+    right_x: float,
+    direction: int,
+    canon: ImageBGR | None = None,
+) -> tuple[float, float] | None:
+    """Боковой край номера x = c·y + d — там, где кончаются его верхняя и нижняя кромки.
+
+    Кромка таблички идёт и над тёмной полосой с флагом и «UA», а на держателе и кузове
+    пропадает, поэтому край не зависит от цвета полосы. Затем край подтягивается к
+    самому сильному вертикальному перепаду рядом (кант таблички / держатель).
+    """
+    ch, cw = gy.shape
+    pw = right_x - left_x
+    center = int((left_x + right_x) / 2)
+
+    def strength(line: tuple[float, float], x: int) -> float:
+        y = round(line[0] * x + line[1])
+        y0, y1 = max(0, y - 2), min(ch, y + 3)
+        return float(gy[y0:y1, x].max()) if y1 > y0 else 0.0
+
+    def run_end(line: tuple[float, float]) -> float | None:
+        inner = range(int(left_x + pw * 0.25), int(right_x - pw * 0.25))
+        values = [strength(line, x) for x in inner if 0 <= x < cw]
+        if not values:
+            return None
+        ref = float(np.median(values))
+        if ref < 15:
+            return None
+        limit = (left_x if direction < 0 else right_x) + direction * pw * 0.3
+        max_misses = max(3, round(pw * 0.015))
+        x, misses, last_good = center, 0, center
+        while 1 <= x < cw - 1 and (x - limit) * direction <= 0:
+            if strength(line, x) >= EDGE_RUN_MIN * ref:
+                misses, last_good = 0, x
+            else:
+                misses += 1
+                if misses > max_misses:
+                    break
+            x += direction
+        return last_good + 0.5 * direction
+
+    end_top, end_bottom = run_end(top), run_end(bottom)
+    if end_top is None or end_bottom is None:
+        return None
+    gap = abs(end_top - end_bottom)
+    if gap > 0.1 * pw:
+        # Одна кромка прервалась раньше (мелкий номер, блик, символы у края). Разница
+        # не больше полосы с флагом (≈ 10 % длины) — берём дальнюю, иначе дальняя
+        # кромка ушла на держатель или бампер — берём ближнюю.
+        outer = min(end_top, end_bottom) if direction < 0 else max(end_top, end_bottom)
+        inner = max(end_top, end_bottom) if direction < 0 else min(end_top, end_bottom)
+        strip = (
+            canon is not None and gap <= 0.16 * pw and _strip_like(canon, top, bottom, inner, outer)
+        )
+        end_top = end_bottom = outer if strip else inner
+
+    def y_top(x: float) -> float:
+        return top[0] * x + top[1]
+
+    def y_bottom(x: float) -> float:
+        return bottom[0] * x + bottom[1]
+
+    def segment_score(xt: float, xb: float) -> float:
+        yt, yb = y_top(xt), y_bottom(xb)
+        total, n = 0.0, 0
+        for t in np.linspace(0.15, 0.85, 12):
+            x, y = round(xt + t * (xb - xt)), round(yt + t * (yb - yt))
+            if 0 <= x < cw and 0 <= y < ch:
+                total += float(gx[y, max(0, x - 1) : x + 2].max())
+                n += 1
+        return total / n if n else 0.0
+
+    reach = max(2, round(pw * 0.03))
+    best = (segment_score(end_top, end_bottom), end_top, end_bottom)
+    # Край сдвигаем почти параллельно: наклон боковой стороны задают концы кромок.
+    for dt in range(-reach, reach + 1):
+        for db in range(dt - 2, dt + 3):
+            score = segment_score(end_top + dt, end_bottom + db)
+            if score > best[0]:
+                best = (score, end_top + dt, end_bottom + db)
+    _, xt, xb = best
+    yt, yb = y_top(xt), y_bottom(xb)
+    if abs(yb - yt) < 1:
+        return None
+    c = (xb - xt) / (yb - yt)
+    return c, xt - c * yt
+
+
+def edge_support(image: ImageBGR, quad: Quad) -> float:
+    """Насколько стороны четырёхугольника лежат на реальных перепадах яркости."""
+    h, w = image.shape[:2]
+    x0, y0 = np.floor(quad.min(axis=0)).astype(int) - 4
+    x1, y1 = np.ceil(quad.max(axis=0)).astype(int) + 5
+    x0, y0, x1, y1 = max(0, x0), max(0, y0), min(w, x1), min(h, y1)
+    if x1 - x0 < 8 or y1 - y0 < 8:
+        return 0.0
+    gray = cv2.GaussianBlur(
+        cv2.cvtColor(image[y0:y1, x0:x1], cv2.COLOR_BGR2GRAY).astype(np.float32), (3, 3), 0
+    )
+    mag = cv2.magnitude(cv2.Sobel(gray, cv2.CV_32F, 1, 0), cv2.Sobel(gray, cv2.CV_32F, 0, 1))
+    local = quad - np.array([x0, y0], dtype=np.float32)
+    sides = []
+    for i in range(4):
+        a, b = local[i], local[(i + 1) % 4]
+        pts = [a + t * (b - a) for t in np.linspace(0.1, 0.9, 24)]
+        vals = [
+            float(mag[max(0, int(y) - 1) : int(y) + 2, max(0, int(x) - 1) : int(x) + 2].max())
+            for x, y in pts
+            if 0 <= int(x) < mag.shape[1] and 0 <= int(y) < mag.shape[0]
+        ]
+        sides.append(float(np.median(vals)) if vals else 0.0)
+    # Самая слабая сторона важнее средней: один «съехавший» край и есть кривая табличка.
+    return 0.5 * min(sides) + 0.5 * float(np.mean(sides))
+
+
 def refine_quad(image: ImageBGR, quad: Quad) -> Quad | None:
-    """Уточняет углы: верх/низ — по градиенту, бока — по профилю «светлый фон или
-    синяя EU-полоса». Возвращает None, если уточнение ненадёжно."""
+    """Уточняет углы номера, начиная с грубого контура и с его описанного прямоугольника.
+
+    Грубый контур бывает «сломан» (например, без тёмной полосы с флагом) — тогда
+    верхний край ищется наискосок через символы. Каждый старт уточняется дважды;
+    побеждает вариант, стороны которого лучше всего лежат на реальных краях.
+    """
+    starts = [quad, order_corners(cv2.boxPoints(cv2.minAreaRect(quad.astype(np.float32))))]
+    results: list[Quad] = []
+    for start in starts:
+        for outermost in (False, True):
+            current = _refine_once(image, start, outermost=outermost)
+            if current is None:
+                continue
+            again = _refine_once(image, current, outermost=outermost)
+            results.append(current if again is None else again)
+    if not results:
+        return None
+    # Граница полосы с флагом и белого поля контрастнее, чем полосы и чёрного держателя,
+    # поэтому «самый сильный край» часто внутренний. Из вариантов, уверенно лежащих на
+    # краях, берём самый большой — внешний контур номера.
+    supports = [edge_support(image, q) for q in results]
+    good = [q for q, sup in zip(results, supports, strict=True) if sup >= 0.6 * max(supports)]
+    return max(good, key=quad_area)
+
+
+def _refine_once(image: ImageBGR, quad: Quad, *, outermost: bool = False) -> Quad | None:
+    """Уточняет углы: верх/низ — по градиенту, бока — по концам верхней и нижней кромки
+    (запасной вариант — профиль «светлый фон или синяя EU-полоса»).
+
+    `outermost` — верх/низ ищутся в широкой полосе и берётся самый внешний сильный
+    перепад: кант таблички, а не верх символов, если грубый контур съехал внутрь.
+    Возвращает None, если уточнение ненадёжно."""
     width, height = quad_size(quad)
     if width < 30 or height < 8:
         return None
@@ -183,21 +365,26 @@ def refine_quad(image: ImageBGR, quad: Quad) -> Quad | None:
     gray = cv2.GaussianBlur(cv2.cvtColor(canon, cv2.COLOR_BGR2GRAY), (3, 3), 0).astype(np.float32)
     gy = np.abs(cv2.Sobel(gray, cv2.CV_32F, 0, 1, ksize=3))
 
-    def horizontal_edge(center: float) -> tuple[float, float] | None:
+    def horizontal_edge(center: float, outward: int) -> tuple[float, float] | None:
         xs, ys = [], []
-        band = max(2, int(ph * 0.22))
+        band = max(3, int(ph * 0.4)) if outermost else max(2, int(ph * 0.22))
         for x in np.linspace(left_x + pw * 0.15, right_x - pw * 0.1, 40).astype(int):
             if not 0 <= x < cw:
                 continue
             y0, y1 = max(0, int(center - band)), min(ch, int(center + band) + 1)
             column = gy[y0:y1, x]
-            if column.size and column.max() > 20:
-                xs.append(x)
-                ys.append(y0 + int(column.argmax()))
+            if not column.size or column.max() <= 20:
+                continue
+            best = int(column.argmax())
+            if outermost:
+                strong = np.flatnonzero(column >= 0.5 * column.max())
+                best = int(strong.min() if outward < 0 else strong.max())
+            xs.append(x)
+            ys.append(y0 + best)
         return _fit_line_y(np.array(xs, float), np.array(ys, float))
 
-    top = horizontal_edge(top_y)
-    bottom = horizontal_edge(bottom_y)
+    top = horizontal_edge(top_y, -1)
+    bottom = horizontal_edge(bottom_y, +1)
     if top is None or bottom is None:
         return None
 
@@ -244,8 +431,17 @@ def refine_quad(image: ImageBGR, quad: Quad) -> Quad | None:
             return None
         return line
 
-    left = side_edge(-1)
-    right = side_edge(+1)
+    # Кромку ищем по цвету, а не только по яркости: синяя EU-полоса на кузове близкой
+    # яркости в сером почти не видна.
+    color = cv2.GaussianBlur(canon, (3, 3), 0).astype(np.float32)
+    gy_c = np.abs(cv2.Sobel(color, cv2.CV_32F, 0, 1, ksize=3)).max(axis=2)
+    gx_c = np.abs(cv2.Sobel(color, cv2.CV_32F, 1, 0, ksize=3)).max(axis=2)
+    left = edge_run_side(gy_c, gx_c, top, bottom, left_x, right_x, -1, canon)
+    right = edge_run_side(gy_c, gx_c, top, bottom, left_x, right_x, +1, canon)
+    if left is None or right is None:
+        # Кромка номера не читается — прежний способ: по светлому фону и синей полосе.
+        left = side_edge(-1)
+        right = side_edge(+1)
     if left is None or right is None:
         return None
 
@@ -327,13 +523,19 @@ class ContourPlateDetector:
                 conf, feats = score_candidate(quad, small, fill)
                 if conf <= 0.2:
                     continue
-                refined = refine_quad(small, quad)
+                # Углы уточняем по исходному кадру: на уменьшенной копии номер под углом
+                # занимает несколько десятков пикселей и край «гуляет».
+                refined_full = refine_quad(image, (quad / scale).astype(np.float32))
+                refined = None if refined_full is None else (refined_full * scale)
                 if refined is not None:
                     r_conf, r_feats = score_candidate(refined, small, 1.0)
                     # Уточнённые углы принимаем, если «похожесть на номер» заметно не упала
                     # (EU-полоса слегка снижает оценку символов — это нормально).
+                    # Уточнение исправляет геометрию, но не доказывает, что это номер:
+                    # текстура (гравий, листва) в «удачной» рамке набирает ложные символы.
                     if r_conf >= conf - 0.1:
-                        quad, conf, feats = refined, max(conf, r_conf), r_feats
+                        boosted = min(max(conf, r_conf), conf + REFINE_MAX_GAIN)
+                        quad, conf, feats = refined, boosted, r_feats
                 candidates.append(
                     PlateDetection(
                         corners=(quad / scale).astype(np.float32),
