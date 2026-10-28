@@ -1,0 +1,51 @@
+name: ecodrive-support
+
+services:
+  support:
+    build: .
+    image: ecodrive-support:latest
+    env_file: .env
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: sqlite+aiosqlite:////app/var/support.db
+    volumes:
+      - support-data:/app/var
+    ports:
+      # Пока нет домена и HTTPS — порт открыт наружу для тестовой страницы /demo.
+      # После запуска Caddy (profile https) сменить на "127.0.0.1:8090:8090".
+      - "8090:8090"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://localhost:8090/health', timeout=3)"
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    logging:
+      driver: json-file
+      options: { max-size: "20m", max-file: "5" }
+
+  # HTTPS для chat.<домен>: включается, когда DNS-запись указывает на сервер:
+  #   CHAT_DOMAIN=chat.ecodrive.in.ua docker compose --profile https up -d
+  caddy:
+    image: caddy:2-alpine
+    profiles: ["https"]
+    restart: unless-stopped
+    environment:
+      CHAT_DOMAIN: ${CHAT_DOMAIN:-}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - support
+
+volumes:
+  support-data:
+  caddy-data:
+  caddy-config:
